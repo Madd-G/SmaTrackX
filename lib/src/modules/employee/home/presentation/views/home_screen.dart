@@ -26,17 +26,11 @@ class HomeScreen extends StatelessWidget {
                   padding: EdgeInsets.all(16.0),
                   child: Column(
                     children: [
-                      SizedBox(
-                        height: 10.0,
-                      ),
+                      SizedBox(height: 10.0),
                       HomeHeader(),
-                      SizedBox(
-                        height: 30.0,
-                      ),
+                      SizedBox(height: 30.0),
                       ProfileCard(),
-                      SizedBox(
-                        height: 5.0,
-                      ),
+                      SizedBox(height: 5.0),
                     ],
                   ),
                 ),
@@ -48,7 +42,7 @@ class HomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 20.0),
-                  HomeMessageCard(),
+                  CheckInCard(),
                   SizedBox(height: 25.0),
                   Text('Your Presence in Summary',
                       style: TextStyle(

@@ -28,15 +28,9 @@ class HistoryCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  CategoryBox(
-                    text: 'This Week',
-                    isSelected: false,
-                  ),
+                  CategoryBox(text: 'This Week', isSelected: false),
                   SizedBox(width: 10.0),
-                  CategoryBox(
-                    text: 'This Month',
-                    isSelected: true,
-                  ),
+                  CategoryBox(text: 'This Month', isSelected: true),
                 ],
               ),
             ),
@@ -89,15 +83,8 @@ class AttendanceItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Container(
+      child: RoundedContainer(
         width: context.width,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: const BorderRadius.all(
-            Radius.circular(20.0),
-          ),
-          border: Border.all(color: Colors.black12),
-        ),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -133,12 +120,11 @@ class HistoryBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return RoundedContainer(
       height: 80.0,
       width: 80.0,
-      decoration: const BoxDecoration(
-          color: Color(0xFFEFF2F7),
-          borderRadius: BorderRadius.all(Radius.circular(10.0))),
+      containerColor: const Color(0xFFEFF2F7),
+      radius: 10.0,
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

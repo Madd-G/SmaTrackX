@@ -14,7 +14,7 @@ class BottomNavController extends ChangeNotifier {
     ChangeNotifierProvider(
       create: (_) => TabNavigator(
         TabItem(
-          child: const HistoryScreen(),
+          child: const AttendancesScreen(),
         ),
       ),
       child: const PersistentView(),

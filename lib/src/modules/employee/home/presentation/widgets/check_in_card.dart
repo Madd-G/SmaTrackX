@@ -1,27 +1,19 @@
 import 'package:SmaTrackX/core.dart';
 
-class HomeMessageCard extends StatelessWidget {
-  const HomeMessageCard({
+class CheckInCard extends StatelessWidget {
+  const CheckInCard({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: context.width,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: const BorderRadius.all(
-          Radius.circular(20.0),
-        ),
-        border: Border.all(color: Colors.black12),
-      ),
+    return const RoundedContainer(
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Flexible(
+            Flexible(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,15 +31,11 @@ class HomeMessageCard extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              decoration: BoxDecoration(
-                color: AppColors.secondaryRedColor,
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(20.0),
-                ),
-                border: Border.all(color: AppColors.redColor),
-              ),
-              child: const Center(
+            RoundedContainer(
+              containerColor: AppColors.secondaryRedColor,
+              borderColor: AppColors.redColor,
+              radius: 10.0,
+              child: Center(
                 child: Padding(
                   padding:
                       EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
@@ -61,7 +49,7 @@ class HomeMessageCard extends StatelessWidget {
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

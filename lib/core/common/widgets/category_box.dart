@@ -10,14 +10,11 @@ class CategoryBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: isSelected
-          ? Container(
-              decoration: BoxDecoration(
-                color: AppColors.secondaryColor,
-                border: Border.all(color: AppColors.primaryColor, width: 1.5),
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(10.0),
-                ),
-              ),
+          ? RoundedContainer(
+              containerColor: AppColors.secondaryColor,
+              borderColor: AppColors.primaryColor,
+              borderWidth: 1.5,
+              radius: 10.0,
               child: Padding(
                 padding: const EdgeInsets.symmetric(
                     vertical: 10.0, horizontal: 12.0),
@@ -32,14 +29,8 @@ class CategoryBox extends StatelessWidget {
                 ),
               ),
             )
-          : Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(color: Colors.white, width: 1.5),
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(10.0),
-                ),
-              ),
+          : RoundedContainer(
+              borderColor: Colors.white,
               child: Padding(
                 padding: const EdgeInsets.symmetric(
                     vertical: 10.0, horizontal: 12.0),
@@ -47,9 +38,10 @@ class CategoryBox extends StatelessWidget {
                   child: Text(
                     text,
                     style: const TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w900,
-                        color: AppColors.primaryColor),
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w900,
+                      color: AppColors.primaryColor,
+                    ),
                   ),
                 ),
               ),

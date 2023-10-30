@@ -11,10 +11,7 @@ class HomeHeader extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Icon(
-          IconlyBold.user_2,
-          color: Colors.white,
-        ),
+        Icon(IconlyBold.user_2, color: Colors.white),
         Text(
           'Friday, 10 February 2023',
           style: TextStyle(
@@ -23,10 +20,7 @@ class HomeHeader extends StatelessWidget {
               color: Colors.white,
               fontFamily: Fonts.aeonik),
         ),
-        Icon(
-          IconlyBold.notification,
-          color: Colors.white,
-        ),
+        Icon(IconlyBold.notification, color: Colors.white),
       ],
     );
   }

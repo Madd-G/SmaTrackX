@@ -4,7 +4,7 @@ class CustomShape extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = AppColors.primaryColour
+      ..color = AppColors.primaryColor
       ..style = PaintingStyle.fill;
 
     final halfCircleHeight = size.width / 3;

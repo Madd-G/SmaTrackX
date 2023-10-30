@@ -16,7 +16,7 @@ class CoreUtils {
             ),
           ),
           behavior: SnackBarBehavior.floating,
-          backgroundColor: AppColors.primaryColour,
+          backgroundColor: AppColors.primaryColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),

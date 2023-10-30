@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => DashboardController()),
+        ChangeNotifierProvider(create: (_) => BottomNavController()),
         ChangeNotifierProvider(create: (_) => UserProvider()),
       ],
       child: MaterialApp(
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
             color: Colors.transparent,
           ),
           colorScheme: ColorScheme.fromSwatch(
-            accentColor: AppColors.primaryColour,
+            accentColor: AppColors.primaryColor,
           ),
         ),
         onGenerateRoute: generateRoute,

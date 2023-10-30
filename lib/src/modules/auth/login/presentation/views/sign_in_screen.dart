@@ -34,7 +34,7 @@ class _SignInScreenState extends State<SignInScreen> {
               context
                   .read<UserProvider>()
                   .initUser(state.user as LocalUserModel);
-              Navigator.pushReplacementNamed(context, Dashboard.routeName);
+              Navigator.pushReplacementNamed(context, BottomNav.routeName);
             }
           },
           builder: (context, state) {

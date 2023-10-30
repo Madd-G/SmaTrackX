@@ -1,7 +1,7 @@
 import 'package:SmaTrackX/core.dart';
 
-class DashboardUtils {
-  const DashboardUtils._();
+class UserUtils {
+  const UserUtils._();
 
   static Stream<LocalUserModel> get userDataStream => sl<FirebaseFirestore>()
       .collection('users')

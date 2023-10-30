@@ -14,7 +14,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
               fullName: user.displayName ?? '',
             );
             context.userProvider.initUser(localUser);
-            return const Dashboard();
+            return const BottomNav();
           }
           return BlocProvider(
               create: (_) => sl<AuthBloc>(), child: const SignInScreen());
@@ -33,9 +33,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
             create: (_) => sl<AuthBloc>(), child: const SignUpScreen()),
         settings: settings,
       );
-    case Dashboard.routeName:
+    case BottomNav.routeName:
       return _pageBuilder(
-        (_) => const Dashboard(),
+        (_) => const BottomNav(),
         settings: settings,
       );
     default:

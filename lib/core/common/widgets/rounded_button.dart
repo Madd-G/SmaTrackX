@@ -19,7 +19,7 @@ class RoundedButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         textStyle: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.w500),
-        backgroundColor: buttonColour ?? AppColors.primaryColour,
+        backgroundColor: buttonColour ?? AppColors.primaryColor,
         foregroundColor: labelColour ?? Colors.white,
         minimumSize: const Size(double.maxFinite, 50),
         shape: RoundedRectangleBorder(

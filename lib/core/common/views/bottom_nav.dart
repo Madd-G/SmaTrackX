@@ -1,15 +1,15 @@
 import 'package:SmaTrackX/core.dart';
 
-class Dashboard extends StatefulWidget {
-  const Dashboard({super.key});
+class BottomNav extends StatefulWidget {
+  const BottomNav({super.key});
 
   static const routeName = '/dashboard';
 
   @override
-  State<Dashboard> createState() => _DashboardState();
+  State<BottomNav> createState() => _BottomNavState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class _BottomNavState extends State<BottomNav> {
   @override
   void initState() {
     super.initState();
@@ -18,12 +18,12 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<LocalUserModel>(
-      stream: DashboardUtils.userDataStream,
+      stream: UserUtils.userDataStream,
       builder: (_, snapshot) {
         if (snapshot.hasData && snapshot.data is LocalUserModel) {
           context.read<UserProvider>().user = snapshot.data;
         }
-        return Consumer<DashboardController>(
+        return Consumer<BottomNavController>(
           builder: (_, controller, __) {
             return Scaffold(
               body: IndexedStack(
@@ -43,7 +43,7 @@ class _DashboardState extends State<Dashboard> {
                           ? IconlyBold.home
                           : IconlyLight.home,
                       color: controller.currentIndex == 0
-                          ? AppColors.primaryColour
+                          ? AppColors.primaryColor
                           : Colors.grey,
                     ),
                     label: 'Home',
@@ -52,13 +52,13 @@ class _DashboardState extends State<Dashboard> {
                   BottomNavigationBarItem(
                     icon: Icon(
                       controller.currentIndex == 1
-                          ? IconlyBold.document
-                          : IconlyLight.document,
+                          ? IconlyBold.chart
+                          : IconlyLight.chart,
                       color: controller.currentIndex == 1
-                          ? AppColors.primaryColour
+                          ? AppColors.primaryColor
                           : Colors.grey,
                     ),
-                    label: 'Materials',
+                    label: 'Attendances',
                     backgroundColor: Colors.white,
                   ),
                   BottomNavigationBarItem(
@@ -67,7 +67,7 @@ class _DashboardState extends State<Dashboard> {
                           ? IconlyBold.chat
                           : IconlyLight.chat,
                       color: controller.currentIndex == 2
-                          ? AppColors.primaryColour
+                          ? AppColors.primaryColor
                           : Colors.grey,
                     ),
                     label: 'Chat',
@@ -79,10 +79,10 @@ class _DashboardState extends State<Dashboard> {
                           ? IconlyBold.profile
                           : IconlyLight.profile,
                       color: controller.currentIndex == 3
-                          ? AppColors.primaryColour
+                          ? AppColors.primaryColor
                           : Colors.grey,
                     ),
-                    label: 'User',
+                    label: 'Profile',
                     backgroundColor: Colors.white,
                   ),
                 ],

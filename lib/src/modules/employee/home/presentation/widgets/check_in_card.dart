@@ -32,7 +32,7 @@ class CheckInCard extends StatelessWidget {
               ),
             ),
             RoundedContainer(
-              containerColor: AppColors.secondaryRedColor,
+              containerColor: AppColors.redSecondaryColor,
               borderColor: AppColors.redColor,
               radius: 10.0,
               child: Center(

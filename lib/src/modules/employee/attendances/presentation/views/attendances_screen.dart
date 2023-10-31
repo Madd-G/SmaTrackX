@@ -8,9 +8,22 @@ class AttendancesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(
-        child: Text('Attendances Screen'),
+      backgroundColor: AppColors.backgroundColor,
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Column(
+            children: [
+              AttendancesHeader(),
+              SizedBox(height: 15.0),
+              SliderCategory(),
+              SizedBox(height: 10.0,),
+              AttendancesCarousel(),
+              AttendanceHistory(),
+            ],
+          ),
+        ),
       ),
     );
   }
 }
+

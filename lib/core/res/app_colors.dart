@@ -9,11 +9,24 @@ class AppColors {
   /// #E5EEF9
   static const secondaryColor = Color(0xFFE5EEF9);
 
+  /// BACKGROUND
+  static const backgroundColor = Color(0xFFFAFAFF);
+
+  /// APP TEXT COLOR
+  static const textColor = Color(0xFF949DA9);
+
+  /// BLACK
+  static const blackColor = Color(0xFF4F5155);
+
   /// GREEN
   static const greenColor = Color(0xFF69C9AB);
-  static const secondaryGreenColor = Color(0xFFE4F6F1);
+  static const greenSecondaryColor = Color(0xFFE4F6F1);
 
   /// RED
   static const redColor = Color(0xFFE791B7);
-  static const secondaryRedColor = Color(0xFFF7DFE9);
+  static const redSecondaryColor = Color(0xFFF7DFE9);
+
+  /// YELLOW
+  static const yellowColor = Color(0xFFEBB957);
+  static const yellowSecondaryColor = Color(0xFFFBF3E2);
 }

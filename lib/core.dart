@@ -13,6 +13,7 @@ export 'package:SmaTrackX/src/modules/auth/login/presentation/views/sign_up_scre
 export 'package:SmaTrackX/src/modules/auth/login/presentation/widgets/widgets.dart';
 export 'package:SmaTrackX/src/modules/employee/chat/presentation/views/chat_screen.dart';
 export 'package:SmaTrackX/src/modules/employee/attendances/presentation/views/attendances_screen.dart';
+export 'package:SmaTrackX/src/modules/employee/attendances/presentation/widgets/widgets.dart';
 export 'package:SmaTrackX/src/modules/employee/home/presentation/views/home_screen.dart';
 export 'package:SmaTrackX/src/modules/employee/home/presentation/widgets/widgets.dart';
 export 'package:SmaTrackX/src/modules/employee/profile/presentation/views/profile_screen.dart';

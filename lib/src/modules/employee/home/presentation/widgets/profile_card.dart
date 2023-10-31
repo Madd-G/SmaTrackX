@@ -75,28 +75,3 @@ class ProfileCard extends StatelessWidget {
     );
   }
 }
-
-class LogOutButton extends StatelessWidget {
-  const LogOutButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: GestureDetector(
-        onTap: () async {
-          final navigator = Navigator.of(context);
-          await FirebaseAuth.instance.signOut();
-          unawaited(
-            navigator.pushNamedAndRemoveUntil(
-              '/',
-              (route) => false,
-            ),
-          );
-        },
-        child: const Text('Home Screen'),
-      ),
-    );
-  }
-}

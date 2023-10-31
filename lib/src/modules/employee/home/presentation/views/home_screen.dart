@@ -7,36 +7,13 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              width: context.width,
-              decoration: const BoxDecoration(
-                color: AppColors.primaryColor,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(20.0),
-                  bottomRight: Radius.circular(20.0),
-                ),
-              ),
-              child: const SafeArea(
-                child: Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Column(
-                    children: [
-                      SizedBox(height: 10.0),
-                      HomeHeader(),
-                      SizedBox(height: 30.0),
-                      ProfileCard(),
-                      SizedBox(height: 5.0),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            const Padding(
+            HomeHeader(),
+            Padding(
               padding: EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

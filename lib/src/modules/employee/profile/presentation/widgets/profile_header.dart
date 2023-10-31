@@ -1,7 +1,7 @@
 import 'package:SmaTrackX/core.dart';
 
-class HomeHeader extends StatelessWidget {
-  const HomeHeader({
+class ProfileHeader extends StatelessWidget {
+  const ProfileHeader({
     super.key,
   });
 
@@ -28,7 +28,7 @@ class HomeHeader extends StatelessWidget {
                 children: [
                   Icon(IconlyBold.user_2, color: Colors.white),
                   Text(
-                    'Friday, 10 February 2023',
+                    'Profile',
                     style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 17.0,

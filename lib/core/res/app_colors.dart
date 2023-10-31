@@ -18,6 +18,9 @@ class AppColors {
   /// BLACK
   static const blackColor = Color(0xFF4F5155);
 
+  /// GREY
+  static const greyColor = Color(0xFF5F6266);
+
   /// GREEN
   static const greenColor = Color(0xFF69C9AB);
   static const greenSecondaryColor = Color(0xFFE4F6F1);

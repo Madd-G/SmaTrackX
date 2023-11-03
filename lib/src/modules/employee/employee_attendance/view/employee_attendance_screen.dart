@@ -44,7 +44,7 @@ class _EmployeeAttendanceScreenState extends State<EmployeeAttendanceScreen> {
                 photoUrl: photoUrl!,
                 position: position,
                 deviceInfo: deviceInfo,
-              )
+              ),
             ],
           );
         } else if (state is DataFailed) {

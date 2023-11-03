@@ -37,6 +37,9 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
     required String deviceId,
     required String time,
   }) async {
+    if (!await doValidate(photoUrl: photoUrl, position: position)) {
+      return;
+    }
     await AttendanceService().checkIn(
       deviceModel: deviceModel,
       deviceId: deviceId,
@@ -59,6 +62,9 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
     required String deviceId,
     required String time,
   }) async {
+    if (!await doValidate(photoUrl: photoUrl, position: position)) {
+      return;
+    }
     await AttendanceService().checkout(
       deviceModel: deviceModel,
       deviceId: deviceId,
@@ -67,10 +73,31 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
       time: time,
       photoUrl: photoUrl,
     );
+  }
 
-    // (mounted) {
-    //   Navigator.pop(context);
-    //   Navigator.pushNamed(context, HomeScreen.routeName);
-    // };
+  Future<bool> doValidate({
+    required String photoUrl,
+    required Position position,
+  }) async {
+    if (await isNotInValidDistance(position)) {
+      debugPrint('isNotInValidDistance');
+      return false;
+    }
+    if (await SecurityService().isNotSafeDevice()) {
+      debugPrint('isNotSafeDevice');
+      return false;
+    }
+    if (await SecurityService().isNoFaceDetected(photoUrl)) {
+      debugPrint('isNoFaceDetected');
+      return false;
+    }
+    return true;
+  }
+
+  Future<bool> isNotInValidDistance(Position position) async {
+    return await AttendanceService().isNotInValidDistanceWithCompany(
+      currentLatitude: position.latitude,
+      currentLongitude: position.longitude,
+    );
   }
 }

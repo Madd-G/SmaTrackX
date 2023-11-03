@@ -1,8 +1,8 @@
 import 'package:SmaTrackX/core.dart';
 
-Future showInfoDialog(BuildContext context, String message) async {
+Future showInfoDialog(String message) async {
   await showDialog<void>(
-    context: context,
+    context: Get.currentContext,
     barrierDismissible: true,
     builder: (BuildContext context) {
       return Container(
@@ -43,7 +43,7 @@ Future showInfoDialog(BuildContext context, String message) async {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xff000a14),
                           ),
-                          onPressed: () => Navigator.pop(context),
+                          onPressed: () => Get.back(),
                           child: const Text(
                             "Ok",
                             style: TextStyle(

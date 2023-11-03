@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        navigatorKey: Get.navigatorKey,
         theme: ThemeData(
           useMaterial3: true,
           visualDensity: VisualDensity.adaptivePlatformDensity,

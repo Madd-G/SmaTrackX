@@ -37,6 +37,7 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
     required String deviceId,
     required String time,
   }) async {
+    showLoading();
     if (!await doValidate(photoUrl: photoUrl, position: position)) {
       return;
     }
@@ -49,10 +50,8 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
       photoUrl: photoUrl,
     );
 
-    // (mounted) {
-    //   Navigator.pop(context);
-    //   Navigator.pushNamed(context, HomeScreen.routeName);
-    // };
+    hideLoading();
+    Get.back();
   }
 
   doCheckOut({
@@ -62,6 +61,7 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
     required String deviceId,
     required String time,
   }) async {
+    showLoading();
     if (!await doValidate(photoUrl: photoUrl, position: position)) {
       return;
     }
@@ -73,6 +73,9 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
       time: time,
       photoUrl: photoUrl,
     );
+
+    hideLoading();
+    Get.back();
   }
 
   Future<bool> doValidate({
@@ -80,15 +83,17 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
     required Position position,
   }) async {
     if (await isNotInValidDistance(position)) {
-      debugPrint('isNotInValidDistance');
+      showInfoDialog("Too far from company :(");
       return false;
     }
     if (await SecurityService().isNotSafeDevice()) {
-      debugPrint('isNotSafeDevice');
+      hideLoading();
+      showInfoDialog("Doesn't work in root android!");
       return false;
     }
     if (await SecurityService().isNoFaceDetected(photoUrl)) {
-      debugPrint('isNoFaceDetected');
+      hideLoading();
+      showInfoDialog("No face detected!");
       return false;
     }
     return true;

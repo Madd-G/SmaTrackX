@@ -105,13 +105,14 @@ class AbsenceCard extends StatelessWidget {
                     return const Text("Error");
                   }
                   if (snapshot.data == null) return Container();
+                  bool isCheckInToday = snapshot.data!.docs.isNotEmpty;
                   bool isNotCheckInToday = snapshot.data!.docs.isEmpty;
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       GestureDetector(
                         onTap: () {
-                          (photoUrl == '')
+                          (photoUrl == '' || isCheckInToday)
                               ? () {}
                               : context.read<AttendanceBloc>().add(
                                     CheckInEvent(
@@ -126,12 +127,11 @@ class AbsenceCard extends StatelessWidget {
                         },
                         child: RoundedContainer(
                           width: context.width,
-                          containerColor: isNotCheckInToday
-                              ? AppColors.greenColor
-                              : Colors.grey,
-                          borderColor: isNotCheckInToday
-                              ? AppColors.greenColor
-                              : Colors.grey,
+                          containerColor: isCheckInToday
+                              ? Colors.grey
+                              : AppColors.greenColor,
+                          borderColor: isCheckInToday
+                              ?  Colors.grey : AppColors.greenColor,
                           borderWidth: 3,
                           radius: 10.0,
                           child: const Center(
@@ -154,7 +154,7 @@ class AbsenceCard extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          (photoUrl == '')
+                          (photoUrl == '' || isNotCheckInToday)
                               ? () {}
                               : context.read<AttendanceBloc>().add(
                                     CheckOutEvent(

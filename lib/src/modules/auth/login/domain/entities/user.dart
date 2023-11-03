@@ -30,7 +30,7 @@ class LocalUser extends Equatable {
   final String? workStart;
   final String? workEnd;
 
-  bool get isAdmin => email == 'alamsyahakhmadnur@gmail.com';
+  bool get isAdmin => email == 'admin@gmail.com';
 
   @override
   List<Object?> get props => [

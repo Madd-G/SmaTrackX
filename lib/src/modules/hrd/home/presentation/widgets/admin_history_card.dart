@@ -1,7 +1,7 @@
 import 'package:SmaTrackX/core.dart';
 
-class HistoryCard extends StatelessWidget {
-  const HistoryCard({
+class AdminHistoryCard extends StatelessWidget {
+  const AdminHistoryCard({
     super.key,
   });
 
@@ -35,27 +35,27 @@ class HistoryCard extends StatelessWidget {
               ),
             ),
             SizedBox(height: 15.0),
-            AttendanceItem(
+            AdminAttendanceItem(
               status: 'Arrived on time',
               date: 'Wednesday, 8 January 2023',
               time: '07:20',
             ),
-            AttendanceItem(
+            AdminAttendanceItem(
               status: 'Arrived late',
               date: 'Wednesday, 9 January 2023',
               time: '08:12',
             ),
-            AttendanceItem(
+            AdminAttendanceItem(
               status: 'No Show',
               date: 'Wednesday, 10 January 2023',
               time: '',
             ),
-            AttendanceItem(
+            AdminAttendanceItem(
               status: 'Absent with permission',
               date: 'Wednesday, 11 January 2023',
               time: '',
             ),
-            AttendanceItem(
+            AdminAttendanceItem(
               status: 'Leave of absence',
               date: 'Wednesday, 12 January 2023',
               time: '',
@@ -67,8 +67,8 @@ class HistoryCard extends StatelessWidget {
   }
 }
 
-class AttendanceItem extends StatelessWidget {
-  const AttendanceItem({
+class AdminAttendanceItem extends StatelessWidget {
+  const AdminAttendanceItem({
     super.key,
     required this.status,
     required this.date,

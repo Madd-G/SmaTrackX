@@ -13,7 +13,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
               fullName: user.displayName ?? '',
             );
             context.userProvider.initUser(localUser);
-            return const BottomNav();
+            return const BottomNavigation();
           }
           return BlocProvider(
               create: (_) => sl<AuthBloc>(), child: const SignInScreen());
@@ -28,7 +28,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       );
     case SignUpScreen.routeName:
       return _pageBuilder(
-        (_) => const SignUpScreen(),
+        (_) => BlocProvider(
+            create: (_) => sl<AuthBloc>(), child: const SignUpScreen()),
         settings: settings,
       );
 
@@ -45,9 +46,14 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         ),
         settings: settings,
       );
-    case BottomNav.routeName:
+    case BottomNavigation.routeName:
       return _pageBuilder(
-        (_) => const BottomNav(),
+        (_) => const BottomNavigation(),
+        settings: settings,
+      );
+    case AdminBottomNavigation.routeName:
+      return _pageBuilder(
+        (_) => const AdminBottomNavigation(),
         settings: settings,
       );
     default:

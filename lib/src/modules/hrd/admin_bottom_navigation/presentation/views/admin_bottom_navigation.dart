@@ -1,15 +1,15 @@
 import 'package:SmaTrackX/core.dart';
 
-class BottomNav extends StatefulWidget {
-  const BottomNav({super.key});
+class AdminBottomNavigation extends StatefulWidget {
+  const AdminBottomNavigation({super.key});
 
-  static const routeName = '/dashboard';
+  static const routeName = '/admin-bottom-navigation';
 
   @override
-  State<BottomNav> createState() => _BottomNavState();
+  State<AdminBottomNavigation> createState() => _AdminBottomNavigationState();
 }
 
-class _BottomNavState extends State<BottomNav> {
+class _AdminBottomNavigationState extends State<AdminBottomNavigation> {
   @override
   void initState() {
     super.initState();
@@ -23,8 +23,8 @@ class _BottomNavState extends State<BottomNav> {
         if (snapshot.hasData && snapshot.data is LocalUserModel) {
           context.read<UserProvider>().user = snapshot.data;
         }
-        return Consumer<BottomNavController>(
-          builder: (_, controller, __) {
+        return Consumer<AdminBottomNavController>(
+          builder: (context, controller, __) {
             return Scaffold(
               body: IndexedStack(
                 index: controller.currentIndex,
@@ -32,7 +32,7 @@ class _BottomNavState extends State<BottomNav> {
               ),
               bottomNavigationBar: BottomNavigationBar(
                 currentIndex: controller.currentIndex,
-                showSelectedLabels: false,
+                showSelectedLabels: true,
                 backgroundColor: Colors.white,
                 elevation: 8,
                 onTap: controller.changeIndex,
@@ -59,30 +59,6 @@ class _BottomNavState extends State<BottomNav> {
                           : Colors.grey,
                     ),
                     label: 'Attendances',
-                    backgroundColor: Colors.white,
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(
-                      controller.currentIndex == 2
-                          ? IconlyBold.chat
-                          : IconlyLight.chat,
-                      color: controller.currentIndex == 2
-                          ? AppColors.primaryColor
-                          : Colors.grey,
-                    ),
-                    label: 'Chat',
-                    backgroundColor: Colors.white,
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(
-                      controller.currentIndex == 3
-                          ? IconlyBold.profile
-                          : IconlyLight.profile,
-                      color: controller.currentIndex == 3
-                          ? AppColors.primaryColor
-                          : Colors.grey,
-                    ),
-                    label: 'Profile',
                     backgroundColor: Colors.white,
                   ),
                 ],

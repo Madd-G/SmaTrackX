@@ -45,7 +45,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
               context
                   .read<UserProvider>()
                   .initUser(state.user as LocalUserModel);
-              Navigator.pushReplacementNamed(context, BottomNav.routeName);
+              Navigator.pushReplacementNamed(
+                  context, BottomNavigation.routeName);
             }
           },
           builder: (context, state) {

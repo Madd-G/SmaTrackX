@@ -7,17 +7,20 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ProfileHeader(),
-            Menu()
+            const ProfileHeader(),
+            if (context.currentUser!.isAdmin) const AdminDashboardButton(),
+            const Menu(),
           ],
         ),
       ),
     );
   }
 }
+
+

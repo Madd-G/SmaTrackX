@@ -25,8 +25,8 @@ class LocalUserModel extends LocalUser {
           uid: map['uid'] as String,
           email: map['email'] as String,
           fullName: map['fullName'] as String,
-          workStart: map['workStart'] as String,
-          workEnd: map['workEnd'] as String,
+          workStart: map['workStart'] as String?,
+          workEnd: map['workEnd'] as String?,
           profilePic: map['profilePic'] as String?,
           bio: map['bio'] as String?,
         );

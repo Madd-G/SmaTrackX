@@ -1,4 +1,5 @@
 import 'package:SmaTrackX/core.dart';
+
 class PersistentView extends StatefulWidget {
   const PersistentView({this.body, super.key});
 
@@ -10,7 +11,6 @@ class PersistentView extends StatefulWidget {
 
 class _PersistentViewState extends State<PersistentView>
     with AutomaticKeepAliveClientMixin {
-
   @override
   Widget build(BuildContext context) {
     super.build(context);

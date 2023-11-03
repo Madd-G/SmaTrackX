@@ -4,7 +4,7 @@ class UserUtils {
   const UserUtils._();
 
   static Stream<LocalUserModel> get userDataStream => sl<FirebaseFirestore>()
-      .collection('users')
+      .collection('employees')
       .doc(sl<FirebaseAuth>().currentUser!.uid)
       .snapshots()
       .map((event) => LocalUserModel.fromMap(event.data()!));

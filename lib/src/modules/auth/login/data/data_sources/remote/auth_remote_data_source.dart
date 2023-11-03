@@ -185,24 +185,23 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   Future<DocumentSnapshot<DataMap>> _getUserData(String uid) async {
-    return _cloudStoreClient.collection('users').doc(uid).get();
+    return _cloudStoreClient.collection('employees').doc(uid).get();
   }
 
   Future<void> _setUserData(User user, String fallbackEmail) async {
-    await _cloudStoreClient.collection('users').doc(user.uid).set(
+    await _cloudStoreClient.collection('employees').doc(user.uid).set(
           LocalUserModel(
             uid: user.uid,
             email: user.email ?? fallbackEmail,
             fullName: user.displayName ?? '',
             profilePic: user.photoURL ?? '',
-            points: 0,
           ).toMap(),
         );
   }
 
   Future<void> _updateUserData(DataMap data) async {
     await _cloudStoreClient
-        .collection('users')
+        .collection('employees')
         .doc(_authClient.currentUser?.uid)
         .update(data);
   }

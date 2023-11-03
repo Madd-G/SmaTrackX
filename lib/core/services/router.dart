@@ -10,7 +10,6 @@ Route<dynamic> generateRoute(RouteSettings settings) {
             final localUser = LocalUserModel(
               uid: user.uid,
               email: user.email ?? '',
-              points: 0,
               fullName: user.displayName ?? '',
             );
             context.userProvider.initUser(localUser);
@@ -29,8 +28,21 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       );
     case SignUpScreen.routeName:
       return _pageBuilder(
-        (_) => BlocProvider(
-            create: (_) => sl<AuthBloc>(), child: const SignUpScreen()),
+        (_) => const SignUpScreen(),
+        settings: settings,
+      );
+
+    case EmployeeAttendanceScreen.routeName:
+      return _pageBuilder(
+        (_) => MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (_) => sl<AuthBloc>()),
+            BlocProvider(create: (_) => AttendanceBloc()),
+            BlocProvider(create: (_) => DataBloc()),
+            BlocProvider(create: (_) => ClockBloc()),
+          ],
+          child: const EmployeeAttendanceScreen(),
+        ),
         settings: settings,
       );
     case BottomNav.routeName:

@@ -16,6 +16,7 @@ export 'package:SmaTrackX/src/modules/employee/home/presentation/widgets/widgets
 export 'package:SmaTrackX/src/modules/employee/profile/presentation/views/profile_screen.dart';
 export 'package:SmaTrackX/src/modules/employee/profile/presentation/widgets/widgets.dart';
 export 'package:SmaTrackX/src/modules/employee/employee_attendance/bloc/blocs.dart';
+export 'package:SmaTrackX/src/modules/employee/employee_attendance/models/polyline_response.dart';
 export 'package:SmaTrackX/src/modules/employee/employee_attendance/view/employee_attendance_screen.dart';
 export 'package:SmaTrackX/src/modules/employee/employee_attendance/widgets/widgets.dart';
 export 'package:SmaTrackX/src/modules/employee/employee_attendance/attendance_service/services.dart';
@@ -50,13 +51,14 @@ export 'package:iconly/iconly.dart';
 export 'package:geolocator/geolocator.dart';
 export 'package:intl/intl.dart' show DateFormat;
 export 'package:flutter_animate/flutter_animate.dart';
-export 'package:flutter_map/flutter_map.dart';
-export 'package:latlong2/latlong.dart' show LatLng;
 export 'package:file_picker/file_picker.dart';
 export 'package:image_picker/image_picker.dart';
 export 'package:dio/dio.dart';
 export 'package:flutter/foundation.dart';
 export 'package:device_info_plus/device_info_plus.dart';
+export 'package:flutter_polyline_points/flutter_polyline_points.dart';
+export 'package:google_maps_flutter/google_maps_flutter.dart';
+export 'package:flutter_google_places/flutter_google_places.dart';
 
 export 'dart:async';
 export 'dart:convert';

@@ -12,6 +12,7 @@ export 'package:SmaTrackX/src/modules/employee/chat/presentation/views/chat_scre
 export 'package:SmaTrackX/src/modules/employee/attendances/presentation/views/attendances_screen.dart';
 export 'package:SmaTrackX/src/modules/employee/attendances/presentation/widgets/widgets.dart';
 export 'package:SmaTrackX/src/modules/employee/home/presentation/views/home_screen.dart';
+export 'package:SmaTrackX/src/modules/employee/home/presentation/bloc/blocs.dart';
 export 'package:SmaTrackX/src/modules/employee/home/presentation/widgets/widgets.dart';
 export 'package:SmaTrackX/src/modules/employee/profile/presentation/views/profile_screen.dart';
 export 'package:SmaTrackX/src/modules/employee/profile/presentation/widgets/widgets.dart';
@@ -24,6 +25,12 @@ export 'package:SmaTrackX/src/modules/employee/bottom_navigation/presentation/pr
 export 'package:SmaTrackX/src/modules/employee/bottom_navigation/presentation/views/bottom_navigation.dart';
 export 'package:SmaTrackX/src/modules/hrd/admin_bottom_navigation/presentation/providers/admin_bottom_nav_controller.dart';
 export 'package:SmaTrackX/src/modules/hrd/admin_bottom_navigation/presentation/views/admin_bottom_navigation.dart';
+export 'package:SmaTrackX/src/modules/hrd/home/data/models/models.dart';
+export 'package:SmaTrackX/src/modules/hrd/home/data/data_sources/data_sources.dart';
+export 'package:SmaTrackX/src/modules/hrd/home/data/repository/repositories.dart';
+export 'package:SmaTrackX/src/modules/hrd/home/domain/entities/entities.dart';
+export 'package:SmaTrackX/src/modules/hrd/home/domain/repository/repositories.dart';
+export 'package:SmaTrackX/src/modules/hrd/home/domain/use_cases/use_cases.dart';
 export 'package:SmaTrackX/src/modules/hrd/home/presentation/views/admin_home_screen.dart';
 export 'package:SmaTrackX/src/modules/hrd/home/presentation/widgets/widgets.dart';
 
@@ -62,9 +69,7 @@ export 'package:image_picker/image_picker.dart';
 export 'package:dio/dio.dart';
 export 'package:flutter/foundation.dart';
 export 'package:device_info_plus/device_info_plus.dart';
-export 'package:flutter_polyline_points/flutter_polyline_points.dart';
 export 'package:google_maps_flutter/google_maps_flutter.dart';
-export 'package:flutter_google_places/flutter_google_places.dart';
 
 export 'dart:async';
 export 'dart:convert';

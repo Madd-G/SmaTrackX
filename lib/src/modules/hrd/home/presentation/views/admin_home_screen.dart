@@ -23,7 +23,7 @@ class AdminHomeScreen extends StatelessWidget {
                       style: TextStyle(
                           fontSize: 16.0, fontWeight: FontWeight.w500)),
                   SizedBox(height: 10.0),
-                  AdminSummaryCard(),
+                  // AdminSummaryCard(adminAttendanceSummary: [], index: 0,),
                   SizedBox(height: 25.0),
                   Text('Attendance History',
                       style: TextStyle(

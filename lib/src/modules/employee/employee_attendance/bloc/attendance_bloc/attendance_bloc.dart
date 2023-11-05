@@ -83,6 +83,7 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
     required Position position,
   }) async {
     if (await isNotInValidDistance(position)) {
+      hideLoading();
       showInfoDialog("Too far from company :(");
       return false;
     }

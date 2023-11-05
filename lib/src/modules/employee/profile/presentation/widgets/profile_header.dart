@@ -16,18 +16,26 @@ class ProfileHeader extends StatelessWidget {
           bottomRight: Radius.circular(20.0),
         ),
       ),
-      child: const SafeArea(
+      child: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(IconlyBold.user_2, color: Colors.white),
-                  Text(
+                  GestureDetector(
+                      onTap: () {
+                        context.currentUser!.isAdmin
+                            ? Navigator.pushReplacementNamed(
+                                context, AdminBottomNavigation.routeName)
+                            : null;
+                      },
+                      child:
+                          const Icon(IconlyBold.user_2, color: Colors.white)),
+                  const Text(
                     'Profile',
                     style: TextStyle(
                         fontWeight: FontWeight.w500,
@@ -35,12 +43,12 @@ class ProfileHeader extends StatelessWidget {
                         color: Colors.white,
                         fontFamily: Fonts.aeonik),
                   ),
-                  Icon(IconlyBold.notification, color: Colors.white),
+                  const Icon(IconlyBold.notification, color: Colors.white),
                 ],
               ),
-              SizedBox(height: 30.0),
-              ProfileCard(),
-              SizedBox(height: 5.0),
+              const SizedBox(height: 30.0),
+              const ProfileCard(),
+              const SizedBox(height: 5.0),
             ],
           ),
         ),

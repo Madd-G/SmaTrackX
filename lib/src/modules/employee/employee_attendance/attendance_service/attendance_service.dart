@@ -15,7 +15,15 @@ class AttendanceService {
 
 
     */
-    await FirebaseFirestore.instance.collection("attendances").add({
+    await FirebaseFirestore.instance
+        .collection("attendances")
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection(Timestamp.now().toDate().dateFormat)
+        .doc('check-in')
+        .set({
+      "date": Timestamp.now(),
+      "checkin_date_formatted": Timestamp.now().toDate().dateFormat,
+      "checkin_date": Timestamp.now(),
       "checkin_info": {
         "latitude": latitude,
         "longitude": longitude,
@@ -24,10 +32,6 @@ class AttendanceService {
         "device_id": deviceId,
         "time": time,
       },
-      "date": Timestamp.now(),
-      "checkin_date_formatted":
-          DateFormat("y-MMM-d").format(Timestamp.now().toDate()),
-      "checkin_date": Timestamp.now(),
       "user": {
         "uid": FirebaseAuth.instance.currentUser!.uid,
         "name": FirebaseAuth.instance.currentUser!.displayName,
@@ -44,25 +48,16 @@ class AttendanceService {
     required String time,
     required String photoUrl,
   }) async {
-    var snapshot = await FirebaseFirestore.instance
-        .collection("attendances")
-        .where("checkin_date_formatted", //Timestamp
-            isEqualTo: DateFormat("y-MMM-d").format(Timestamp.now().toDate()))
-        .where("user.uid", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
-        .get();
-
-    var attendanceToday = snapshot.docs.first;
-
     await FirebaseFirestore.instance
         .collection("attendances")
-        .doc(
-          attendanceToday.id,
-        )
-        .update({
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection(Timestamp.now().toDate().dateFormat)
+        .doc('check-out')
+        .set({
       "checkout": true,
       "checkout_date": Timestamp.now(),
-      "checkout_date_formatted":
-          DateFormat("y-MMM-d").format(Timestamp.now().toDate()),
+      "date": Timestamp.now(),
+      "checkout_date_formatted": Timestamp.now().toDate().dateFormat,
       "checkout_info": {
         "latitude": latitude,
         "longitude": longitude,
@@ -71,14 +66,19 @@ class AttendanceService {
         "device_id": deviceId,
         "time": time,
       },
+      "user": {
+        "uid": FirebaseAuth.instance.currentUser!.uid,
+        "name": FirebaseAuth.instance.currentUser!.displayName,
+        "email": FirebaseAuth.instance.currentUser!.email,
+      },
     });
   }
 
   Stream<QuerySnapshot<Object?>>? attendanceSnapshot() {
     return FirebaseFirestore.instance
         .collection("attendances")
-        .where("checkin_date_formatted", //Timestamp
-            isEqualTo: DateFormat("y-MMM-d").format(Timestamp.now().toDate()))
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection(Timestamp.now().toDate().dateFormat)
         .where("user.uid", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
         .snapshots();
   }
@@ -86,19 +86,19 @@ class AttendanceService {
   Stream<QuerySnapshot<Object?>>? attendanceHistorySnapshot({
     required DateTime date,
   }) {
-    bool isToday = DateFormat("y-MMM-d").format(date) ==
-        DateFormat("y-MMM-d").format(DateTime.now());
+    bool isToday = date.dateFormat == DateTime.now().dateFormat;
 
     if (isToday) {
       return FirebaseFirestore.instance
           .collection("attendances")
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection(Timestamp.now().toDate().dateFormat)
           .where("user.uid", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
           .snapshots();
     } else {
       return FirebaseFirestore.instance
           .collection("attendances")
-          .where("checkin_date_formatted",
-              isEqualTo: DateFormat("y-MMM-d").format(date))
+          .where("checkin_date_formatted", isEqualTo: DateTime.now().dateFormat)
           .where("user.uid", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
           .snapshots();
     }

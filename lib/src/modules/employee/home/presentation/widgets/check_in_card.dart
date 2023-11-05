@@ -45,7 +45,7 @@ class CheckInCard extends StatelessWidget {
                 }
 
                 var attendanceToday =
-                    data.docs.first.data() as Map<String, dynamic>;
+                    data.docs.last.data() as Map<String, dynamic>;
                 bool isCheckoutToday = attendanceToday["checkout"] == true;
 
                 if (isCheckoutToday) {

@@ -28,9 +28,9 @@ class AdminHistoryCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  CategoryBox(text: 'This Week', isSelected: false),
-                  SizedBox(width: 10.0),
-                  CategoryBox(text: 'This Month', isSelected: true),
+                  // CategoryBox(text: 'This Week'),
+                  // SizedBox(width: 10.0),
+                  // CategoryBox(text: 'This Month'),
                 ],
               ),
             ),

@@ -8,6 +8,6 @@ extension DateTimeExt on DateTime {
 
   String get dateFormat {
     final now = DateTime.now();
-    return DateFormat("d MMMM y").format(now);
+    return DateFormat("dd MMMM yyyy").format(now);
   }
 }

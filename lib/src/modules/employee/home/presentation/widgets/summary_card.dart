@@ -1,45 +1,103 @@
 import 'package:SmaTrackX/core.dart';
 
 class SummaryCard extends StatelessWidget {
-  const SummaryCard({
-    super.key,
-  });
+  const SummaryCard({super.key});
 
   @override
   Widget build(BuildContext context) {
     return RoundedContainer(
       width: context.width,
-      child: const Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(height: 10.0),
-            Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Center(
+          child: DefaultTabController(
+            initialIndex: 0,
+            length: 2,
+            child: SizedBox(
+              height: 170,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  CategoryBox(text: 'This Week', isSelected: true),
-                  SizedBox(width: 10.0),
-                  CategoryBox(text: 'This Month', isSelected: false),
+                  Material(
+                    color: Colors.white,
+                    child: TabBar(
+                      indicatorWeight: 0.0,
+                      labelPadding: const EdgeInsets.all(0.0),
+                      unselectedLabelColor: AppColors.greyColor,
+                      indicator: BoxDecoration(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(10.0),
+                          ),
+                          border: Border.all(
+                            color: AppColors.primaryColor,
+                            width: 1.5,
+                          ),
+                          color: AppColors.secondaryColor),
+                      indicatorColor: AppColors.primaryColor,
+                      labelColor: AppColors.primaryColor,
+                      tabs: const [
+                        HomeSummaryTabBar(text: 'This Week'),
+                        HomeSummaryTabBar(text: 'This Month'),
+                        // CategoryBox(text: 'This Month')
+                      ],
+                    ),
+                  ),
+                  const Flexible(
+                    fit: FlexFit.loose,
+                    child: TabBarView(
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SummaryBox(count: 5, status: 'Arrive'),
+                            SummaryBox(count: 1, status: 'Sick'),
+                            SummaryBox(count: 1, status: 'Leave'),
+                            SummaryBox(count: 0, status: 'Skip'),
+                          ],
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SummaryBox(count: 25, status: 'Arrive'),
+                            SummaryBox(count: 2, status: 'Sick'),
+                            SummaryBox(count: 3, status: 'Leave'),
+                            SummaryBox(count: 0, status: 'Skip'),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
-            SizedBox(height: 20.0),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SummaryBox(count: 25, status: 'Arrive'),
-                SummaryBox(count: 2, status: 'Sick'),
-                SummaryBox(count: 3, status: 'Leave'),
-                SummaryBox(count: 0, status: 'Skip'),
-              ],
-            ),
-            SizedBox(height: 20.0),
-          ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class HomeSummaryTabBar extends StatelessWidget {
+  const HomeSummaryTabBar({
+    super.key,
+    required this.text,
+  });
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 12.0),
+      child: Center(
+        child: Text(
+          text,
+          style: const TextStyle(
+            fontSize: 16.0,
+            fontWeight: FontWeight.w900,
+          ),
         ),
       ),
     );

@@ -46,9 +46,9 @@ class AttendancesCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  CategoryBox(text: 'This Day', isSelected: false),
-                  SizedBox(width: 10.0),
-                  CategoryBox(text: 'This Week', isSelected: true),
+                  // CategoryBox(text: 'This Day'),
+                  // SizedBox(width: 10.0),
+                  // CategoryBox(text: 'This Week'),
                 ],
               ),
             ),

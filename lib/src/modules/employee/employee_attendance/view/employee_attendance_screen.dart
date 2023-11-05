@@ -21,10 +21,8 @@ class _EmployeeAttendanceScreenState extends State<EmployeeAttendanceScreen> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('build');
     return Scaffold(body: BlocBuilder<DataBloc, DataState>(
       builder: (BuildContext context, DataState state) {
-        debugPrint('STATE: $state');
         if (state is DataLoading) {
           return const Center(
             child: Text(

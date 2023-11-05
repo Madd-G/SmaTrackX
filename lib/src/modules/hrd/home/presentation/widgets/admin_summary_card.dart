@@ -1,9 +1,7 @@
 import 'package:SmaTrackX/core.dart';
 
 class AdminSummaryCard extends StatelessWidget {
-  const AdminSummaryCard({
-    super.key,
-  });
+  const AdminSummaryCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,29 +14,10 @@ class AdminSummaryCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(height: 10.0),
-            Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  CategoryBox(text: 'Today', isSelected: true),
-                  SizedBox(width: 10.0),
-                  CategoryBox(text: 'This Week', isSelected: false),
-                ],
-              ),
-            ),
-            SizedBox(height: 20.0),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                AdminSummaryBox(count: 25, status: 'On time'),
-                AdminSummaryBox(count: 2, status: 'Late'),
-                AdminSummaryBox(count: 3, status: 'leave'),
-                AdminSummaryBox(count: 0, status: 'No show'),
-              ],
-            ),
-            SizedBox(height: 20.0),
+            AdminHomeTabBar(),
+            SizedBox(height: 10.0),
+            // AdminSummaryTabBody(adminAttendanceSummary: adminAttendanceSummary),
+            SizedBox(height: 10.0),
           ],
         ),
       ),
@@ -46,46 +25,69 @@ class AdminSummaryCard extends StatelessWidget {
   }
 }
 
-class AdminSummaryBox extends StatelessWidget {
-  const AdminSummaryBox({
+// class AdminSummaryTabBody extends StatelessWidget {
+//   const AdminSummaryTabBody({
+//     super.key,
+//     required this.adminAttendanceSummary,
+//   });
+//
+//   final List<AdminAttendanceSummary> adminAttendanceSummary;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
+//         crossAxisAlignment: CrossAxisAlignment.center,
+//         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//         children: adminAttendanceSummary.map((e) {
+//           return AdminSummaryTile(
+//             adminAttendanceSummary: e,
+//             onTap: () {},
+//           );
+//         }).toList());
+//   }
+// }
+
+class AdminSummaryTile extends StatelessWidget {
+  const AdminSummaryTile({
     super.key,
-    required this.count,
-    required this.status,
+    this.onTap,
   });
 
-  final int count;
-  final String status;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return RoundedContainer(
-      height: context.width / 5.2,
-      width: context.width / 5.2,
-      containerColor: const Color(0xFFEFF2F7),
-      borderColor: const Color(0xFFEFF2F7),
-      radius: 10.0,
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              count.toString(),
-              style: const TextStyle(
-                fontSize: 26.0,
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF4D4B51),
+    return GestureDetector(
+      onTap: onTap,
+      child: RoundedContainer(
+        height: context.width / 5.2,
+        width: context.width / 5.2,
+        containerColor: const Color(0xFFEFF2F7),
+        borderColor: const Color(0xFFEFF2F7),
+        radius: 10.0,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                1.toString(),
+                style: const TextStyle(
+                  fontSize: 26.0,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF4D4B51),
+                ),
               ),
-            ),
-            Text(
-              status,
-              style: const TextStyle(
-                fontSize: 14.0,
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF9AA3AF),
+              const Text(
+                'On Time',
+                style: TextStyle(
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF9AA3AF),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

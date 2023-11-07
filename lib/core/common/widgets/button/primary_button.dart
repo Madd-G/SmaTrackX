@@ -1,12 +1,13 @@
 // ignore_for_file: camel_case_types, prefer_typing_uninitialized_variables
 
-import 'package:flutter/material.dart';
+import 'package:SmaTrackX/core.dart';
 
 class PrimaryButton extends StatelessWidget {
   final String label;
   final IconData icon;
   final Function onPressed;
   final bool enabled;
+
   const PrimaryButton({
     Key? key,
     required this.label,
@@ -18,7 +19,7 @@ class PrimaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width,
+      width: context.width,
       height: 50,
       child: ElevatedButton.icon(
         icon: Icon(

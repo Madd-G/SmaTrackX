@@ -43,7 +43,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 children: [
                   Container(
                     color: Colors.blue,
-                    width: MediaQuery.of(context).size.width,
+                    width: context.width,
                     height: 50.0,
                     child: CustomPaint(
                       painter: CustomShape(),

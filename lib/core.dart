@@ -11,6 +11,7 @@ export 'package:SmaTrackX/src/modules/auth/login/presentation/widgets/widgets.da
 export 'package:SmaTrackX/src/modules/employee/chat/presentation/views/chat_screen.dart';
 export 'package:SmaTrackX/src/modules/employee/attendances/presentation/views/attendances_screen.dart';
 export 'package:SmaTrackX/src/modules/employee/attendances/presentation/widgets/widgets.dart';
+export 'package:SmaTrackX/src/modules/employee/home/service/services.dart';
 export 'package:SmaTrackX/src/modules/employee/home/presentation/views/home_screen.dart';
 export 'package:SmaTrackX/src/modules/employee/home/presentation/bloc/blocs.dart';
 export 'package:SmaTrackX/src/modules/employee/home/presentation/widgets/widgets.dart';
@@ -20,7 +21,7 @@ export 'package:SmaTrackX/src/modules/employee/employee_attendance/bloc/blocs.da
 export 'package:SmaTrackX/src/modules/employee/employee_attendance/models/polyline_response.dart';
 export 'package:SmaTrackX/src/modules/employee/employee_attendance/view/employee_attendance_screen.dart';
 export 'package:SmaTrackX/src/modules/employee/employee_attendance/widgets/widgets.dart';
-export 'package:SmaTrackX/src/modules/employee/employee_attendance/attendance_service/services.dart';
+export 'package:SmaTrackX/src/modules/employee/employee_attendance/service/services.dart';
 export 'package:SmaTrackX/src/modules/employee/bottom_navigation/presentation/providers/bottom_nav_controller.dart';
 export 'package:SmaTrackX/src/modules/employee/bottom_navigation/presentation/views/bottom_navigation.dart';
 export 'package:SmaTrackX/src/modules/hrd/admin_bottom_navigation/presentation/providers/admin_bottom_nav_controller.dart';

@@ -27,8 +27,13 @@ class CheckInCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  Text(
-                      '${context.currentUser?.workStart?.displayTime} - ${context.currentUser?.workEnd?.displayTime}'),
+                  Consumer<UserProvider>(
+                    builder: (_, provider, __) {
+                      final user = provider.user;
+                      return Text(
+                          '${user?.workStart?.displayTime} - ${user?.workEnd?.displayTime}');
+                    }
+                  ),
                 ],
               ),
             ),

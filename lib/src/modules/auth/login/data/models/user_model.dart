@@ -16,8 +16,6 @@ class LocalUserModel extends LocalUser {
           uid: '',
           email: '',
           fullName: '',
-          workStart: '',
-          workEnd: '',
         );
 
   LocalUserModel.fromMap(DataMap map)

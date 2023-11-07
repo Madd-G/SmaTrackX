@@ -8,9 +8,6 @@ class ProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = context.currentUser!;
-    final image = user.profilePic == null || user.profilePic!.isEmpty
-        ? null
-        : user.profilePic;
     return Container(
       height: 120.0,
       width: context.width,
@@ -24,11 +21,20 @@ class ProfileCard extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Row(
           children: [
-            CircleAvatar(
-              radius: 50,
-              backgroundImage: image != null
-                  ? NetworkImage(image)
-                  : const AssetImage(MediaRes.user) as ImageProvider,
+            Consumer<UserProvider>(
+              builder: (_, provider, __) {
+                final user = provider.user!;
+                final image =
+                    user.profilePic == null || user.profilePic!.isEmpty
+                        ? null
+                        : user.profilePic;
+                return CircleAvatar(
+                  radius: 50,
+                  backgroundImage: image != null
+                      ? NetworkImage(image)
+                      : const AssetImage(MediaRes.user) as ImageProvider,
+                );
+              },
             ),
             const SizedBox(
               width: 10.0,

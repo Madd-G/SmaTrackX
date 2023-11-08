@@ -70,7 +70,7 @@ class AttendanceService {
     return FirebaseFirestore.instance
         .collection("attendances")
         .doc(FirebaseAuth.instance.currentUser!.uid)
-        .collection(Timestamp.now().toDate().dateFormat)
+        .collection('*')
         .where("user.uid", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
         .snapshots();
   }

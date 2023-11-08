@@ -41,68 +41,11 @@ class HistoryCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 15.0,),
                 const Expanded(
                   child: TabBarView(
                     children: [
-                      Column(
-                        children: [
-                          AttendanceItem(
-                            status: 'Arrived on time',
-                            date: 'Wednesday, 8 January 2023',
-                            time: '07:20',
-                          ),
-                          AttendanceItem(
-                            status: 'Arrived late',
-                            date: 'Wednesday, 9 January 2023',
-                            time: '08:12',
-                          ),
-                          AttendanceItem(
-                            status: 'No Show',
-                            date: 'Wednesday, 10 January 2023',
-                            time: '',
-                          ),
-                          AttendanceItem(
-                            status: 'Absent with permission',
-                            date: 'Wednesday, 11 January 2023',
-                            time: '',
-                          ),
-                          AttendanceItem(
-                            status: 'Leave of absence',
-                            date: 'Wednesday, 12 January 2023',
-                            time: '',
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          AttendanceItem(
-                            status: 'Arrived on time',
-                            date: 'Wednesday, 1 January 2023',
-                            time: '07:20',
-                          ),
-                          AttendanceItem(
-                            status: 'Arrived late',
-                            date: 'Wednesday, 2 January 2023',
-                            time: '08:12',
-                          ),
-                          AttendanceItem(
-                            status: 'No Show',
-                            date: 'Wednesday, 3 January 2023',
-                            time: '',
-                          ),
-                          AttendanceItem(
-                            status: 'Absent with permission',
-                            date: 'Wednesday, 4 January 2023',
-                            time: '',
-                          ),
-                          AttendanceItem(
-                            status: 'Leave of absence',
-                            date: 'Wednesday, 5 January 2023',
-                            time: '',
-                          ),
-                        ],
-                      ),
+                      AttendanceHistoryByMonth(),
+                      AttendanceHistoryByMonth(),
                     ],
                   ),
                 ),
@@ -111,6 +54,45 @@ class HistoryCard extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class AttendanceHistoryByMonth extends StatelessWidget {
+  const AttendanceHistoryByMonth({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+      stream: HomeService().attendanceHistorySnapshot(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CircularProgressIndicator();
+        } else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        } else if (snapshot.hasData) {
+          final data = snapshot.data?.data();
+          if (data != null) {
+            return ListView.builder(
+              itemCount: data.length,
+              itemBuilder: (context, index) {
+                final date = data.keys.elementAt(index);
+                final checkInData = CheckInData.fromMap(data[date]);
+
+                return AttendanceItem(
+                  status: checkInData.checkInInfo.status,
+                  date: checkInData.date.dayDateMonthYear,
+                  time: checkInData.checkInInfo.time.hourMinute,
+                );
+              },
+            );
+          } else {
+            return const Center(child: Text('Data not found.'));
+          }
+        } else {
+          return const Center(child: Text('Document not found.'));
+        }
+      },
     );
   }
 }

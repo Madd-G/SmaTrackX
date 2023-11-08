@@ -27,8 +27,6 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(height: 10.0),
                   SummaryCard(),
                   SizedBox(height: 25.0),
-                  // TryWidget(),
-                  SizedBox(height: 25.0),
                   Text('Attendance History',
                       style: TextStyle(
                           fontSize: 16.0, fontWeight: FontWeight.w500)),

@@ -11,6 +11,7 @@ export 'package:SmaTrackX/src/modules/auth/login/presentation/widgets/widgets.da
 export 'package:SmaTrackX/src/modules/employee/chat/presentation/views/chat_screen.dart';
 export 'package:SmaTrackX/src/modules/employee/attendances/presentation/views/attendances_screen.dart';
 export 'package:SmaTrackX/src/modules/employee/attendances/presentation/widgets/widgets.dart';
+export 'package:SmaTrackX/src/modules/employee/home/data/models/models.dart';
 export 'package:SmaTrackX/src/modules/employee/home/service/services.dart';
 export 'package:SmaTrackX/src/modules/employee/home/presentation/views/home_screen.dart';
 export 'package:SmaTrackX/src/modules/employee/home/presentation/bloc/blocs.dart';

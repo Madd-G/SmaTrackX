@@ -22,22 +22,24 @@ class CheckInData {
 }
 
 class CheckInInfo {
-  final String photoUrl;
-  final int checkInOrder;
-  final double latitude;
-  final String time;
   final String deviceId;
-  final double longitude;
+  final String time;
   final String status;
+  final int checkInOrder;
+  final String photoUrl;
+  final double latitude;
+  final double longitude;
+  final double distance;
 
   CheckInInfo({
-    required this.photoUrl,
-    required this.checkInOrder,
-    required this.latitude,
-    required this.time,
     required this.deviceId,
-    required this.longitude,
+    required this.time,
     required this.status,
+    required this.checkInOrder,
+    required this.photoUrl,
+    required this.latitude,
+    required this.longitude,
+    required this.distance,
   });
 
   factory CheckInInfo.fromMap(Map<String, dynamic> map) {
@@ -49,6 +51,7 @@ class CheckInInfo {
       deviceId: map['deviceId'],
       longitude: map['longitude'],
       status: map['status'],
+      distance: map['distance'],
     );
   }
 }
@@ -62,6 +65,7 @@ class CheckOutInfo {
   final String deviceId;
   final String status;
   final double longitude;
+  final double distance;
 
   CheckOutInfo({
     required this.photoUrl,
@@ -72,6 +76,7 @@ class CheckOutInfo {
     required this.deviceId,
     required this.status,
     required this.longitude,
+    required this.distance,
   });
 
   factory CheckOutInfo.fromMap(Map<String, dynamic> map) {
@@ -84,6 +89,7 @@ class CheckOutInfo {
       deviceId: map['deviceId'],
       status: map['status'],
       longitude: map['longitude'],
+      distance: map['distance'],
     );
   }
 }

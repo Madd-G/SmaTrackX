@@ -44,7 +44,7 @@ class HistoryCard extends StatelessWidget {
                 const Expanded(
                   child: TabBarView(
                     children: [
-                      AttendanceHistoryByMonth(),
+                      AttendanceHistoryByWeek(),
                       AttendanceHistoryByMonth(),
                     ],
                   ),
@@ -54,6 +54,46 @@ class HistoryCard extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class AttendanceHistoryAll extends StatelessWidget {
+  const AttendanceHistoryAll({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+      stream: HomeService().attendanceHistorySnapshot(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CircularProgressIndicator();
+        } else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        } else if (snapshot.hasData) {
+          final data = snapshot.data?.data();
+          if (data != null) {
+            return ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: data.length,
+              itemBuilder: (context, index) {
+                final date = data.keys.elementAt(index);
+                final checkInData = CheckInData.fromMap(data[date]);
+
+                return AttendanceItem(
+                  status: checkInData.checkInInfo.status,
+                  date: checkInData.date.dayDateMonthYear,
+                  time: checkInData.checkInInfo.time.hourMinute,
+                );
+              },
+            );
+          } else {
+            return const Center(child: Text('Data not found.'));
+          }
+        } else {
+          return const Center(child: Text('Document not found.'));
+        }
+      },
     );
   }
 }
@@ -73,11 +113,64 @@ class AttendanceHistoryByMonth extends StatelessWidget {
         } else if (snapshot.hasData) {
           final data = snapshot.data?.data();
           if (data != null) {
+            final novemberData = data.entries.where((entry) {
+              final checkInData = CheckInData.fromMap(entry.value);
+              final dateStr = checkInData.date;
+              final dateTime = DateTime.parse(dateStr);
+              return dateTime.month == 11;
+            }).toList();
             return ListView.builder(
-              itemCount: data.length,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: novemberData.length,
               itemBuilder: (context, index) {
-                final date = data.keys.elementAt(index);
-                final checkInData = CheckInData.fromMap(data[date]);
+                final entry = novemberData[index];
+                final checkInData = CheckInData.fromMap(entry.value);
+                return AttendanceItem(
+                  status: checkInData.checkInInfo.status,
+                  date: checkInData.date.dayDateMonthYear,
+                  time: checkInData.checkInInfo.time.hourMinute,
+                );
+              },
+            );
+          } else {
+            return const Center(child: Text('Data not found.'));
+          }
+        } else {
+          return const Center(child: Text('Document not found.'));
+        }
+      },
+    );
+  }
+}
+
+class AttendanceHistoryByWeek extends StatelessWidget {
+  const AttendanceHistoryByWeek({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+      stream: HomeService().attendanceHistorySnapshot(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CircularProgressIndicator();
+        } else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        } else if (snapshot.hasData) {
+          final data = snapshot.data?.data();
+          if (data != null) {
+            final currentWeekRange = HomeService().getCurrentWeekRange();
+            final filteredData = data.entries.where((entry) {
+              final checkInData = CheckInData.fromMap(entry.value);
+              final date = DateTime.parse(checkInData.date);
+              return date.isAfter(currentWeekRange[0]) &&
+                  date.isBefore(currentWeekRange[1]);
+            }).toList();
+            return ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: filteredData.length,
+              itemBuilder: (context, index) {
+                final entry = filteredData[index];
+                final checkInData = CheckInData.fromMap(entry.value);
 
                 return AttendanceItem(
                   status: checkInData.checkInInfo.status,

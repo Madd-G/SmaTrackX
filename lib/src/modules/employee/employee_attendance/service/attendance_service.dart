@@ -1,77 +1,112 @@
 import 'package:SmaTrackX/core.dart';
 
 class AttendanceService {
-  checkIn({
+  Future<void> checkIn({
     required String deviceModel,
     required String deviceId,
     required double latitude,
     required double longitude,
     required String time,
     required String photoUrl,
+    required int checkInOrder,
+    required String status,
+    required double distance,
   }) async {
+    final uid = FirebaseAuth.instance.currentUser!.uid;
+    String currentDate = DateTime.now().yearMonthDay();
+
+    final currentData = await FirebaseFirestore.instance
+        .collection("attendances")
+        .doc(uid)
+        .get();
+
+    Map<String, dynamic> newData = {
+      currentDate: {
+        "checkInInfo": {
+          "latitude": latitude,
+          "longitude": longitude,
+          "photoUrl": photoUrl,
+          "deviceModel": deviceModel,
+          "deviceId": deviceId,
+          "time": time,
+          "checkInOrder": checkInOrder,
+          "status": status,
+          "distance": distance,
+        },
+        "uid": uid,
+        "date": DateTime.now().yearMonthDay(),
+        "isCheckedOut": false,
+      }
+    };
+
+    if (currentData.exists) {
+      newData.addAll(currentData.data() as Map<String, dynamic>);
+    }
+
     await FirebaseFirestore.instance
         .collection("attendances")
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .collection(Timestamp.now().toDate().dateFormat)
-        .doc('check-in')
-        .set({
-      "checkin_date_formatted": Timestamp.now().toDate().dateFormat,
-      "checkin_date": Timestamp.now(),
-      "checkin_info": {
-        "latitude": latitude,
-        "longitude": longitude,
-        "photo_url": photoUrl,
-        "device_model": deviceModel,
-        "device_id": deviceId,
-        "time": time,
-      },
-      "user": {
-        "uid": FirebaseAuth.instance.currentUser!.uid,
-        "name": FirebaseAuth.instance.currentUser!.displayName,
-        "email": FirebaseAuth.instance.currentUser!.email,
-      },
-    });
+        .doc(uid)
+        .set(newData);
   }
 
-  checkout({
+  Future<void> checkOut({
     required String deviceModel,
     required String deviceId,
     required double latitude,
     required double longitude,
     required String time,
     required String photoUrl,
+    required int checkOutOrder,
+    required String status,
+    required double distance,
   }) async {
-    await FirebaseFirestore.instance
+    final uid = FirebaseAuth.instance.currentUser!.uid;
+    String currentDate = DateTime.now().yearMonthDay();
+
+    final currentData = await FirebaseFirestore.instance
         .collection("attendances")
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .collection(Timestamp.now().toDate().dateFormat)
-        .doc('check-out')
-        .set({
-      "checkout": true,
-      "checkout_date": Timestamp.now(),
-      "checkout_date_formatted": Timestamp.now().toDate().dateFormat,
-      "checkout_info": {
-        "latitude": latitude,
-        "longitude": longitude,
-        "photo_url": photoUrl,
-        "device_model": deviceModel,
-        "device_id": deviceId,
-        "time": time,
-      },
-      "user": {
-        "uid": FirebaseAuth.instance.currentUser!.uid,
-        "name": FirebaseAuth.instance.currentUser!.displayName,
-        "email": FirebaseAuth.instance.currentUser!.email,
-      },
-    });
+        .doc(uid)
+        .get();
+
+    Map<String, dynamic> newDateData = {
+      "isCheckedOut": true,
+    };
+
+    if (currentData.exists) {
+      Map<String, dynamic> currentDataMap =
+          currentData.data() as Map<String, dynamic>;
+
+      if (currentDataMap.containsKey(currentDate) &&
+          currentDataMap[currentDate].containsKey("checkInInfo")) {
+        newDateData["checkOutInfo"] = {
+          "latitude": latitude,
+          "longitude": longitude,
+          "photoUrl": photoUrl,
+          "deviceModel": deviceModel,
+          "deviceId": deviceId,
+          "time": time,
+          "checkOutOrder": checkOutOrder,
+          "status": status,
+          "distance": distance,
+        };
+
+        currentDataMap[currentDate].addAll(newDateData);
+
+        await FirebaseFirestore.instance
+            .collection("attendances")
+            .doc(uid)
+            .update(currentDataMap);
+      } else {
+        return;
+      }
+    } else {
+      return;
+    }
   }
 
-  Stream<QuerySnapshot<Object?>>? attendanceSnapshot() {
+  Stream<DocumentSnapshot<Map<String, dynamic>>> attendanceSnapshot() {
     return FirebaseFirestore.instance
-        .collection("attendances")
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .collection('*')
-        .where("user.uid", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .doc('attendances/pf6UvuKcE9eEeHxZttQk4OWmFQi2')
         .snapshots();
   }
 

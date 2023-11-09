@@ -98,15 +98,16 @@ class AbsenceCard extends StatelessWidget {
               const SizedBox(
                 height: 20.0,
               ),
-              StreamBuilder<QuerySnapshot>(
+              StreamBuilder<DocumentSnapshot>(
                 stream: AttendanceService().attendanceSnapshot(),
                 builder: (context, snapshot) {
-                  if (snapshot.hasError) {
-                    return const Text("Error");
-                  }
+                  if (snapshot.hasError) return const Text("Error");
                   if (snapshot.data == null) return Container();
-                  bool isCheckInToday = snapshot.data!.docs.isNotEmpty;
-                  bool isNotCheckInToday = snapshot.data!.docs.isEmpty;
+                  final data = snapshot.data?.data() as Map<String, dynamic>;
+                  bool isCheckInToday = data.containsKey(DateTime.now().yearMonthDay());
+
+                  bool isNotCheckInToday = !data.containsKey(DateTime.now().yearMonthDay());
+
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -131,7 +132,8 @@ class AbsenceCard extends StatelessWidget {
                               ? Colors.grey
                               : AppColors.greenColor,
                           borderColor: isCheckInToday
-                              ?  Colors.grey : AppColors.greenColor,
+                              ? Colors.grey
+                              : AppColors.greenColor,
                           borderWidth: 3,
                           radius: 10.0,
                           child: const Center(

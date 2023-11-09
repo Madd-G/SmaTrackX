@@ -67,7 +67,7 @@ class AttendanceHistoryAll extends StatelessWidget {
       stream: HomeService().attendanceHistorySnapshot(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CircularProgressIndicator();
+          return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else if (snapshot.hasData) {

@@ -38,9 +38,9 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
     required String time,
   }) async {
     showLoading();
-    if (!await doValidate(photoUrl: photoUrl, position: position)) {
-      return;
-    }
+    // if (!await doValidate(photoUrl: photoUrl, position: position)) {
+    //   return;
+    // }
     await AttendanceService().checkIn(
       deviceModel: deviceModel,
       deviceId: deviceId,
@@ -48,6 +48,9 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
       longitude: position.longitude,
       time: time,
       photoUrl: photoUrl,
+      checkInOrder: 2,
+      status: 'on time',
+      distance: 4.5,
     );
 
     hideLoading();
@@ -62,16 +65,19 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
     required String time,
   }) async {
     showLoading();
-    if (!await doValidate(photoUrl: photoUrl, position: position)) {
-      return;
-    }
-    await AttendanceService().checkout(
+    // if (!await doValidate(photoUrl: photoUrl, position: position)) {
+    //   return;
+    // }
+    await AttendanceService().checkOut(
       deviceModel: deviceModel,
       deviceId: deviceId,
       latitude: position.latitude,
       longitude: position.longitude,
       time: time,
       photoUrl: photoUrl,
+      checkOutOrder: 10,
+      status: 'late',
+      distance: 8.9,
     );
 
     hideLoading();

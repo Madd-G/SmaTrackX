@@ -27,31 +27,29 @@ class CheckInCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  Consumer<UserProvider>(
-                    builder: (_, provider, __) {
-                      final user = provider.user;
-                      return Text(
-                          '${user?.workStart?.displayTime} - ${user?.workEnd?.displayTime}');
-                    }
-                  ),
+                  Consumer<UserProvider>(builder: (_, provider, __) {
+                    final user = provider.user;
+                    return Text(
+                        '${user?.workStart?.displayTime} - ${user?.workEnd?.displayTime}');
+                  }),
                 ],
               ),
             ),
-            StreamBuilder<QuerySnapshot>(
+            StreamBuilder<DocumentSnapshot>(
               stream: AttendanceService().attendanceSnapshot(),
               builder: (context, snapshot) {
                 if (snapshot.hasError) return const Text("Error");
                 if (snapshot.data == null) return Container();
-                final data = snapshot.data!;
-                bool isNotCheckInToday = snapshot.data!.docs.isEmpty;
+                final data = snapshot.data?.data() as Map<String, dynamic>;
+                bool isNotCheckInToday =
+                    !data.containsKey(DateTime.now().yearMonthDay());
 
                 if (isNotCheckInToday) {
                   return const CheckInButton();
                 }
 
-                var attendanceToday =
-                    data.docs.last.data() as Map<String, dynamic>;
-                bool isCheckoutToday = attendanceToday["checkout"] == true;
+                var isCheckoutToday =
+                    data[DateTime.now().yearMonthDay()]['isCheckedOut'] == true;
 
                 if (isCheckoutToday) {
                   return const CompletedButton();

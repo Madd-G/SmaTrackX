@@ -1,12 +1,14 @@
 class CheckInData {
   final String date;
   final String uid;
+  final bool isCheckedOut;
   final CheckInInfo checkInInfo;
   final CheckOutInfo checkOutInfo;
 
   CheckInData({
     required this.date,
     required this.uid,
+    required this.isCheckedOut,
     required this.checkInInfo,
     required this.checkOutInfo,
   });
@@ -15,6 +17,7 @@ class CheckInData {
     return CheckInData(
       date: map['date'],
       uid: map['uid'],
+      isCheckedOut: map['isCheckedOut'],
       checkInInfo: CheckInInfo.fromMap(map['checkInInfo']),
       checkOutInfo: CheckOutInfo.fromMap(map['checkOutInfo']),
     );
@@ -23,6 +26,7 @@ class CheckInData {
 
 class CheckInInfo {
   final String deviceId;
+  final String deviceModel;
   final String time;
   final String status;
   final int checkInOrder;
@@ -33,6 +37,7 @@ class CheckInInfo {
 
   CheckInInfo({
     required this.deviceId,
+    required this.deviceModel,
     required this.time,
     required this.status,
     required this.checkInOrder,
@@ -49,6 +54,7 @@ class CheckInInfo {
       latitude: map['latitude'],
       time: map['time'],
       deviceId: map['deviceId'],
+      deviceModel: map['deviceModel'],
       longitude: map['longitude'],
       status: map['status'],
       distance: map['distance'],
@@ -63,6 +69,7 @@ class CheckOutInfo {
   final double latitude;
   final String time;
   final String deviceId;
+  final String deviceModel;
   final String status;
   final double longitude;
   final double distance;
@@ -74,6 +81,7 @@ class CheckOutInfo {
     required this.latitude,
     required this.time,
     required this.deviceId,
+    required this.deviceModel,
     required this.status,
     required this.longitude,
     required this.distance,
@@ -87,6 +95,7 @@ class CheckOutInfo {
       latitude: map['latitude'],
       time: map['time'],
       deviceId: map['deviceId'],
+      deviceModel: map['deviceModel'],
       status: map['status'],
       longitude: map['longitude'],
       distance: map['distance'],

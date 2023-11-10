@@ -3,7 +3,7 @@ class CheckInData {
   final String uid;
   final bool isCheckedOut;
   final CheckInInfo checkInInfo;
-  final CheckOutInfo checkOutInfo;
+  final CheckOutInfo? checkOutInfo; // Make it nullable
 
   CheckInData({
     required this.date,
@@ -19,7 +19,9 @@ class CheckInData {
       uid: map['uid'],
       isCheckedOut: map['isCheckedOut'],
       checkInInfo: CheckInInfo.fromMap(map['checkInInfo']),
-      checkOutInfo: CheckOutInfo.fromMap(map['checkOutInfo']),
+      checkOutInfo: map['checkOutInfo'] != null
+          ? CheckOutInfo.fromMap(map['checkOutInfo'])
+          : null,
     );
   }
 }
@@ -65,7 +67,6 @@ class CheckInInfo {
 class CheckOutInfo {
   final String photoUrl;
   final int checkOutOrder;
-  final bool isCheckedOut;
   final double latitude;
   final String time;
   final String deviceId;
@@ -77,7 +78,6 @@ class CheckOutInfo {
   CheckOutInfo({
     required this.photoUrl,
     required this.checkOutOrder,
-    required this.isCheckedOut,
     required this.latitude,
     required this.time,
     required this.deviceId,
@@ -91,7 +91,6 @@ class CheckOutInfo {
     return CheckOutInfo(
       photoUrl: map['photoUrl'],
       checkOutOrder: map['checkOutOrder'],
-      isCheckedOut: map['isCheckedOut'],
       latitude: map['latitude'],
       time: map['time'],
       deviceId: map['deviceId'],

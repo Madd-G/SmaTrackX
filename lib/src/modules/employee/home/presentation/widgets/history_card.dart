@@ -107,7 +107,7 @@ class AttendanceHistoryByMonth extends StatelessWidget {
       stream: HomeService().attendanceHistorySnapshot(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CircularProgressIndicator();
+          return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else if (snapshot.hasData) {
@@ -172,10 +172,12 @@ class AttendanceHistoryByWeek extends StatelessWidget {
                 final entry = filteredData[index];
                 final checkInData = CheckInData.fromMap(entry.value);
 
+                final checkInInfo = checkInData.checkInInfo;
+
                 return AttendanceItem(
-                  status: checkInData.checkInInfo.status,
+                  status: checkInInfo.status,
                   date: checkInData.date.dayDateMonthYear,
-                  time: checkInData.checkInInfo.time.hourMinute,
+                  time: checkInInfo.time.hourMinute,
                 );
               },
             );

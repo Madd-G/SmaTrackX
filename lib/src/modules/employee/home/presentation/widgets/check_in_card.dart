@@ -44,18 +44,18 @@ class CheckInCard extends StatelessWidget {
                 bool isNotCheckInToday =
                     !data.containsKey(DateTime.now().yearMonthDay());
 
-                if (isNotCheckInToday) {
+                // if (isNotCheckInToday) {
                   return const CheckInButton();
-                }
+                // }
 
-                var isCheckoutToday =
-                    data[DateTime.now().yearMonthDay()]['isCheckedOut'] == true;
-
-                if (isCheckoutToday) {
-                  return const CompletedButton();
-                }
-
-                return const CheckOutButton();
+                // var isCheckoutToday =
+                //     data[DateTime.now().yearMonthDay()]['isCheckedOut'] == true;
+                //
+                // if (isCheckoutToday) {
+                //   return const CompletedButton();
+                // }
+                //
+                // return const CheckOutButton();
               },
             ),
           ],

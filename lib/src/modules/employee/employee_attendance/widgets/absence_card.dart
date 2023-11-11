@@ -128,7 +128,7 @@ class AbsenceCard extends StatelessWidget {
                                       // TODO: real distance
                                       checkInOrder: 1,
                                       status: 'on time',
-                                      distance: 2.5,
+                                      distance: BlocProvider.of<MapCubit>(context).distance,
                                     ),
                                   );
                         },

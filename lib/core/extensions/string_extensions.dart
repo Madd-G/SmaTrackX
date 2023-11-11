@@ -20,4 +20,16 @@ extension StringExt on String {
     }
     return this;
   }
+
+  double extractNumber() {
+    RegExp regex = RegExp(r'\d+(\.\d+)?');
+
+    Match? match = regex.firstMatch(this);
+
+    if (match != null) {
+      return double.parse(match.group(0)!);
+    } else {
+      return 0.0;
+    }
+  }
 }

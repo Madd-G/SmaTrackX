@@ -16,6 +16,9 @@ class MapCubit extends Cubit<MapState> {
     required this.destinationPosition,
   }) : super(MapInitialState());
 
+  double get distance {
+    return totalDistance.extractNumber();
+  }
   Dio dio = Dio();
 
   void drawPolyline() async {
@@ -35,6 +38,7 @@ class MapCubit extends Cubit<MapState> {
       polylineResponse = PolylineResponse.fromJson(response.data);
 
       totalDistance = polylineResponse.routes![0].legs![0].distance!.text!;
+      print('totalDistance: $totalDistance');
       totalTime = polylineResponse.routes![0].legs![0].duration!.text!;
 
       Set<Polyline> polylines = {};

@@ -41,21 +41,19 @@ class CheckInCard extends StatelessWidget {
                 if (snapshot.hasError) return const Text("Error");
                 if (snapshot.data == null) return Container();
                 final data = snapshot.data?.data() as Map<String, dynamic>;
-                bool isNotCheckInToday =
-                    !data.containsKey(DateTime.now().yearMonthDay());
+                var dateKey = DateTime.now().yearMonthDay();
+                bool isNotCheckInToday = !data.containsKey(dateKey);
 
-                // if (isNotCheckInToday) {
+                if (isNotCheckInToday) {
                   return const CheckInButton();
-                // }
+                }
+                var isCheckoutToday = data[DateTime.now().yearMonthDay()]['isCheckedOut'] == true;
 
-                // var isCheckoutToday =
-                //     data[DateTime.now().yearMonthDay()]['isCheckedOut'] == true;
-                //
-                // if (isCheckoutToday) {
-                //   return const CompletedButton();
-                // }
-                //
-                // return const CheckOutButton();
+                if (isCheckoutToday) {
+                  return const CompletedButton();
+                }
+
+                return const CheckOutButton();
               },
             ),
           ],

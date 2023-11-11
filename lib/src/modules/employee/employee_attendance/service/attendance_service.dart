@@ -106,7 +106,7 @@ class AttendanceService {
 
   Stream<DocumentSnapshot<Map<String, dynamic>>> attendanceSnapshot() {
     return FirebaseFirestore.instance
-        .doc('attendances/pf6UvuKcE9eEeHxZttQk4OWmFQi2')
+        .doc('attendances/${FirebaseAuth.instance.currentUser!.uid}')
         .snapshots();
   }
 

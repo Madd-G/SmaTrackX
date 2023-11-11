@@ -25,16 +25,6 @@ export 'package:SmaTrackX/src/modules/employee/employee_attendance/widgets/widge
 export 'package:SmaTrackX/src/modules/employee/employee_attendance/service/services.dart';
 export 'package:SmaTrackX/src/modules/employee/bottom_navigation/presentation/providers/bottom_nav_controller.dart';
 export 'package:SmaTrackX/src/modules/employee/bottom_navigation/presentation/views/bottom_navigation.dart';
-export 'package:SmaTrackX/src/modules/hrd/admin_bottom_navigation/presentation/providers/admin_bottom_nav_controller.dart';
-export 'package:SmaTrackX/src/modules/hrd/admin_bottom_navigation/presentation/views/admin_bottom_navigation.dart';
-export 'package:SmaTrackX/src/modules/hrd/home/data/models/models.dart';
-export 'package:SmaTrackX/src/modules/hrd/home/data/data_sources/data_sources.dart';
-export 'package:SmaTrackX/src/modules/hrd/home/data/repository/repositories.dart';
-export 'package:SmaTrackX/src/modules/hrd/home/domain/entities/entities.dart';
-export 'package:SmaTrackX/src/modules/hrd/home/domain/repository/repositories.dart';
-export 'package:SmaTrackX/src/modules/hrd/home/domain/use_cases/use_cases.dart';
-export 'package:SmaTrackX/src/modules/hrd/home/presentation/views/admin_home_screen.dart';
-export 'package:SmaTrackX/src/modules/hrd/home/presentation/widgets/widgets.dart';
 
 export 'package:SmaTrackX/core/common/app/providers/providers.dart';
 export 'package:SmaTrackX/core/common/views/views.dart';

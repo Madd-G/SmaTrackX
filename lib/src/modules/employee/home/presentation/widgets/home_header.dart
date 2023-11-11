@@ -16,26 +16,18 @@ class HomeHeader extends StatelessWidget {
           bottomRight: Radius.circular(20.0),
         ),
       ),
-      child: SafeArea(
+      child: const SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16.0),
           child: Column(
             children: [
-              const SizedBox(height: 10.0),
+              SizedBox(height: 10.0),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  GestureDetector(
-                      onTap: () {
-                        context.currentUser!.isAdmin
-                            ? Navigator.pushReplacementNamed(
-                                context, AdminBottomNavigation.routeName)
-                            : null;
-                      },
-                      child:
-                          const Icon(IconlyBold.user_2, color: Colors.white)),
-                  const Text(
+                  Icon(IconlyBold.user_2, color: Colors.white),
+                  Text(
                     'Friday, 10 February 2023',
                     style: TextStyle(
                         fontWeight: FontWeight.w500,
@@ -43,12 +35,12 @@ class HomeHeader extends StatelessWidget {
                         color: Colors.white,
                         fontFamily: Fonts.aeonik),
                   ),
-                  const Icon(IconlyBold.notification, color: Colors.white),
+                  Icon(IconlyBold.notification, color: Colors.white),
                 ],
               ),
-              const SizedBox(height: 30.0),
-              const ProfileCard(),
-              const SizedBox(height: 5.0),
+              SizedBox(height: 30.0),
+              ProfileCard(),
+              SizedBox(height: 5.0),
             ],
           ),
         ),

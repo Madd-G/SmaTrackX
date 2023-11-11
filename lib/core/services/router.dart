@@ -51,11 +51,6 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         (_) => const BottomNavigation(),
         settings: settings,
       );
-    case AdminBottomNavigation.routeName:
-      return _pageBuilder(
-        (_) => const AdminBottomNavigation(),
-        settings: settings,
-      );
     default:
       return _pageBuilder(
         (_) => const ErrorScreen(),

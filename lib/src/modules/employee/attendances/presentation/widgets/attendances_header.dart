@@ -7,22 +7,14 @@ class AttendancesHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
+    return const Padding(
+      padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          GestureDetector(
-              onTap: () {
-                context.currentUser!.isAdmin
-                    ? Navigator.pushReplacementNamed(
-                        context, AdminBottomNavigation.routeName)
-                    : null;
-              },
-              child:
-                  const Icon(IconlyBold.user_2, color: AppColors.primaryColor)),
-          const Text(
+          Icon(IconlyBold.user_2, color: AppColors.primaryColor),
+          Text(
             'Friday, 10 February 2023',
             style: TextStyle(
                 fontWeight: FontWeight.w700,
@@ -30,7 +22,7 @@ class AttendancesHeader extends StatelessWidget {
                 color: AppColors.blackColor,
                 fontFamily: Fonts.aeonik),
           ),
-          const Icon(IconlyBold.notification, color: AppColors.blackColor),
+          Icon(IconlyBold.notification, color: AppColors.blackColor),
         ],
       ),
     );

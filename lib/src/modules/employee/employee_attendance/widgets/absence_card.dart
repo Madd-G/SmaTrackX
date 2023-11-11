@@ -104,9 +104,11 @@ class AbsenceCard extends StatelessWidget {
                   if (snapshot.hasError) return const Text("Error");
                   if (snapshot.data == null) return Container();
                   final data = snapshot.data?.data() as Map<String, dynamic>;
-                  bool isCheckInToday = data.containsKey(DateTime.now().yearMonthDay());
+                  bool isCheckInToday =
+                      data.containsKey(DateTime.now().yearMonthDay());
 
-                  bool isNotCheckInToday = !data.containsKey(DateTime.now().yearMonthDay());
+                  bool isNotCheckInToday =
+                      !data.containsKey(DateTime.now().yearMonthDay());
 
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -123,6 +125,10 @@ class AbsenceCard extends StatelessWidget {
                                       currentDate: DateTime.now().dateFormat,
                                       time: DateTime.now().clockFormat,
                                       deviceId: deviceInfo.id,
+                                      // TODO: real distance
+                                      checkInOrder: 1,
+                                      status: 'on time',
+                                      distance: 2.5,
                                     ),
                                   );
                         },
@@ -166,6 +172,10 @@ class AbsenceCard extends StatelessWidget {
                                       currentDate: DateTime.now().dateFormat,
                                       time: DateTime.now().clockFormat,
                                       deviceId: deviceInfo.id,
+                                      // TODO: real distance
+                                      checkOutOrder: 10,
+                                      status: 'on time',
+                                      distance: 3.5,
                                     ),
                                   );
                         },

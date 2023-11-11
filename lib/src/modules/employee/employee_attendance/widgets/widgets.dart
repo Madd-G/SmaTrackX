@@ -1,2 +1,2 @@
 export 'map_widget.dart';
-export 'attendance_card.dart';
+export 'absence_card.dart';

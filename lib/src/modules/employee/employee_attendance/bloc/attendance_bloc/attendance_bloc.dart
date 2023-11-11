@@ -15,18 +15,23 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
         deviceModel: event.deviceModel,
         deviceId: event.deviceId,
         time: event.time,
+        checkInOrder: event.checkInOrder,
+        status: event.status,
+        distance: event.distance,
       );
     });
 
     on<CheckOutEvent>((event, emit) {
       const CircularProgressIndicator();
       doCheckOut(
-        photoUrl: event.photoUrl,
-        position: event.position,
-        deviceModel: event.deviceModel,
-        deviceId: event.deviceId,
-        time: event.time,
-      );
+          photoUrl: event.photoUrl,
+          position: event.position,
+          deviceModel: event.deviceModel,
+          deviceId: event.deviceId,
+          time: event.time,
+          checkOutOrder: event.checkOutOrder,
+          status: event.status,
+          distance: event.distance);
     });
   }
 
@@ -36,11 +41,14 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
     required Position position,
     required String deviceId,
     required String time,
+    required checkInOrder,
+    required status,
+    required distance,
   }) async {
     showLoading();
-    // if (!await doValidate(photoUrl: photoUrl, position: position)) {
-    //   return;
-    // }
+    if (!await doValidate(photoUrl: photoUrl, position: position)) {
+      return;
+    }
     await AttendanceService().checkIn(
       deviceModel: deviceModel,
       deviceId: deviceId,
@@ -48,9 +56,9 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
       longitude: position.longitude,
       time: time,
       photoUrl: photoUrl,
-      checkInOrder: 2,
-      status: 'on time',
-      distance: 4.5,
+      checkInOrder: checkInOrder,
+      status: status,
+      distance: distance,
     );
 
     hideLoading();
@@ -63,11 +71,14 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
     required Position position,
     required String deviceId,
     required String time,
+    required checkOutOrder,
+    required status,
+    required distance,
   }) async {
     showLoading();
-    // if (!await doValidate(photoUrl: photoUrl, position: position)) {
-    //   return;
-    // }
+    if (!await doValidate(photoUrl: photoUrl, position: position)) {
+      return;
+    }
     await AttendanceService().checkOut(
       deviceModel: deviceModel,
       deviceId: deviceId,
@@ -75,9 +86,9 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
       longitude: position.longitude,
       time: time,
       photoUrl: photoUrl,
-      checkOutOrder: 10,
-      status: 'late',
-      distance: 8.9,
+      checkOutOrder: checkOutOrder,
+      status: status,
+      distance: distance,
     );
 
     hideLoading();

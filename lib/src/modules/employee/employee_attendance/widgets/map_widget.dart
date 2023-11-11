@@ -1,5 +1,4 @@
 import 'package:SmaTrackX/core.dart';
-import 'package:http/http.dart' as http;
 
 class MapWidget extends StatefulWidget {
   const MapWidget({
@@ -14,31 +13,62 @@ class MapWidget extends StatefulWidget {
 }
 
 class _MapWidgetState extends State<MapWidget> {
-  LatLng dummy = const LatLng(-7.4302759, 109.2344236);
-
   @override
   void initState() {
-    drawPolyline(LatLng(widget.position.latitude, widget.position.longitude),
-        const LatLng(-7.608132, 109.4675174));
-    // drawPolyline(dummy, const LatLng(-7.608132, 109.4675174));
+    BlocProvider.of<MapCubit>(context).drawPolyline();
+
     super.initState();
   }
 
-  PolylineResponse polylineResponse = PolylineResponse();
-  GoogleMapController? googleMapController;
-  String totalDistance = "";
-  String totalTime = "";
-  BitmapDescriptor destinationIcon = BitmapDescriptor.defaultMarker;
-  BitmapDescriptor sourceIcon =
-      BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue);
-  String apiKey = "AIzaSyDrV8msUDn9Gy6RJuJvV47kURIgmUdsDe4";
-  Set<Polyline> polylinePoints = {};
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<MapCubit, MapState>(
+      builder: (context, state) {
+        try {
+          if (state is MapPolylineDrawnState) {
+            return Maps(
+              position:
+                  LatLng(widget.position.latitude, widget.position.longitude),
+              polylinePoints: state.polylinePoints,
+              totalDistance: state.totalDistance,
+              totalTime: state.totalTime,
+            );
+          }
+        } catch (e) {
+          return const Center(child: Text('An error occurred.'));
+        }
+
+        return const Center(child: CircularProgressIndicator());
+      },
+    );
+  }
+}
+
+class Maps extends StatelessWidget {
+  final LatLng position;
+  final Set<Polyline> polylinePoints;
+  final String totalDistance;
+  final String totalTime;
+
+  const Maps({
+    Key? key,
+    required this.position,
+    required this.polylinePoints,
+    required this.totalDistance,
+    required this.totalTime,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     CameraPosition initialPosition = CameraPosition(
-        target: LatLng(widget.position.latitude, widget.position.longitude),
-        zoom: 20);
+      target: LatLng(position.latitude, position.longitude),
+      zoom: 20,
+    );
+
+    BitmapDescriptor destinationIcon = BitmapDescriptor.defaultMarker;
+    BitmapDescriptor sourceIcon =
+        BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue);
+
     return Positioned(
       left: 0,
       right: 0,
@@ -52,14 +82,13 @@ class _MapWidgetState extends State<MapWidget> {
             initialCameraPosition: initialPosition,
             mapType: MapType.hybrid,
             onMapCreated: (GoogleMapController controller) {
-              googleMapController = controller;
+              // googleMapController = controller;
             },
             markers: {
               Marker(
                 markerId: const MarkerId("source"),
                 icon: sourceIcon,
-                position:
-                    LatLng(widget.position.latitude, widget.position.longitude),
+                position: LatLng(position.latitude, position.longitude),
                 // position: dummy,
               ),
               Marker(
@@ -86,39 +115,5 @@ class _MapWidgetState extends State<MapWidget> {
         ],
       ),
     );
-  }
-
-  void drawPolyline(LatLng origin, LatLng destination) async {
-    var response = await http.post(Uri.parse(
-        "https://maps.googleapis.com/maps/api/directions/json?key=$apiKey&units=metric&origin=${origin.latitude},${origin.longitude}&destination=${destination.latitude},${destination.longitude}&mode=driving"));
-
-    polylineResponse = PolylineResponse.fromJson(jsonDecode(response.body));
-
-    totalDistance = polylineResponse.routes![0].legs![0].distance!.text!;
-    totalTime = polylineResponse.routes![0].legs![0].duration!.text!;
-
-    for (int i = 0;
-        i < polylineResponse.routes![0].legs![0].steps!.length;
-        i++) {
-      polylinePoints.add(Polyline(
-          polylineId: PolylineId(
-              polylineResponse.routes![0].legs![0].steps![i].polyline!.points!),
-          points: [
-            LatLng(
-                polylineResponse
-                    .routes![0].legs![0].steps![i].startLocation!.lat!,
-                polylineResponse
-                    .routes![0].legs![0].steps![i].startLocation!.lng!),
-            LatLng(
-                polylineResponse
-                    .routes![0].legs![0].steps![i].endLocation!.lat!,
-                polylineResponse
-                    .routes![0].legs![0].steps![i].endLocation!.lng!),
-          ],
-          width: 5,
-          color: Colors.green));
-    }
-
-    setState(() {});
   }
 }

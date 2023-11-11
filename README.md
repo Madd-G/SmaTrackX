@@ -9,39 +9,37 @@ implemented.
 ### For Employees:
 
 - **Check In/Out:** Easily mark your attendance with a single click.
-- **View Attendance Data:** Access partial attendance records for today, this week, this month, and
+- **View Attendance Data:** Access attendance records for today, this week, this month, and
   this year.
 - **Timely Notifications:** Receive notifications for the latest announcements, leave requests, and
   more.
-- **Permission Requests:** Submit leave requests directly to HRD for approval (partial
-  implementation).
+- **Permission Requests:** Submit leave requests directly to HRD for approval.
 
 ### For HRD:
 
-- **Real-time Monitoring:** Monitor partial attendance data for all employees in real-time.
-- **Notification Center:** Receive alerts for partial employee attendance statuses.
+- **Real-time Monitoring:** Monitor attendance data for all employees in real-time.
+- **Notification Center:** Receive alerts for employee attendance statuses.
 - **Communication Hub:** Chat directly with employees for seamless communication.
 
 ### Enhanced Security Measures (Partial Implementation):
 
-To prevent unauthorized activities, SmaTrackX partially implements advanced security measures,
+To prevent unauthorized activities, SmaTrackX implements advanced security measures,
 including:
 
-- **Anti-Fake GPS:** Partial implementation to ensure the authenticity of the location data.
-- **Root Detection:** Partial protection against rooted devices.
-- **Location Verification:** Partial comparison of current location with the office location to
+- **Anti-Fake GPS:** To ensure the authenticity of the location data.
+- **Root Detection:** Protect against rooted devices.
+- **Location Verification:** Comparison of current location with the office location to
   prevent misuse.
-- **Facial Recognition:** Partial implementation requires employees to capture their face during
+- **Facial Recognition:** Requires employees to capture their face during
   attendance.
 
 ## Getting Started
 
 To get started with SmaTrackX, follow these simple steps:
 
-1. **Installation:** Download and install the SmaTrackX app on your device.
+1. **Installation:** Install the SmaTrackX app on your device.
 2. **Login:** Use your credentials to log in as an employee or HRD.
-3. **Explore Features:** Navigate through the user-friendly interface to explore the partially
-   implemented features.
+3. **Explore Features:** Navigate through the user-friendly interface to explore the features.
 
 ## Support and Feedback
 

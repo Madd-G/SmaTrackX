@@ -154,14 +154,12 @@ class _QSquareImagePickerState extends State<QSquareImagePicker> {
             color: loading ? Colors.blueGrey[900] : null,
             image: loading
                 ? null
-                : DecorationImage(
-                    image: NetworkImage(
-                      imageUrl == null
-                          ? "https://i.ibb.co/S32HNjD/no-image.jpg"
-                          : imageUrl!,
-                    ),
-                    fit: BoxFit.cover,
-                  ),
+                : imageUrl == null
+                    ? const DecorationImage(
+                        image: AssetImage('assets/images/no-image.png'),
+                        fit: BoxFit.cover)
+                    : DecorationImage(
+                        image: NetworkImage(imageUrl!), fit: BoxFit.cover),
             borderRadius: const BorderRadius.all(
               Radius.circular(
                 16.0,

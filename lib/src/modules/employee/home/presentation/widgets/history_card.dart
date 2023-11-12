@@ -151,26 +151,34 @@ class AttendanceHistoryByWeek extends StatelessWidget {
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else if (snapshot.hasData) {
-          final data = snapshot.data?.data();
+          Map<String, dynamic>? data = snapshot.data?.data();
+
           if (data != null) {
-            final List<DateTime> currentWeekRange =
-                DateTime.now().getCurrentWeekRange();
-            final List<MapEntry<String, dynamic>> filteredData =
-                data.entries.where((entry) {
-              final CheckInData checkInData = CheckInData.fromMap(entry.value);
-              final DateTime date = DateTime.parse(checkInData.date);
-              return date.isAfter(currentWeekRange[0]) &&
-                  date.isBefore(currentWeekRange[1]);
+            final sortedWeekRange = DateTime.now().getSortedWeekRange();
+
+            final List<MapEntry<String, dynamic>> filteredData = data.entries.where((entry) {
+              final checkInData = CheckInData.fromMap(entry.value);
+              final date = DateFormat('yyyy-MM-dd').parse(checkInData.date);
+              return date.isAfter(sortedWeekRange[0]) && date.isBefore(sortedWeekRange[1]);
             }).toList();
+
+            final List convertedData = filteredData.map((entry) => entry.value).toList();
+
+            convertedData.sort((a, b) {
+              final dateA = DateFormat('yyyy-MM-dd').parse(a['date']);
+              final dateB = DateFormat('yyyy-MM-dd').parse(b['date']);
+              return dateA.compareTo(dateB);
+            });
 
             return ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: filteredData.length,
+              itemCount: convertedData.length,
               itemBuilder: (context, index) {
-                final entry = filteredData[index];
-                final checkInData = CheckInData.fromMap(entry.value);
+                final entry = convertedData[index];
+                final checkInData = CheckInData.fromMap(entry);
 
                 final checkInInfo = checkInData.checkInInfo;
+
 
                 return AttendanceItem(
                   status: checkInInfo.status,

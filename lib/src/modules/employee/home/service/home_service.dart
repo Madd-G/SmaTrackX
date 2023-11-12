@@ -6,5 +6,4 @@ class HomeService {
         .doc('attendances/${FirebaseAuth.instance.currentUser!.uid}')
         .snapshots();
   }
-
 }

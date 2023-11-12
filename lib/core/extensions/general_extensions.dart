@@ -1,7 +1,7 @@
 import 'package:SmaTrackX/core.dart';
 
 extension StatusCounts on List<Map<String, dynamic>> {
-  Map<String, int> countStatus() {
+  Map<String, int> weekCountStatus() {
     int arriveCount = 0;
     int leaveCount = 0;
     int absenceCount = 0;
@@ -40,18 +40,37 @@ extension DateTimeExtensions on DateTime {
     final now = DateTime.now();
     return now.getWeekRange();
   }
+
+  List<DateTime> getSortedWeekRange() {
+    List<DateTime> weekRange = getWeekRange();
+    weekRange.sort((a, b) => a.compareTo(b));
+    return weekRange;
+  }
 }
+
 
 extension MapExtensions on Map<String, dynamic> {
   List<MapEntry<String, dynamic>> filterByMonth(int month) {
-    return entries.where((entry) {
+    List<MapEntry<String, dynamic>> dataList = entries.toList();
+
+    // Filter by month
+    dataList = dataList.where((entry) {
       final checkInData = CheckInData.fromMap(entry.value);
       final date = DateTime.parse(checkInData.date);
       return date.month == month;
     }).toList();
+
+    // Sort by date
+    dataList.sort((a, b) {
+      final dateA = DateTime.parse(a.value['date']);
+      final dateB = DateTime.parse(b.value['date']);
+      return dateA.compareTo(dateB);
+    });
+
+    return dataList;
   }
 
-  Map<String, int> countStatus() {
+  Map<String, int> monthCountStatus() {
     int arriveCount = 0;
     int leaveCount = 0;
     int absenceCount = 0;
@@ -77,3 +96,10 @@ extension MapExtensions on Map<String, dynamic> {
     };
   }
 }
+
+extension MapListExtensions on List<MapEntry<String, dynamic>> {
+  List<Map<String, dynamic>> toMapList() {
+    return map((entry) => entry.value as Map<String, dynamic>).toList();
+  }
+}
+

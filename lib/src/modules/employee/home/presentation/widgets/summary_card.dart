@@ -38,7 +38,6 @@ class SummaryCard extends StatelessWidget {
                       tabs: const [
                         HomeSummaryTabBar(text: 'This Week'),
                         HomeSummaryTabBar(text: 'This Month'),
-                        // CategoryBox(text: 'This Month')
                       ],
                     ),
                   ),
@@ -79,7 +78,7 @@ class PresenceSummaryByMonth extends StatelessWidget {
           final data = snapshot.data?.data();
           if (data != null) {
             final thisMonthData = data.filterByMonth(11);
-            final statusCounts = data.countStatus();
+            final statusCounts = data.monthCountStatus();
 
             int arriveCount = statusCounts['arriveCount'] ?? 0;
             int leaveCount = statusCounts['leaveCount'] ?? 0;
@@ -136,7 +135,7 @@ class PresenceSummaryByWeek extends StatelessWidget {
                   .map((entry) => entry.value as Map<String, dynamic>)
                   .toList();
 
-              final statusCounts = convertedData.countStatus();
+              final statusCounts = convertedData.weekCountStatus();
 
               int arriveCount = statusCounts['arriveCount'] ?? 0;
               int leaveCount = statusCounts['leaveCount'] ?? 0;

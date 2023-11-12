@@ -46,26 +46,8 @@ class SummaryCard extends StatelessWidget {
                     fit: FlexFit.loose,
                     child: TabBarView(
                       children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SummaryBox(count: 5, status: 'Arrive'),
-                            SummaryBox(count: 1, status: 'Sick'),
-                            SummaryBox(count: 1, status: 'Leave'),
-                            SummaryBox(count: 0, status: 'Skip'),
-                          ],
-                        ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SummaryBox(count: 25, status: 'Arrive'),
-                            SummaryBox(count: 2, status: 'Sick'),
-                            SummaryBox(count: 3, status: 'Leave'),
-                            SummaryBox(count: 0, status: 'Skip'),
-                          ],
-                        ),
+                        PresenceSummaryByWeek(),
+                        PresenceSummaryByMonth(),
                       ],
                     ),
                   ),
@@ -76,6 +58,107 @@ class SummaryCard extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class PresenceSummaryByMonth extends StatelessWidget {
+  const PresenceSummaryByMonth({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+      stream: HomeService().attendanceHistorySnapshot(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        } else if (snapshot.hasData) {
+          final data = snapshot.data?.data();
+          if (data != null) {
+            final thisMonthData = data.filterByMonth(11);
+            final statusCounts = data.countStatus();
+
+            int arriveCount = statusCounts['arriveCount'] ?? 0;
+            int leaveCount = statusCounts['leaveCount'] ?? 0;
+            int absenceCount = statusCounts['absenceCount'] ?? 0;
+
+            return Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SummaryBox(count: thisMonthData.length, status: 'Days'),
+                SummaryBox(count: arriveCount, status: 'Arrive'),
+                SummaryBox(count: leaveCount, status: 'Leave'),
+                SummaryBox(count: absenceCount, status: 'Absence'),
+              ],
+            );
+          } else {
+            return const Center(child: Text('Data not found.'));
+          }
+        } else {
+          return const Center(child: Text('Document not found.'));
+        }
+      },
+    );
+  }
+}
+
+class PresenceSummaryByWeek extends StatelessWidget {
+  const PresenceSummaryByWeek({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+        stream: HomeService().attendanceHistorySnapshot(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Text('Error: ${snapshot.error}');
+          } else if (snapshot.hasData) {
+            final data = snapshot.data?.data();
+            if (data != null) {
+              final currentWeekRange = DateTime.now().getCurrentWeekRange();
+              final List<MapEntry<String, dynamic>> filteredData =
+                  data.entries.where((entry) {
+                final checkInData = CheckInData.fromMap(entry.value);
+                final date = DateTime.parse(checkInData.date);
+                return date.isAfter(currentWeekRange[0]) &&
+                    date.isBefore(currentWeekRange[1]);
+              }).toList();
+
+              final List<Map<String, dynamic>> convertedData = filteredData
+                  .map((entry) => entry.value as Map<String, dynamic>)
+                  .toList();
+
+              final statusCounts = convertedData.countStatus();
+
+              int arriveCount = statusCounts['arriveCount'] ?? 0;
+              int leaveCount = statusCounts['leaveCount'] ?? 0;
+              int absenceCount = statusCounts['absenceCount'] ?? 0;
+
+              return Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SummaryBox(count: filteredData.length, status: 'Days'),
+                  SummaryBox(count: arriveCount, status: 'Arrive'),
+                  SummaryBox(count: leaveCount, status: 'Leave'),
+                  SummaryBox(count: absenceCount, status: 'Absence'),
+                ],
+              );
+            } else {
+              return const Center(child: Text('Data not found.'));
+            }
+          } else {
+            return const Center(child: Text('Document not found.'));
+          }
+        });
   }
 }
 

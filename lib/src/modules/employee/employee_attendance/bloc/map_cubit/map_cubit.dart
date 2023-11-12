@@ -19,6 +19,7 @@ class MapCubit extends Cubit<MapState> {
   double get distance {
     return totalDistance.extractNumber();
   }
+
   Dio dio = Dio();
 
   void drawPolyline() async {
@@ -38,15 +39,14 @@ class MapCubit extends Cubit<MapState> {
       polylineResponse = PolylineResponse.fromJson(response.data);
 
       totalDistance = polylineResponse.routes![0].legs![0].distance!.text!;
-      print('totalDistance: $totalDistance');
       totalTime = polylineResponse.routes![0].legs![0].duration!.text!;
 
-      Set<Polyline> polylines = {};
+      Set<Polyline> polyline = {};
 
       for (int i = 0;
           i < polylineResponse.routes![0].legs![0].steps!.length;
           i++) {
-        polylines.add(Polyline(
+        polyline.add(Polyline(
             polylineId: PolylineId(polylineResponse
                 .routes![0].legs![0].steps![i].polyline!.points!),
             points: [
@@ -68,7 +68,7 @@ class MapCubit extends Cubit<MapState> {
       emit(MapPolylineDrawnState(
         totalDistance: totalDistance,
         totalTime: totalTime,
-        polylinePoints: polylines,
+        polylinePoints: polyline,
       ));
     } catch (e) {
       debugPrint('Error drawing polyline: $e');

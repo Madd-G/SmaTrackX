@@ -1,7 +1,6 @@
 import 'package:SmaTrackX/core.dart';
 
 extension DateTimeExt on DateTime {
-
   /// 01:34:43
   String get clockFormat {
     final now = DateTime.now();

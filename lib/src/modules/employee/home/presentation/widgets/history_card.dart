@@ -113,17 +113,12 @@ class AttendanceHistoryByMonth extends StatelessWidget {
         } else if (snapshot.hasData) {
           final data = snapshot.data?.data();
           if (data != null) {
-            final novemberData = data.entries.where((entry) {
-              final checkInData = CheckInData.fromMap(entry.value);
-              final dateStr = checkInData.date;
-              final dateTime = DateTime.parse(dateStr);
-              return dateTime.month == 11;
-            }).toList();
+            final thisMonthData = data.filterByMonth(11);
             return ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: novemberData.length,
+              itemCount: thisMonthData.length,
               itemBuilder: (context, index) {
-                final entry = novemberData[index];
+                final entry = thisMonthData[index];
                 final checkInData = CheckInData.fromMap(entry.value);
                 return AttendanceItem(
                   status: checkInData.checkInInfo.status,
@@ -158,13 +153,16 @@ class AttendanceHistoryByWeek extends StatelessWidget {
         } else if (snapshot.hasData) {
           final data = snapshot.data?.data();
           if (data != null) {
-            final currentWeekRange = HomeService().getCurrentWeekRange();
-            final filteredData = data.entries.where((entry) {
-              final checkInData = CheckInData.fromMap(entry.value);
-              final date = DateTime.parse(checkInData.date);
+            final List<DateTime> currentWeekRange =
+                DateTime.now().getCurrentWeekRange();
+            final List<MapEntry<String, dynamic>> filteredData =
+                data.entries.where((entry) {
+              final CheckInData checkInData = CheckInData.fromMap(entry.value);
+              final DateTime date = DateTime.parse(checkInData.date);
               return date.isAfter(currentWeekRange[0]) &&
                   date.isBefore(currentWeekRange[1]);
             }).toList();
+
             return ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               itemCount: filteredData.length,

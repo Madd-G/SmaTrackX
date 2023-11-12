@@ -33,9 +33,9 @@ class CheckInInfo {
   final String status;
   final int checkInOrder;
   final String photoUrl;
-  final double latitude;
-  final double longitude;
-  final double distance;
+  final num latitude;
+  final num longitude;
+  final num distance;
 
   CheckInInfo({
     required this.deviceId,
@@ -67,13 +67,13 @@ class CheckInInfo {
 class CheckOutInfo {
   final String photoUrl;
   final int checkOutOrder;
-  final double latitude;
+  final num latitude;
   final String time;
   final String deviceId;
   final String deviceModel;
   final String status;
-  final double longitude;
-  final double distance;
+  final num longitude;
+  final num distance;
 
   CheckOutInfo({
     required this.photoUrl,

@@ -125,10 +125,12 @@ class AbsenceCard extends StatelessWidget {
                                       currentDate: DateTime.now().dateFormat,
                                       time: DateTime.now().clockFormat,
                                       deviceId: deviceInfo.id,
-                                      // TODO: real distance
                                       checkInOrder: 1,
+                                      // TODO: real status
                                       status: 'on time',
-                                      distance: BlocProvider.of<MapCubit>(context).distance,
+                                      distance:
+                                          BlocProvider.of<MapCubit>(context)
+                                              .distance,
                                     ),
                                   );
                         },
@@ -175,7 +177,9 @@ class AbsenceCard extends StatelessWidget {
                                       // TODO: real distance
                                       checkOutOrder: 10,
                                       status: 'on time',
-                                      distance: 3.5,
+                                      distance:
+                                          BlocProvider.of<MapCubit>(context)
+                                              .distance,
                                     ),
                                   );
                         },

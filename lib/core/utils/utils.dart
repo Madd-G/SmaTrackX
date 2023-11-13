@@ -6,3 +6,5 @@ export 'state_util.dart';
 export 'typedefs.dart';
 export 'user_utils.dart';
 export 'validator.dart';
+export 'theme.dart';
+export 'app_colors.dart';

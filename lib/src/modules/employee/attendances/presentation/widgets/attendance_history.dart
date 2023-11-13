@@ -7,15 +7,10 @@ class AttendanceHistory extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Container(
+      child: RoundedContainer(
         width: context.width,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: const BorderRadius.all(
-            Radius.circular(20.0),
-          ),
-          border: Border.all(color: Colors.black12),
-        ),
+        containerColor: Colors.white,
+        borderColor: Colors.black12,
         child: const Padding(
           padding: EdgeInsets.all(16.0),
           child: Column(
@@ -23,35 +18,35 @@ class AttendanceHistory extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height: 15.0),
-              AttendancesItem(
+              AttendanceItem(
                 status: 'Arrived on time',
                 date: 'Wednesday, 8 January 2023',
                 time: '07:20',
-                textColor: AppColors.greenColor,
+                // textColor: AppColors.greenColor,
               ),
-              AttendancesItem(
+              AttendanceItem(
                 status: 'Arrived late',
                 date: 'Wednesday, 9 January 2023',
                 time: '08:12',
-                textColor: AppColors.yellowColor,
+                // textColor: AppColors.yellowColor,
               ),
-              AttendancesItem(
+              AttendanceItem(
                 status: 'No Show',
                 date: 'Wednesday, 10 January 2023',
                 time: '',
-                textColor: AppColors.redColor,
+                // textColor: AppColors.redColor,
               ),
-              AttendancesItem(
+              AttendanceItem(
                 status: 'Absent with permission',
                 date: 'Wednesday, 11 January 2023',
                 time: '',
-                textColor: AppColors.greenColor,
+                // textColor: AppColors.greenColor,
               ),
-              AttendancesItem(
+              AttendanceItem(
                 status: 'Leave of absence',
                 date: 'Wednesday, 12 January 2023',
                 time: '',
-                textColor: AppColors.greenColor,
+                // textColor: AppColors.greenColor,
               ),
             ],
           ),
@@ -61,47 +56,3 @@ class AttendanceHistory extends StatelessWidget {
   }
 }
 
-class AttendancesItem extends StatelessWidget {
-  const AttendancesItem({
-    super.key,
-    required this.status,
-    required this.date,
-    required this.time,
-    required this.textColor,
-  });
-
-  final String status;
-  final String date;
-  final String time;
-  final Color textColor;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: RoundedContainer(
-        width: context.width,
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                status,
-                style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w700,
-                    color: textColor),
-              ),
-              Text(
-                '$date - $time',
-                style: const TextStyle(
-                    color: Color(0xFF9AA3AF), fontWeight: FontWeight.w700),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}

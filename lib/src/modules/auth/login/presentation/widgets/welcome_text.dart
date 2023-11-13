@@ -17,7 +17,7 @@ class WelcomeText extends StatelessWidget {
         Text(
           title,
           style: const TextStyle(
-            fontFamily: Fonts.aeonik,
+            fontFamily: AppFont.poppins,
             fontWeight: FontWeight.w900,
             fontSize: 36,
           ),
@@ -27,7 +27,9 @@ class WelcomeText extends StatelessWidget {
         ),
         Text(
           subtitle,
-          style: const TextStyle(fontSize: 14),
+          style: const TextStyle(
+            fontSize: 14,
+          ),
         ),
       ],
     );

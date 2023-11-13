@@ -2,18 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CLIENT_ID</key>
+	<string>415917154731-r9752qbs4ipm2m9lgc1i4fs3snuh2kek.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.415917154731-r9752qbs4ipm2m9lgc1i4fs3snuh2kek</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>415917154731-4a0f9ho7dhqu7fdegdvf0pe106g5evv1.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAWGX-lMGu-XEBZujt63HVmVBc7W8LFmbs</string>
+	<string>AIzaSyAVhNtSojXxze6xOSDHW0bIxLcRGxzzCtw</string>
 	<key>GCM_SENDER_ID</key>
-	<string>93821656244</string>
+	<string>415917154731</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.alamsyah.smatrackx</string>
 	<key>PROJECT_ID</key>
-	<string>smatrackxapp</string>
+	<string>smatrackx</string>
 	<key>STORAGE_BUCKET</key>
-	<string>smatrackxapp.appspot.com</string>
+	<string>smatrackx.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:93821656244:ios:5e6358d77b937733e00be1</string>
+	<string>1:415917154731:ios:f72eb1bb93cb84939972ee</string>
 </dict>
 </plist>

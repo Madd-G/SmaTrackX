@@ -1,3 +1,2 @@
-export 'app_colors.dart';
-export 'fonts.dart';
-export 'media_res.dart';
+export 'app_fonts.dart';
+export 'app_media.dart';

@@ -30,14 +30,15 @@ dependencies:
   image_picker: ^1.0.4
   path_provider: ^2.1.1
   file_picker: ^6.0.0
-  google_mlkit_face_detection: ^0.8.0
+  google_mlkit_face_detection: ^0.9.0
+  google_mlkit_commons: ^0.6.1
   safe_device: ^1.1.4
   permission_handler: ^11.0.1
   device_info_plus: ^9.1.0
   flutter_animate: ^4.2.0+1
   dio: ^5.3.3
   google_maps_flutter: ^2.5.0
-  http: ^0.13.6
+  google_maps_flutter_ios: ^2.3.2
 
 dev_dependencies:
   flutter_test:
@@ -54,23 +55,6 @@ flutter:
     - assets/lottie/
 
   fonts:
-    - family: Aeonik
-      fonts:
-        - asset: assets/fonts/aeonik/AeonikTRIAL-Bold.otf
-          weight: 700
-        - asset: assets/fonts/aeonik/AeonikTRIAL-BoldItalic.otf
-          style: italic
-          weight: 700
-        - asset: assets/fonts/aeonik/AeonikTRIAL-Light.otf
-          weight: 300
-        - asset: assets/fonts/aeonik/AeonikTRIAL-LightItalic.otf
-          style: italic
-          weight: 300
-        - asset: assets/fonts/aeonik/AeonikTRIAL-Regular.otf
-          weight: 400
-        - asset: assets/fonts/aeonik/AeonikTRIAL-RegularItalic.otf
-          style: italic
-          weight: 400
     - family: Poppins
       fonts:
         - asset: assets/fonts/poppins/Poppins-Thin.ttf

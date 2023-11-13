@@ -30,10 +30,10 @@ class HomeHeader extends StatelessWidget {
                   Text(
                     'Friday, 10 February 2023',
                     style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 17.0,
-                        color: Colors.white,
-                        fontFamily: Fonts.aeonik),
+                      fontWeight: FontWeight.w500,
+                      fontSize: 17.0,
+                      color: Colors.white,
+                    ),
                   ),
                   Icon(IconlyBold.notification, color: Colors.white),
                 ],

@@ -1,5 +1,5 @@
-class MediaRes {
-  const MediaRes._();
+class AppMedia {
+  const AppMedia._();
 
   static const _baseImage = 'assets/images';
   static const _baseLottie = 'assets/lottie';

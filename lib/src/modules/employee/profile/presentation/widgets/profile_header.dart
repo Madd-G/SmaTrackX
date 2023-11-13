@@ -32,8 +32,7 @@ class ProfileHeader extends StatelessWidget {
                     style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 17.0,
-                        color: Colors.white,
-                        fontFamily: Fonts.aeonik),
+                        color: Colors.white),
                   ),
                   Icon(IconlyBold.notification, color: Colors.white),
                 ],

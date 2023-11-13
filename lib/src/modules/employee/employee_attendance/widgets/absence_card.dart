@@ -127,7 +127,7 @@ class AbsenceCard extends StatelessWidget {
                                       deviceId: deviceInfo.id,
                                       checkInOrder: 1,
                                       // TODO: real status
-                                      status: 'on time',
+                                      status: 'Arrived on time',
                                       distance:
                                           BlocProvider.of<MapCubit>(context)
                                               .distance,
@@ -176,7 +176,7 @@ class AbsenceCard extends StatelessWidget {
                                       deviceId: deviceInfo.id,
                                       // TODO: real distance
                                       checkOutOrder: 10,
-                                      status: 'on time',
+                                      status: 'Arrived on time',
                                       distance:
                                           BlocProvider.of<MapCubit>(context)
                                               .distance,

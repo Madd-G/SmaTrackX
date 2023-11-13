@@ -17,10 +17,10 @@ class AttendancesHeader extends StatelessWidget {
           Text(
             'Friday, 10 February 2023',
             style: TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: 17.0,
-                color: AppColors.blackColor,
-                fontFamily: Fonts.aeonik),
+              fontWeight: FontWeight.w700,
+              fontSize: 17.0,
+              color: AppColors.blackColor,
+            ),
           ),
           Icon(IconlyBold.notification, color: AppColors.blackColor),
         ],

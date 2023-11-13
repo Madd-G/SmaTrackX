@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           useMaterial3: true,
           visualDensity: VisualDensity.adaptivePlatformDensity,
-          fontFamily: Fonts.poppins,
+          fontFamily: AppFont.poppins,
           appBarTheme: const AppBarTheme(
             color: Colors.transparent,
           ),

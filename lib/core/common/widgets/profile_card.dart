@@ -32,7 +32,7 @@ class ProfileCard extends StatelessWidget {
                   radius: 50,
                   backgroundImage: image != null
                       ? NetworkImage(image)
-                      : const AssetImage(MediaRes.user) as ImageProvider,
+                      : const AssetImage(AppMedia.user) as ImageProvider,
                 );
               },
             ),

@@ -17,7 +17,7 @@ class _ErrorScreenState extends State<ErrorScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Lottie.asset(MediaRes.errorAnimation),
+            Lottie.asset(AppMedia.errorAnimation),
             ElevatedButton(
               onPressed: () async {
                 final navigator = Navigator.of(context);

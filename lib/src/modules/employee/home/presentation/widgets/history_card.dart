@@ -1,65 +1,23 @@
 import 'package:SmaTrackX/core.dart';
 
 class HistoryCard extends StatelessWidget {
-  const HistoryCard({
-    super.key,
-  });
+  const HistoryCard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return RoundedContainer(
-      width: context.width,
+    return const RoundedContainer(
+      containerColor: Colors.white,
+      borderColor: Colors.black12,
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: DefaultTabController(
-          initialIndex: 0,
-          length: 2,
-          child: SizedBox(
-            height: 550.0,
-            child: Column(
-              children: [
-                Material(
-                  color: Colors.white,
-                  child: TabBar(
-                    indicatorWeight: 0.0,
-                    labelPadding: const EdgeInsets.all(0.0),
-                    unselectedLabelColor: AppColors.greyColor,
-                    indicator: BoxDecoration(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(10.0),
-                        ),
-                        border: Border.all(
-                          color: AppColors.primaryColor,
-                          width: 1.5,
-                        ),
-                        color: AppColors.secondaryColor),
-                    indicatorColor: AppColors.primaryColor,
-                    labelColor: AppColors.primaryColor,
-                    tabs: const [
-                      HomeHistoryTabBar(text: 'This Week'),
-                      HomeHistoryTabBar(text: 'This Month'),
-                    ],
-                  ),
-                ),
-                const Expanded(
-                  child: TabBarView(
-                    children: [
-                      AttendanceHistoryByWeek(),
-                      AttendanceHistoryByMonth(),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
+        padding: EdgeInsets.all(8.0),
+        child: AttendanceHistoryByWeek(),
       ),
     );
   }
 }
 
-class AttendanceHistoryAll extends StatelessWidget {
-  const AttendanceHistoryAll({super.key});
+class AttendanceHistoryByWeek extends StatelessWidget {
+  const AttendanceHistoryByWeek({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -71,19 +29,44 @@ class AttendanceHistoryAll extends StatelessWidget {
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else if (snapshot.hasData) {
-          final data = snapshot.data?.data();
+          Map<String, dynamic>? data = snapshot.data?.data();
+
           if (data != null) {
+            final sortedWeekRange = DateTime.now().getSortedWeekRange();
+
+            final List<MapEntry<String, dynamic>> filteredData =
+                data.entries.where((entry) {
+              final checkInData = CheckInData.fromMap(entry.value);
+              final date = DateFormat('yyyy-MM-dd').parse(checkInData.date);
+              return date.isAfter(sortedWeekRange[0]) &&
+                  date.isBefore(sortedWeekRange[1]);
+            }).toList();
+
+            final List convertedData =
+                filteredData.map((entry) => entry.value).toList();
+
+            convertedData.sort((a, b) {
+              final dateA = DateFormat('yyyy-MM-dd').parse(a['date']);
+              final dateB = DateFormat('yyyy-MM-dd').parse(b['date']);
+              return dateA.compareTo(dateB);
+            });
+
             return ListView.builder(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+              shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: data.length,
+              itemCount: convertedData.length,
               itemBuilder: (context, index) {
-                final date = data.keys.elementAt(index);
-                final checkInData = CheckInData.fromMap(data[date]);
+                final entry = convertedData[index];
+                final checkInData = CheckInData.fromMap(entry);
+
+                final checkInInfo = checkInData.checkInInfo;
 
                 return AttendanceItem(
-                  status: checkInData.checkInInfo.status,
+                  status: checkInInfo.status,
                   date: checkInData.date.dayDateMonthYear,
-                  time: checkInData.checkInInfo.time.hourMinute,
+                  time: checkInInfo.time.hourMinute,
                 );
               },
             );
@@ -99,7 +82,7 @@ class AttendanceHistoryAll extends StatelessWidget {
 }
 
 class AttendanceHistoryByMonth extends StatelessWidget {
-  const AttendanceHistoryByMonth({super.key});
+  const AttendanceHistoryByMonth({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -115,6 +98,9 @@ class AttendanceHistoryByMonth extends StatelessWidget {
           if (data != null) {
             final thisMonthData = data.filterByMonth(11);
             return ListView.builder(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+              shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemCount: thisMonthData.length,
               itemBuilder: (context, index) {
@@ -138,71 +124,8 @@ class AttendanceHistoryByMonth extends StatelessWidget {
   }
 }
 
-class AttendanceHistoryByWeek extends StatelessWidget {
-  const AttendanceHistoryByWeek({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-      stream: HomeService().attendanceHistorySnapshot(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
-        } else if (snapshot.hasData) {
-          Map<String, dynamic>? data = snapshot.data?.data();
-
-          if (data != null) {
-            final sortedWeekRange = DateTime.now().getSortedWeekRange();
-
-            final List<MapEntry<String, dynamic>> filteredData = data.entries.where((entry) {
-              final checkInData = CheckInData.fromMap(entry.value);
-              final date = DateFormat('yyyy-MM-dd').parse(checkInData.date);
-              return date.isAfter(sortedWeekRange[0]) && date.isBefore(sortedWeekRange[1]);
-            }).toList();
-
-            final List convertedData = filteredData.map((entry) => entry.value).toList();
-
-            convertedData.sort((a, b) {
-              final dateA = DateFormat('yyyy-MM-dd').parse(a['date']);
-              final dateB = DateFormat('yyyy-MM-dd').parse(b['date']);
-              return dateA.compareTo(dateB);
-            });
-
-            return ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: convertedData.length,
-              itemBuilder: (context, index) {
-                final entry = convertedData[index];
-                final checkInData = CheckInData.fromMap(entry);
-
-                final checkInInfo = checkInData.checkInInfo;
-
-
-                return AttendanceItem(
-                  status: checkInInfo.status,
-                  date: checkInData.date.dayDateMonthYear,
-                  time: checkInInfo.time.hourMinute,
-                );
-              },
-            );
-          } else {
-            return const Center(child: Text('Data not found.'));
-          }
-        } else {
-          return const Center(child: Text('Document not found.'));
-        }
-      },
-    );
-  }
-}
-
 class HomeHistoryTabBar extends StatelessWidget {
-  const HomeHistoryTabBar({
-    super.key,
-    required this.text,
-  });
+  const HomeHistoryTabBar({super.key, required this.text});
 
   final String text;
 
@@ -248,8 +171,14 @@ class AttendanceItem extends StatelessWidget {
             children: [
               Text(
                 status,
-                style: const TextStyle(
-                    fontSize: 16.0, fontWeight: FontWeight.w700),
+                style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w700,
+                    color: (status == 'Arrived on time'
+                        ? AppColors.greenColor
+                        : (status == 'Arrived late'
+                            ? AppColors.yellowColor
+                            : AppColors.redColor))),
               ),
               Text(
                 '$date - $time',
@@ -260,6 +189,46 @@ class AttendanceItem extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class AttendanceHistoryAll extends StatelessWidget {
+  const AttendanceHistoryAll({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+      stream: HomeService().attendanceHistorySnapshot(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        } else if (snapshot.hasData) {
+          final data = snapshot.data?.data();
+          if (data != null) {
+            return ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: data.length,
+              itemBuilder: (context, index) {
+                final date = data.keys.elementAt(index);
+                final checkInData = CheckInData.fromMap(data[date]);
+
+                return AttendanceItem(
+                  status: checkInData.checkInInfo.status,
+                  date: checkInData.date.dayDateMonthYear,
+                  time: checkInData.checkInInfo.time.hourMinute,
+                );
+              },
+            );
+          } else {
+            return const Center(child: Text('Data not found.'));
+          }
+        } else {
+          return const Center(child: Text('Document not found.'));
+        }
+      },
     );
   }
 }

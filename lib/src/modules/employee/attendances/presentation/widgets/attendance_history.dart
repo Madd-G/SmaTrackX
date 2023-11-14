@@ -55,4 +55,3 @@ class AttendanceHistory extends StatelessWidget {
     );
   }
 }
-

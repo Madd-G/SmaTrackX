@@ -9,12 +9,12 @@ extension StatusCounts on List<Map<String, dynamic>> {
     for (var entry in this) {
       if (entry['checkInInfo'] != null &&
           entry['checkInInfo']['status'] != null) {
-        var status = entry['checkInInfo']['status'].toLowerCase();
-        if (status == 'on time' || status == 'late') {
+        var status = entry['checkInInfo']['status'];
+        if (status == 'Arrived on time' || status == 'Arrived late') {
           arriveCount++;
-        } else if (status == 'leave') {
+        } else if (status == 'Leave') {
           leaveCount++;
-        } else if (status == 'absence') {
+        } else if (status == 'Absence') {
           absenceCount++;
         }
       }
@@ -48,7 +48,6 @@ extension DateTimeExtensions on DateTime {
   }
 }
 
-
 extension MapExtensions on Map<String, dynamic> {
   List<MapEntry<String, dynamic>> filterByMonth(int month) {
     List<MapEntry<String, dynamic>> dataList = entries.toList();
@@ -78,12 +77,12 @@ extension MapExtensions on Map<String, dynamic> {
     for (var entry in entries) {
       if (entry.value['checkInInfo'] != null &&
           entry.value['checkInInfo']['status'] != null) {
-        var status = entry.value['checkInInfo']['status'].toLowerCase();
-        if (status == 'on time' || status == 'late') {
+        var status = entry.value['checkInInfo']['status'];
+        if (status == 'Arrived on time' || status == 'Arrived late') {
           arriveCount++;
-        } else if (status == 'leave') {
+        } else if (status == 'Leave') {
           leaveCount++;
-        } else if (status == 'absence') {
+        } else if (status == 'Absence') {
           absenceCount++;
         }
       }
@@ -102,4 +101,3 @@ extension MapListExtensions on List<MapEntry<String, dynamic>> {
     return map((entry) => entry.value as Map<String, dynamic>).toList();
   }
 }
-

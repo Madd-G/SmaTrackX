@@ -89,7 +89,7 @@ class PresenceSummaryByMonth extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SummaryBox(count: thisMonthData.length, status: 'Days'),
-                SummaryBox(count: arriveCount, status: 'Arrive'),
+                SummaryBox(count: arriveCount, status: 'Arrived'),
                 SummaryBox(count: leaveCount, status: 'Leave'),
                 SummaryBox(count: absenceCount, status: 'Absence'),
               ],
@@ -146,7 +146,7 @@ class PresenceSummaryByWeek extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SummaryBox(count: filteredData.length, status: 'Days'),
-                  SummaryBox(count: arriveCount, status: 'Arrive'),
+                  SummaryBox(count: arriveCount, status: 'Arrived'),
                   SummaryBox(count: leaveCount, status: 'Leave'),
                   SummaryBox(count: absenceCount, status: 'Absence'),
                 ],

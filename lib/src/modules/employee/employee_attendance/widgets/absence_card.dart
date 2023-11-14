@@ -16,29 +16,25 @@ class AbsenceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      left: 20,
-      right: 20,
-      bottom: 20,
+      left: 10,
+      right: 10,
+      bottom: 25,
       child: Card(
         child: Container(
           padding: const EdgeInsets.all(20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                deviceInfo.model,
-                style: const TextStyle(
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              Text(deviceInfo.model,
+                  style:
+                      CustomTextStyle.textLargeBold.copyWith(fontSize: 17.5)),
               const Divider(),
               Row(
                 children: [
                   SizedBox(
-                    height: 120.0,
-                    width: 120.0,
-                    child: QSquareImagePicker(
+                    height: context.width * 0.35,
+                    width: context.width * 0.35,
+                    child: SquareImagePicker(
                       label: "Photo",
                       hint: "Your photo",
                       validator: Validator.required,
@@ -53,38 +49,27 @@ class AbsenceCard extends StatelessWidget {
                   ),
                   Expanded(
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          context.currentUser!.fullName,
-                          style: const TextStyle(
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10.0,
-                        ),
+                        Text(context.currentUser!.fullName,
+                            style: CustomTextStyle.textLargeBold
+                                .copyWith(fontSize: 17.5)),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              DateTime.now().dateFormat,
-                              style: const TextStyle(
-                                fontSize: 16.0,
-                              ),
-                            ),
                             const SizedBox(
                               height: 10.0,
                             ),
+                            Text(DateTime.now().dateFormat,
+                                style: CustomTextStyle.textBigSemiBold),
                             BlocBuilder<ClockBloc, ClockState>(
                               builder: (context, state) {
                                 String time = state.time.clockFormat;
                                 return Text(
                                   time,
-                                  style: const TextStyle(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.w500),
+                                  style: CustomTextStyle.textLargeSemiBold
+                                      .copyWith(fontSize: 27.0),
                                 );
                               },
                             ),
@@ -101,7 +86,10 @@ class AbsenceCard extends StatelessWidget {
               StreamBuilder<DocumentSnapshot>(
                 stream: AttendanceService().attendanceSnapshot(),
                 builder: (context, snapshot) {
-                  if (snapshot.hasError) return const Text("Error");
+                  if (snapshot.hasError) {
+                    return const Text("Error",
+                        style: CustomTextStyle.textLargeMedium);
+                  }
                   if (snapshot.data == null) return Container();
                   final data = snapshot.data?.data() as Map<String, dynamic>;
                   bool isCheckInToday =
@@ -144,16 +132,14 @@ class AbsenceCard extends StatelessWidget {
                               : AppColors.greenColor,
                           borderWidth: 3,
                           radius: 10.0,
-                          child: const Center(
+                          child: Center(
                             child: Padding(
-                              padding: EdgeInsets.symmetric(vertical: 8.0),
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 8.0),
                               child: Text(
                                 'Check In',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.w700,
-                                ),
+                                style: CustomTextStyle.textBigBold
+                                    .copyWith(fontSize: 20.0),
                               ),
                             ),
                           ),
@@ -193,16 +179,14 @@ class AbsenceCard extends StatelessWidget {
                               : AppColors.redColor,
                           borderWidth: 3,
                           radius: 10.0,
-                          child: const Center(
+                          child: Center(
                             child: Padding(
-                              padding: EdgeInsets.symmetric(vertical: 8.0),
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 8.0),
                               child: Text(
                                 'Check Out',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.w700,
-                                ),
+                                style: CustomTextStyle.textBigBold
+                                    .copyWith(fontSize: 20.0),
                               ),
                             ),
                           ),

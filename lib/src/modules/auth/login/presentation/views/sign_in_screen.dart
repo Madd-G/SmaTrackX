@@ -34,7 +34,8 @@ class _SignInScreenState extends State<SignInScreen> {
               context
                   .read<UserProvider>()
                   .initUser(state.user as LocalUserModel);
-              Navigator.pushReplacementNamed(context, BottomNavigation.routeName);
+              Navigator.pushReplacementNamed(
+                  context, BottomNavigation.routeName);
             }
           },
           builder: (context, state) {
@@ -72,7 +73,10 @@ class _SignInScreenState extends State<SignInScreen> {
                             alignment: Alignment.centerRight,
                             child: TextButton(
                               onPressed: () {},
-                              child: const Text('Forgot password?'),
+                              child: const Text(
+                                'Forgot password?',
+                                style: CustomTextStyle.textRegular,
+                              ),
                             ),
                           ),
                           const SizedBox(height: 10),
@@ -98,7 +102,10 @@ class _SignInScreenState extends State<SignInScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Text('Don\'t have an account'),
+                              const Text(
+                                'Don\'t have an account',
+                                style: CustomTextStyle.textRegular,
+                              ),
                               TextButton(
                                 onPressed: () {
                                   Navigator.pushReplacementNamed(
@@ -106,7 +113,10 @@ class _SignInScreenState extends State<SignInScreen> {
                                     SignUpScreen.routeName,
                                   );
                                 },
-                                child: const Text('Register account?'),
+                                child: const Text(
+                                  'Register account?',
+                                  style: CustomTextStyle.textRegular,
+                                ),
                               ),
                             ],
                           ),

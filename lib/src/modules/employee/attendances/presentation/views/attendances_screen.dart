@@ -16,7 +16,7 @@ class AttendancesScreen extends StatelessWidget {
               AttendancesHeader(),
               SizedBox(height: 15.0),
               SliderCategory(),
-              SizedBox(height: 10.0,),
+              SizedBox(height: 10.0),
               AttendancesCarousel(),
               AttendanceHistory(),
             ],
@@ -26,4 +26,3 @@ class AttendancesScreen extends StatelessWidget {
     );
   }
 }
-

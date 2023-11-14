@@ -25,12 +25,11 @@ class _EmployeeAttendanceScreenState extends State<EmployeeAttendanceScreen> {
       body: BlocBuilder<DataBloc, DataState>(
         builder: (BuildContext context, DataState state) {
           if (state is DataLoading) {
-            return const Center(
+            return Center(
               child: Text(
                 "Get location...",
-                style: TextStyle(
-                  color: Colors.white,
-                ),
+                style: CustomTextStyle.textLargeSemiBold
+                    .copyWith(color: AppColors.whiteColor),
               ),
             );
           } else if (state is DataLoaded) {
@@ -54,11 +53,12 @@ class _EmployeeAttendanceScreenState extends State<EmployeeAttendanceScreen> {
             );
           } else if (state is DataFailed) {
             return const Center(
-              child: Text('Gagal mengambil data'),
+              child: Text('Gagal mengambil data',
+                  style: CustomTextStyle.textLargeSemiBold),
             );
           } else {
             return const Center(
-              child: Text('Error'),
+              child: Text('Error', style: CustomTextStyle.textLargeSemiBold),
             );
           }
         },

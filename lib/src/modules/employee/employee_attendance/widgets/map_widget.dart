@@ -35,7 +35,9 @@ class _MapWidgetState extends State<MapWidget> {
             );
           }
         } catch (e) {
-          return const Center(child: Text('An error occurred.'));
+          return const Center(
+              child: Text('An error occurred.',
+                  style: CustomTextStyle.textLargeSemiBold));
         }
 
         return const Center(child: CircularProgressIndicator());
@@ -106,8 +108,10 @@ class Maps extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text("Total Distance: $totalDistance"),
-                  Text("Total Time: $totalTime"),
+                  Text("Total Distance: $totalDistance",
+                      style: CustomTextStyle.textRegular),
+                  Text("Total Time: $totalTime",
+                      style: CustomTextStyle.textRegular),
                 ],
               ),
             ),

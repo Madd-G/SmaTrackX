@@ -1,6 +1,6 @@
 import 'package:SmaTrackX/core.dart';
 
-class QSquareImagePicker extends StatefulWidget {
+class SquareImagePicker extends StatefulWidget {
   final String label;
   final String? value;
   final String? hint;
@@ -9,7 +9,7 @@ class QSquareImagePicker extends StatefulWidget {
   final Function(String) onChanged;
   final String? provider;
 
-  const QSquareImagePicker({
+  const SquareImagePicker({
     Key? key,
     required this.label,
     this.value,
@@ -21,10 +21,10 @@ class QSquareImagePicker extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<QSquareImagePicker> createState() => _QSquareImagePickerState();
+  State<SquareImagePicker> createState() => _SquareImagePickerState();
 }
 
-class _QSquareImagePickerState extends State<QSquareImagePicker> {
+class _SquareImagePickerState extends State<SquareImagePicker> {
   String? imageUrl;
   bool loading = false;
   late TextEditingController controller;

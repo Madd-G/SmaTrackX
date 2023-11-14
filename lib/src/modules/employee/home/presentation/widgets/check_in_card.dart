@@ -18,19 +18,19 @@ class CheckInCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     'Anonymous Company',
                     maxLines: 2,
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.w500,
+                    style: CustomTextStyle.textLargeMedium.copyWith(
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   Consumer<UserProvider>(builder: (_, provider, __) {
                     final user = provider.user;
                     return Text(
-                        '${user?.workStart?.displayTime} - ${user?.workEnd?.displayTime}');
+                      '${user?.workStart?.displayTime} - ${user?.workEnd?.displayTime}',
+                      style: CustomTextStyle.textMediumMedium,
+                    );
                   }),
                 ],
               ),
@@ -38,7 +38,10 @@ class CheckInCard extends StatelessWidget {
             StreamBuilder<DocumentSnapshot>(
               stream: AttendanceService().attendanceSnapshot(),
               builder: (context, snapshot) {
-                if (snapshot.hasError) return const Text("Error");
+                if (snapshot.hasError) {
+                  return const Text("Error",
+                      style: CustomTextStyle.textBigMedium);
+                }
                 if (snapshot.data == null) return Container();
                 final data = snapshot.data?.data() as Map<String, dynamic>;
                 var dateKey = DateTime.now().yearMonthDay();
@@ -47,7 +50,8 @@ class CheckInCard extends StatelessWidget {
                 if (isNotCheckInToday) {
                   return const CheckInButton();
                 }
-                var isCheckoutToday = data[DateTime.now().yearMonthDay()]['isCheckedOut'] == true;
+                var isCheckoutToday =
+                    data[DateTime.now().yearMonthDay()]['isCheckedOut'] == true;
 
                 if (isCheckoutToday) {
                   return const CompletedButton();
@@ -74,21 +78,17 @@ class CheckOutButton extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(context, EmployeeAttendanceScreen.routeName);
       },
-      child: const RoundedContainer(
+      child: RoundedContainer(
         containerColor: AppColors.redSecondaryColor,
         borderColor: AppColors.redColor,
         radius: 10.0,
         child: Center(
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
-            child: Text(
-              'Check Out',
-              style: TextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.w700,
-                color: AppColors.redColor,
-              ),
-            ),
+            padding:
+                const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+            child: Text('Check Out',
+                style: CustomTextStyle.textLargeBold
+                    .copyWith(color: AppColors.redColor)),
           ),
         ),
       ),
@@ -105,23 +105,23 @@ class CompletedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        CoreUtils.showSnackBar(context,
-            'Your attendance for today has been successfully recorded.');
+        CoreUtils.showSnackBar(
+          context,
+          'Your attendance for today has been successfully recorded.',
+        );
       },
-      child: const RoundedContainer(
+      child: RoundedContainer(
         containerColor: AppColors.secondaryColor,
         borderColor: AppColors.blackColor,
         radius: 10.0,
         child: Center(
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+            padding:
+                const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
             child: Text(
               'Completed',
-              style: TextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.w700,
-                color: AppColors.blackColor,
-              ),
+              style: CustomTextStyle.textLargeBold
+                  .copyWith(color: AppColors.blackColor),
             ),
           ),
         ),
@@ -141,20 +141,18 @@ class CheckInButton extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(context, EmployeeAttendanceScreen.routeName);
       },
-      child: const RoundedContainer(
+      child: RoundedContainer(
         containerColor: AppColors.greenSecondaryColor,
         borderColor: AppColors.greenColor,
         radius: 10.0,
         child: Center(
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+            padding:
+                const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
             child: Text(
               'Check In',
-              style: TextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.w700,
-                color: AppColors.greenColor,
-              ),
+              style: CustomTextStyle.textLargeBold
+                  .copyWith(color: AppColors.greenColor),
             ),
           ),
         ),

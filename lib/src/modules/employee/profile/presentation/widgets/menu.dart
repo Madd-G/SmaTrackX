@@ -13,8 +13,8 @@ class Menu extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 16.0),
-          const Text('Main Menu',
-              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w700)),
+          Text('Main Menu',
+              style: CustomTextStyle.textLargeBold.copyWith(fontSize: 20.0)),
           const SizedBox(height: 5.0),
           RoundedContainer(
             child: Padding(
@@ -91,10 +91,8 @@ class MenuItem extends StatelessWidget {
                   onTap: onPressed,
                   child: Text(
                     title,
-                    style: const TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.greyColor),
+                    style: CustomTextStyle.textLargeBold
+                        .copyWith(color: AppColors.greyColor),
                   ),
                 ),
                 const SizedBox(

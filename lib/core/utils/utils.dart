@@ -8,3 +8,4 @@ export 'user_utils.dart';
 export 'validator.dart';
 export 'theme.dart';
 export 'app_colors.dart';
+export 'custom_text_style.dart';

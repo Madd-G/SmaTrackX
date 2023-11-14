@@ -20,21 +20,18 @@ Future showInfoDialog(String message) async {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
+                        Text(
                           "Info",
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: CustomTextStyle.textLargeSemiBold
+                              .copyWith(fontSize: 18.0),
                         ),
                         const SizedBox(
                           height: 20.0,
                         ),
                         Text(
                           message,
-                          style: const TextStyle(
-                            fontSize: 14.0,
-                          ),
+                          style: CustomTextStyle.textMediumRegular
+                              .copyWith(fontSize: 14.0),
                         ),
                         const SizedBox(
                           height: 20.0,
@@ -44,11 +41,10 @@ Future showInfoDialog(String message) async {
                             backgroundColor: const Color(0xff000a14),
                           ),
                           onPressed: () => Get.back(),
-                          child: const Text(
+                          child: Text(
                             "Ok",
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
+                            style: CustomTextStyle.textMediumRegular
+                                .copyWith(fontSize: 14.0, color: Colors.white),
                           ),
                         ),
                       ],

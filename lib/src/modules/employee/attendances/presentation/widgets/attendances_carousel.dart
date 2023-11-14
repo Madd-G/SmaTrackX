@@ -76,8 +76,8 @@ class AttendanceCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               RoundedContainer(
-                height: 50.0,
-                width: 50.0,
+                height: 45.0,
+                width: 45.0,
                 containerColor: iconBackgroundColor,
                 borderColor: iconBorderColor,
                 radius: 10.0,
@@ -90,18 +90,14 @@ class AttendanceCard extends StatelessWidget {
               ),
               Text(
                 text,
-                style: const TextStyle(
-                    fontSize: 16.0,
-                    color: AppColors.textColor,
-                    fontWeight: FontWeight.w700),
+                style: CustomTextStyle.textLargeSemiBold,
               ),
               Text(
                 '$number',
-                style: const TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.w900,
-                  color: Colors.black,
-                ),
+                style: CustomTextStyle.textLargeBold.copyWith(
+                    fontSize: 23.0,
+                    fontWeight: FontWeight.w900,
+                    color: AppColors.blackColor),
               )
             ],
           ),

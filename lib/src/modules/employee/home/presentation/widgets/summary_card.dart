@@ -73,7 +73,8 @@ class PresenceSummaryByMonth extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
+          return Text('Error: ${snapshot.error}',
+              style: CustomTextStyle.textBigRegular);
         } else if (snapshot.hasData) {
           final data = snapshot.data?.data();
           if (data != null) {
@@ -95,10 +96,14 @@ class PresenceSummaryByMonth extends StatelessWidget {
               ],
             );
           } else {
-            return const Center(child: Text('Data not found.'));
+            return const Center(
+                child: Text('Data not found.',
+                    style: CustomTextStyle.textBigRegular));
           }
         } else {
-          return const Center(child: Text('Document not found.'));
+          return const Center(
+              child: Text('Document not found.',
+                  style: CustomTextStyle.textBigRegular));
         }
       },
     );
@@ -118,7 +123,8 @@ class PresenceSummaryByWeek extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}');
+            return Text('Error: ${snapshot.error}',
+                style: CustomTextStyle.textBigRegular);
           } else if (snapshot.hasData) {
             final data = snapshot.data?.data();
             if (data != null) {
@@ -152,10 +158,14 @@ class PresenceSummaryByWeek extends StatelessWidget {
                 ],
               );
             } else {
-              return const Center(child: Text('Data not found.'));
+              return const Center(
+                  child: Text('Data not found.',
+                      style: CustomTextStyle.textBigRegular));
             }
           } else {
-            return const Center(child: Text('Document not found.'));
+            return const Center(
+                child: Text('Document not found.',
+                    style: CustomTextStyle.textBigRegular));
           }
         });
   }
@@ -176,10 +186,7 @@ class HomeSummaryTabBar extends StatelessWidget {
       child: Center(
         child: Text(
           text,
-          style: const TextStyle(
-            fontSize: 16.0,
-            fontWeight: FontWeight.w900,
-          ),
+          style: CustomTextStyle.textLargeBold,
         ),
       ),
     );
@@ -211,19 +218,13 @@ class SummaryBox extends StatelessWidget {
           children: [
             Text(
               count.toString(),
-              style: const TextStyle(
-                fontSize: 26.0,
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF4D4B51),
-              ),
+              style: CustomTextStyle.textLargeBold
+                  .copyWith(color: const Color(0xFF4D4B51), fontSize: 26.0),
             ),
             Text(
               status,
-              style: const TextStyle(
-                fontSize: 14.0,
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF9AA3AF),
-              ),
+              style: CustomTextStyle.textMediumBold
+                  .copyWith(color: const Color(0xFF9AA3AF)),
             ),
           ],
         ),

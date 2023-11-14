@@ -10,10 +10,7 @@ class CoreUtils {
         SnackBar(
           content: Text(
             message,
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
+            style: CustomTextStyle.textMediumBold.copyWith(color: Colors.white),
           ),
           behavior: SnackBarBehavior.floating,
           backgroundColor: AppColors.primaryColor,

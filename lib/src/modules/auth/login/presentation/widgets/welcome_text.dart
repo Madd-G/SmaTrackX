@@ -16,20 +16,15 @@ class WelcomeText extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(
-            fontFamily: AppFont.poppins,
-            fontWeight: FontWeight.w900,
-            fontSize: 36,
-          ),
+          style: CustomTextStyle.textLargeBold
+              .copyWith(fontWeight: FontWeight.w900, fontSize: 36),
         ),
         const SizedBox(
           height: 10.0,
         ),
         Text(
           subtitle,
-          style: const TextStyle(
-            fontSize: 14,
-          ),
+          style: CustomTextStyle.textBigRegular,
         ),
       ],
     );

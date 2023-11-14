@@ -27,7 +27,8 @@ class AttendanceHistoryByWeek extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
+          return Text('Error: ${snapshot.error}',
+              style: CustomTextStyle.textBigRegular);
         } else if (snapshot.hasData) {
           Map<String, dynamic>? data = snapshot.data?.data();
 
@@ -71,10 +72,14 @@ class AttendanceHistoryByWeek extends StatelessWidget {
               },
             );
           } else {
-            return const Center(child: Text('Data not found.'));
+            return const Center(
+                child: Text('Data not found.',
+                    style: CustomTextStyle.textBigRegular));
           }
         } else {
-          return const Center(child: Text('Document not found.'));
+          return const Center(
+              child: Text('Document not found.',
+                  style: CustomTextStyle.textBigRegular));
         }
       },
     );
@@ -92,7 +97,8 @@ class AttendanceHistoryByMonth extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
+          return Text('Error: ${snapshot.error}',
+              style: CustomTextStyle.textBigRegular);
         } else if (snapshot.hasData) {
           final data = snapshot.data?.data();
           if (data != null) {
@@ -114,10 +120,14 @@ class AttendanceHistoryByMonth extends StatelessWidget {
               },
             );
           } else {
-            return const Center(child: Text('Data not found.'));
+            return const Center(
+                child: Text('Data not found.',
+                    style: CustomTextStyle.textBigRegular));
           }
         } else {
-          return const Center(child: Text('Document not found.'));
+          return const Center(
+              child: Text('Document not found.',
+                  style: CustomTextStyle.textBigRegular));
         }
       },
     );
@@ -136,10 +146,8 @@ class HomeHistoryTabBar extends StatelessWidget {
       child: Center(
         child: Text(
           text,
-          style: const TextStyle(
-            fontSize: 16.0,
-            fontWeight: FontWeight.w900,
-          ),
+          style: CustomTextStyle.textLargeBold
+              .copyWith(fontWeight: FontWeight.w900),
         ),
       ),
     );
@@ -171,19 +179,18 @@ class AttendanceItem extends StatelessWidget {
             children: [
               Text(
                 status,
-                style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w700,
-                    color: (status == 'Arrived on time'
-                        ? AppColors.greenColor
-                        : (status == 'Arrived late'
-                            ? AppColors.yellowColor
-                            : AppColors.redColor))),
+                style: CustomTextStyle.textLargeBold.copyWith(
+                  color: (status == 'Arrived on time'
+                      ? AppColors.greenColor
+                      : (status == 'Arrived late'
+                          ? AppColors.yellowColor
+                          : AppColors.redColor)),
+                ),
               ),
               Text(
                 '$date - $time',
-                style: const TextStyle(
-                    color: Color(0xFF9AA3AF), fontWeight: FontWeight.w700),
+                style: CustomTextStyle.textBold
+                    .copyWith(color: const Color(0xFF9AA3AF)),
               ),
             ],
           ),
@@ -204,7 +211,8 @@ class AttendanceHistoryAll extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
+          return Text('Error: ${snapshot.error}',
+              style: CustomTextStyle.textBigRegular);
         } else if (snapshot.hasData) {
           final data = snapshot.data?.data();
           if (data != null) {
@@ -223,10 +231,14 @@ class AttendanceHistoryAll extends StatelessWidget {
               },
             );
           } else {
-            return const Center(child: Text('Data not found.'));
+            return const Center(
+                child: Text('Data not found.',
+                    style: CustomTextStyle.textBigRegular));
           }
         } else {
-          return const Center(child: Text('Document not found.'));
+          return const Center(
+              child: Text('Document not found.',
+                  style: CustomTextStyle.textBigRegular));
         }
       },
     );

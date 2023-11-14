@@ -106,7 +106,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Text('Already have an account?'),
+                              const Text(
+                                'Already have an account?',
+                                style: CustomTextStyle.textRegular,
+                              ),
                               TextButton(
                                 onPressed: () {
                                   Navigator.pushReplacementNamed(
@@ -114,7 +117,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     SignInScreen.routeName,
                                   );
                                 },
-                                child: const Text('Login'),
+                                child: const Text(
+                                  'Login',
+                                  style: CustomTextStyle.textRegular,
+                                ),
                               ),
                             ],
                           ),

@@ -52,10 +52,8 @@ class SliderItem extends StatelessWidget {
                       horizontal: 16.0, vertical: 0.0),
                   child: Text(
                     text,
-                    style: const TextStyle(
-                      fontSize: 16.0,
-                        color: AppColors.primaryColor,
-                        fontWeight: FontWeight.w700),
+                    style: CustomTextStyle.textLargeBold
+                        .copyWith(color: AppColors.primaryColor),
                   ),
                 ),
               ),
@@ -74,10 +72,8 @@ class SliderItem extends StatelessWidget {
                       horizontal: 16.0, vertical: 0.0),
                   child: Text(
                     text,
-                    style: const TextStyle(
-                      fontSize: 16.0,
-                        color: AppColors.textColor,
-                        fontWeight: FontWeight.w700),
+                    style: CustomTextStyle.textLargeBold
+                        .copyWith(color: AppColors.textColor),
                   ),
                 ),
               ),

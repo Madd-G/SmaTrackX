@@ -27,17 +27,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         navigatorKey: Get.navigatorKey,
-        theme: ThemeData(
-          useMaterial3: true,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-          fontFamily: AppFont.poppins,
-          appBarTheme: const AppBarTheme(
-            color: Colors.transparent,
-          ),
-          colorScheme: ColorScheme.fromSwatch(
-            accentColor: AppColors.primaryColor,
-          ),
-        ),
+        theme: AppTheme.lightTheme,
         onGenerateRoute: generateRoute,
       ),
     );

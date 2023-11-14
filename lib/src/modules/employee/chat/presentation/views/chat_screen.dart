@@ -9,7 +9,10 @@ class ChatScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text('Chat Screen'),
+        child: Text(
+          'Chat Screen',
+          style: CustomTextStyle.textBigSemiBold,
+        ),
       ),
     );
   }

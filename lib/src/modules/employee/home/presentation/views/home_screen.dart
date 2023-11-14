@@ -22,14 +22,12 @@ class HomeScreen extends StatelessWidget {
                   CheckInCard(),
                   SizedBox(height: 25.0),
                   Text('Your Presence in Summary',
-                      style: TextStyle(
-                          fontSize: 16.0, fontWeight: FontWeight.w500)),
+                      style: CustomTextStyle.textLargeSemiBold),
                   SizedBox(height: 10.0),
                   SummaryCard(),
                   SizedBox(height: 25.0),
                   Text('Attendance History',
-                      style: TextStyle(
-                          fontSize: 16.0, fontWeight: FontWeight.w500)),
+                      style: CustomTextStyle.textLargeSemiBold),
                   SizedBox(height: 10.0),
                   HistoryCard(),
                 ],

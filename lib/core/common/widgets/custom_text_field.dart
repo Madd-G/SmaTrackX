@@ -1,7 +1,7 @@
 import 'package:SmaTrackX/core.dart';
 
-class IField extends StatelessWidget {
-  const IField({
+class CustomTextField extends StatelessWidget {
+  const CustomTextField({
     required this.controller,
     this.filled = false,
     this.obscureText = false,
@@ -60,7 +60,6 @@ class IField extends StatelessWidget {
             color: Theme.of(context).primaryColor,
           ),
         ),
-        // overwriting the default padding helps with that puffy look
         contentPadding: const EdgeInsets.symmetric(horizontal: 20),
         filled: filled,
         fillColor: fillColour,

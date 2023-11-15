@@ -30,19 +30,19 @@ class _SignUpFormState extends State<SignUpForm> {
       key: widget.formKey,
       child: Column(
         children: [
-          IField(
+          CustomTextField(
             controller: widget.fullNameController,
             hintText: 'Full Name',
             keyboardType: TextInputType.name,
           ),
           const SizedBox(height: 15),
-          IField(
+          CustomTextField(
             controller: widget.emailController,
             hintText: 'Email address',
             keyboardType: TextInputType.emailAddress,
           ),
           const SizedBox(height: 15),
-          IField(
+          CustomTextField(
             controller: widget.passwordController,
             hintText: 'Password',
             obscureText: obscurePassword,
@@ -60,7 +60,7 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
           ),
           const SizedBox(height: 15),
-          IField(
+          CustomTextField(
             controller: widget.confirmPasswordController,
             hintText: 'Confirm Password',
             obscureText: obscureConfirmPassword,

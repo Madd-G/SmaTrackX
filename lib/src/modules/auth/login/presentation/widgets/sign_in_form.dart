@@ -25,13 +25,13 @@ class _SignInFormState extends State<SignInForm> {
       key: widget.formKey,
       child: Column(
         children: [
-          IField(
+          CustomTextField(
             controller: widget.emailController,
             hintText: 'Email Address',
             keyboardType: TextInputType.emailAddress,
           ),
           const SizedBox(height: 10),
-          IField(
+          CustomTextField(
             controller: widget.passwordController,
             hintText: 'Password',
             obscureText: obscurePassword,

@@ -1,4 +1,3 @@
-
 import 'package:SmaTrackX/core.dart';
 
 class ErrorScreen extends StatefulWidget {

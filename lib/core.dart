@@ -1,8 +1,8 @@
 export 'package:SmaTrackX/src/modules/auth/login/data/data_sources/remote/auth_remote_data_source.dart';
 export 'package:SmaTrackX/src/modules/auth/login/data/models/user_model.dart';
-export 'package:SmaTrackX/src/modules/auth/login/data/repository/auth_repo_impl.dart';
+export 'package:SmaTrackX/src/modules/auth/login/data/repositories/auth_repo_impl.dart';
 export 'package:SmaTrackX/src/modules/auth/login/domain/entities/user.dart';
-export 'package:SmaTrackX/src/modules/auth/login/domain/repository/auth_repo.dart';
+export 'package:SmaTrackX/src/modules/auth/login/domain/repositories/auth_repo.dart';
 export 'package:SmaTrackX/src/modules/auth/login/domain/use_cases/use_cases.dart';
 export 'package:SmaTrackX/src/modules/auth/login/presentation/bloc/auth_bloc.dart';
 export 'package:SmaTrackX/src/modules/auth/login/presentation/views/sign_in_screen.dart';

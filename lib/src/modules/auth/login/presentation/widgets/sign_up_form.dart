@@ -25,6 +25,15 @@ class _SignUpFormState extends State<SignUpForm> {
   bool obscureConfirmPassword = true;
 
   @override
+  void dispose() {
+    widget.fullNameController.dispose();
+    widget.emailController.dispose();
+    widget.passwordController.dispose();
+    widget.confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Form(
       key: widget.formKey,

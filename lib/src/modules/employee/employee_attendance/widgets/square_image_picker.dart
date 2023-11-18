@@ -38,6 +38,7 @@ class _SquareImagePickerState extends State<SquareImagePicker> {
     super.initState();
   }
 
+
   Future<String?> getFileMultiplePlatform() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,

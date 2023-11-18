@@ -99,27 +99,27 @@ class _SignInScreenState extends State<SignInScreen> {
                                 }
                               },
                             ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text(
-                                'Don\'t have an account',
-                                style: CustomTextStyle.textRegular,
-                              ),
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pushReplacementNamed(
-                                    context,
-                                    SignUpScreen.routeName,
-                                  );
-                                },
-                                child: const Text(
-                                  'Register account?',
-                                  style: CustomTextStyle.textRegular,
-                                ),
-                              ),
-                            ],
-                          ),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.center,
+                          //   children: [
+                          //     const Text(
+                          //       'Don\'t have an account',
+                          //       style: CustomTextStyle.textRegular,
+                          //     ),
+                          //     TextButton(
+                          //       onPressed: () {
+                          //         Navigator.pushReplacementNamed(
+                          //           context,
+                          //           SignUpScreen.routeName,
+                          //         );
+                          //       },
+                          //       child: const Text(
+                          //         'Register account?',
+                          //         style: CustomTextStyle.textRegular,
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
                         ],
                       ),
                     ),

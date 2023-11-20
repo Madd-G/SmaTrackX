@@ -68,7 +68,8 @@ class PresenceSummaryByMonth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-      stream: HomeService().attendanceHistorySnapshot(),
+      stream: GetAttendanceHistory(sl<AttendanceRepository>())
+          .call(context.currentUser!.uid),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
@@ -118,7 +119,8 @@ class PresenceSummaryByWeek extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-        stream: HomeService().attendanceHistorySnapshot(),
+        stream: GetAttendanceHistory(sl<AttendanceRepository>())
+            .call(context.currentUser!.uid),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -131,7 +133,7 @@ class PresenceSummaryByWeek extends StatelessWidget {
               final currentWeekRange = DateTime.now().getCurrentWeekRange();
               final List<MapEntry<String, dynamic>> filteredData =
                   data.entries.where((entry) {
-                final checkInData = CheckInData.fromMap(entry.value);
+                final checkInData = CheckInDataModel.fromFirestore(entry.value);
                 final date = DateTime.parse(checkInData.date);
                 return date.isAfter(currentWeekRange[0]) &&
                     date.isBefore(currentWeekRange[1]);

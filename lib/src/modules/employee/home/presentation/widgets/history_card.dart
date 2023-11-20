@@ -22,7 +22,8 @@ class AttendanceHistoryByWeek extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-      stream: HomeService().attendanceHistorySnapshot(),
+      stream: GetAttendanceHistory(sl<AttendanceRepository>())
+          .call(context.currentUser!.uid),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
@@ -37,7 +38,7 @@ class AttendanceHistoryByWeek extends StatelessWidget {
 
             final List<MapEntry<String, dynamic>> filteredData =
                 data.entries.where((entry) {
-              final checkInData = CheckInData.fromMap(entry.value);
+              final checkInData = CheckInDataModel.fromFirestore(entry.value);
               final date = DateFormat('yyyy-MM-dd').parse(checkInData.date);
               return date.isAfter(sortedWeekRange[0]) &&
                   date.isBefore(sortedWeekRange[1]);
@@ -60,7 +61,7 @@ class AttendanceHistoryByWeek extends StatelessWidget {
               itemCount: convertedData.length,
               itemBuilder: (context, index) {
                 final entry = convertedData[index];
-                final checkInData = CheckInData.fromMap(entry);
+                final checkInData = CheckInDataModel.fromFirestore(entry);
 
                 final checkInInfo = checkInData.checkInInfo;
 
@@ -92,7 +93,8 @@ class AttendanceHistoryByMonth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-      stream: HomeService().attendanceHistorySnapshot(),
+      stream: GetAttendanceHistory(sl<AttendanceRepository>())
+          .call(context.currentUser!.uid),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
@@ -111,7 +113,55 @@ class AttendanceHistoryByMonth extends StatelessWidget {
               itemCount: thisMonthData.length,
               itemBuilder: (context, index) {
                 final entry = thisMonthData[index];
-                final checkInData = CheckInData.fromMap(entry.value);
+                final checkInData = CheckInDataModel.fromFirestore(entry.value);
+                return AttendanceItem(
+                  status: checkInData.checkInInfo.status,
+                  date: checkInData.date.dayDateMonthYear,
+                  time: checkInData.checkInInfo.time.hourMinute,
+                );
+              },
+            );
+          } else {
+            return const Center(
+                child: Text('Data not found.',
+                    style: CustomTextStyle.textBigRegular));
+          }
+        } else {
+          return const Center(
+              child: Text('Document not found.',
+                  style: CustomTextStyle.textBigRegular));
+        }
+      },
+    );
+  }
+}
+
+class AttendanceHistoryAll extends StatelessWidget {
+  const AttendanceHistoryAll({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+      stream: GetAttendanceHistory(sl<AttendanceRepository>())
+          .call(context.currentUser!.uid),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}',
+              style: CustomTextStyle.textBigRegular);
+        } else if (snapshot.hasData) {
+          final data = snapshot.data?.data();
+          if (data != null) {
+            return ListView.builder(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: data.length,
+              itemBuilder: (context, index) {
+                final date = data.keys.elementAt(index);
+                final checkInData = CheckInDataModel.fromFirestore(data[date]);
                 return AttendanceItem(
                   status: checkInData.checkInInfo.status,
                   date: checkInData.date.dayDateMonthYear,
@@ -196,51 +246,6 @@ class AttendanceItem extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class AttendanceHistoryAll extends StatelessWidget {
-  const AttendanceHistoryAll({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-      stream: HomeService().attendanceHistorySnapshot(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}',
-              style: CustomTextStyle.textBigRegular);
-        } else if (snapshot.hasData) {
-          final data = snapshot.data?.data();
-          if (data != null) {
-            return ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: data.length,
-              itemBuilder: (context, index) {
-                final date = data.keys.elementAt(index);
-                final checkInData = CheckInData.fromMap(data[date]);
-
-                return AttendanceItem(
-                  status: checkInData.checkInInfo.status,
-                  date: checkInData.date.dayDateMonthYear,
-                  time: checkInData.checkInInfo.time.hourMinute,
-                );
-              },
-            );
-          } else {
-            return const Center(
-                child: Text('Data not found.',
-                    style: CustomTextStyle.textBigRegular));
-          }
-        } else {
-          return const Center(
-              child: Text('Document not found.',
-                  style: CustomTextStyle.textBigRegular));
-        }
-      },
     );
   }
 }

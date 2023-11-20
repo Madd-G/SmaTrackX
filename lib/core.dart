@@ -34,7 +34,6 @@ export 'package:SmaTrackX/src/modules/employee/employee_attendance/service/servi
 export 'package:SmaTrackX/src/modules/employee/home/data/data.dart';
 export 'package:SmaTrackX/src/modules/employee/home/domain/domain.dart';
 export 'package:SmaTrackX/src/modules/employee/home/presentation/presentation.dart';
-export 'package:SmaTrackX/src/modules/employee/home/service/services.dart';
 export 'package:SmaTrackX/src/modules/employee/profile/presentation/presentation.dart';
 
 export 'package:SmaTrackX/core/common/common.dart';

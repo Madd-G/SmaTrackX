@@ -1,6 +1,16 @@
 import 'package:SmaTrackX/core.dart';
 
 class LocalUser extends Equatable {
+  final String uid;
+  final String email;
+  final String? profilePic;
+  final String? bio;
+  final String fullName;
+  final String? workStart;
+  final String? workEnd;
+
+  bool get isAdmin => email == 'admin@gmail.com';
+
   const LocalUser({
     required this.uid,
     required this.email,
@@ -22,15 +32,7 @@ class LocalUser extends Equatable {
           workEnd: '',
         );
 
-  final String uid;
-  final String email;
-  final String? profilePic;
-  final String? bio;
-  final String fullName;
-  final String? workStart;
-  final String? workEnd;
 
-  bool get isAdmin => email == 'admin@gmail.com';
 
   @override
   List<Object?> get props => [

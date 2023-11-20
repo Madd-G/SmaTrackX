@@ -54,7 +54,7 @@ extension MapExtensions on Map<String, dynamic> {
 
     // Filter by month
     dataList = dataList.where((entry) {
-      final checkInData = CheckInData.fromMap(entry.value);
+      final checkInData = CheckInDataModel.fromFirestore(entry.value);
       final date = DateTime.parse(checkInData.date);
       return date.month == month;
     }).toList();

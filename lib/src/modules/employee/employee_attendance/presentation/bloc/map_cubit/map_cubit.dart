@@ -5,7 +5,6 @@ part 'map_state.dart';
 class MapCubit extends Cubit<MapState> {
   final LatLng currentPosition;
   final LatLng destinationPosition;
-  LatLng dummy = const LatLng(-7.4302759, 109.2344236);
   String totalDistance = "";
   String totalTime = "";
 
@@ -14,6 +13,7 @@ class MapCubit extends Cubit<MapState> {
   MapCubit({
     required this.currentPosition,
     required this.destinationPosition,
+    // required this.officePosition,
   }) : super(MapInitialState());
 
   double get distance {

@@ -37,7 +37,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _pageBuilder(
         (_) => MultiBlocProvider(
           providers: [
-            BlocProvider(create: (_) => sl<AuthBloc>()),
+            BlocProvider(
+              create: (_) => CompanyBloc()..add(LoadCompanyEvent()),
+            ),
             BlocProvider(create: (_) => AttendanceBloc()),
             BlocProvider(create: (_) => DataBloc()),
             BlocProvider(create: (_) => ClockBloc()),

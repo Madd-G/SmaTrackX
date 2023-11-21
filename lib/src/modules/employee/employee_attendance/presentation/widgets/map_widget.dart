@@ -4,9 +4,11 @@ class MapWidget extends StatefulWidget {
   const MapWidget({
     super.key,
     required this.position,
+    required this.officePosition,
   });
 
   final Position position;
+  final LatLng officePosition;
 
   @override
   State<MapWidget> createState() => _MapWidgetState();
@@ -32,6 +34,7 @@ class _MapWidgetState extends State<MapWidget> {
               polylinePoints: state.polylinePoints,
               totalDistance: state.totalDistance,
               totalTime: state.totalTime,
+              officePosition: widget.officePosition,
             );
           }
         } catch (e) {
@@ -48,6 +51,7 @@ class _MapWidgetState extends State<MapWidget> {
 
 class Maps extends StatelessWidget {
   final LatLng position;
+  final LatLng officePosition;
   final Set<Polyline> polylinePoints;
   final String totalDistance;
   final String totalTime;
@@ -58,6 +62,7 @@ class Maps extends StatelessWidget {
     required this.polylinePoints,
     required this.totalDistance,
     required this.totalTime,
+    required this.officePosition,
   }) : super(key: key);
 
   @override
@@ -96,7 +101,7 @@ class Maps extends StatelessWidget {
               Marker(
                   markerId: const MarkerId("destination"),
                   icon: destinationIcon,
-                  position: const LatLng(-7.608132, 109.4675174)),
+                  position: officePosition),
             },
           ),
           SafeArea(

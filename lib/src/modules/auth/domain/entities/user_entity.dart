@@ -1,6 +1,6 @@
 import 'package:SmaTrackX/core.dart';
 
-class LocalUser extends Equatable {
+class UserEntity extends Equatable {
   final String uid;
   final String email;
   final String? profilePic;
@@ -11,7 +11,7 @@ class LocalUser extends Equatable {
 
   bool get isAdmin => email == 'admin@gmail.com';
 
-  const LocalUser({
+  const UserEntity({
     required this.uid,
     required this.email,
     required this.fullName,
@@ -21,7 +21,7 @@ class LocalUser extends Equatable {
     this.bio,
   });
 
-  const LocalUser.empty()
+  const UserEntity.empty()
       : this(
           uid: '',
           email: '',

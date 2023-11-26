@@ -22,9 +22,9 @@ export 'package:flutter/foundation.dart';
 export 'package:device_info_plus/device_info_plus.dart';
 export 'package:google_maps_flutter/google_maps_flutter.dart';
 
-export 'package:SmaTrackX/src/modules/auth/login/data/data.dart';
-export 'package:SmaTrackX/src/modules/auth/login/domain/domain.dart';
-export 'package:SmaTrackX/src/modules/auth/login/presentation/presentation.dart';
+export 'package:SmaTrackX/src/modules/auth/data/data.dart';
+export 'package:SmaTrackX/src/modules/auth/domain/domain.dart';
+export 'package:SmaTrackX/src/modules/auth/presentation/presentation.dart';
 export 'package:SmaTrackX/src/modules/employee/attendances/presentation/presentation.dart';
 export 'package:SmaTrackX/src/modules/employee/bottom_navigation/presentation/presentation.dart';
 export 'package:SmaTrackX/src/modules/employee/chat/presentation/presentation.dart';

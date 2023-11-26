@@ -27,7 +27,7 @@ class MapCubit extends Cubit<MapState> {
       Response response = await dio.post(
         "https://maps.googleapis.com/maps/api/directions/json",
         queryParameters: {
-          'key': 'AIzaSyDrV8msUDn9Gy6RJuJvV47kURIgmUdsDe4',
+          'key': 'AIzaSyCdrEFiuZccbqDqVcHndteT_RkypJLZCDs',
           'units': 'metric',
           'origin': '${currentPosition.latitude},${currentPosition.longitude}',
           'destination':

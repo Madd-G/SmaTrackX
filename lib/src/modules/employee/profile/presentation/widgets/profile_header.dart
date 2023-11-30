@@ -1,9 +1,7 @@
 import 'package:SmaTrackX/core.dart';
 
 class ProfileHeader extends StatelessWidget {
-  const ProfileHeader({
-    super.key,
-  });
+  const ProfileHeader({super.key});
 
   @override
   Widget build(BuildContext context) {

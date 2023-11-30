@@ -10,7 +10,7 @@ class HistoryCard extends StatelessWidget {
       borderColor: Colors.black12,
       child: Padding(
         padding: EdgeInsets.all(8.0),
-        child: AttendanceHistoryByWeek(),
+        child: AttendanceHistoryByMonth(),
       ),
     );
   }
@@ -33,50 +33,48 @@ class AttendanceHistoryByWeek extends StatelessWidget {
         } else if (snapshot.hasData) {
           Map<String, dynamic>? data = snapshot.data?.data();
 
-          if (data != null) {
-            final sortedWeekRange = DateTime.now().getSortedWeekRange();
+          final sortedWeekRange = DateTime.now().getSortedWeekRange();
 
-            final List<MapEntry<String, dynamic>> filteredData =
-                data.entries.where((entry) {
-              final checkInData = CheckInDataModel.fromFirestore(entry.value);
-              final date = DateFormat('yyyy-MM-dd').parse(checkInData.date);
-              return date.isAfter(sortedWeekRange[0]) &&
-                  date.isBefore(sortedWeekRange[1]);
-            }).toList();
+          final List<MapEntry<String, dynamic>> filteredData =
+              data!.entries.where((entry) {
+            final checkInData = CheckInDataModel.fromFirestore(entry.value);
+            final date = DateFormat('yyyy-MM-dd').parse(checkInData.date);
+            return date.isAfter(sortedWeekRange[0]) &&
+                date.isBefore(sortedWeekRange[1]);
+          }).toList();
 
-            final List convertedData =
-                filteredData.map((entry) => entry.value).toList();
+          final List thisWeekData =
+              filteredData.map((entry) => entry.value).toList();
 
-            convertedData.sort((a, b) {
-              final dateA = DateFormat('yyyy-MM-dd').parse(a['date']);
-              final dateB = DateFormat('yyyy-MM-dd').parse(b['date']);
-              return dateA.compareTo(dateB);
-            });
+          thisWeekData.sort((a, b) {
+            final dateA = DateFormat('yyyy-MM-dd').parse(a['date']);
+            final dateB = DateFormat('yyyy-MM-dd').parse(b['date']);
+            return dateA.compareTo(dateB);
+          });
+          return (thisWeekData.isEmpty)
+              ? const Center(
+                  child: Text('No data this week.',
+                      style: CustomTextStyle.textBigRegular),
+                )
+              : ListView.builder(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 8.0, horizontal: 8.0),
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: thisWeekData.length,
+                  itemBuilder: (context, index) {
+                    final entry = thisWeekData[index];
+                    final checkInData = CheckInDataModel.fromFirestore(entry);
 
-            return ListView.builder(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: convertedData.length,
-              itemBuilder: (context, index) {
-                final entry = convertedData[index];
-                final checkInData = CheckInDataModel.fromFirestore(entry);
+                    final checkInInfo = checkInData.checkInInfo;
 
-                final checkInInfo = checkInData.checkInInfo;
-
-                return AttendanceItem(
-                  status: checkInInfo.status,
-                  date: checkInData.date.dayDateMonthYear,
-                  time: checkInInfo.time.hourMinute,
+                    return AttendanceItem(
+                      status: checkInInfo.status,
+                      date: checkInData.date.dayDateMonthYear,
+                      time: checkInInfo.time.hourMinute,
+                    );
+                  },
                 );
-              },
-            );
-          } else {
-            return const Center(
-                child: Text('Data not found.',
-                    style: CustomTextStyle.textBigRegular));
-          }
         } else {
           return const Center(
               child: Text('Document not found.',
@@ -103,29 +101,29 @@ class AttendanceHistoryByMonth extends StatelessWidget {
               style: CustomTextStyle.textBigRegular);
         } else if (snapshot.hasData) {
           final data = snapshot.data?.data();
-          if (data != null) {
-            final thisMonthData = data.filterByMonth(11);
-            return ListView.builder(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: thisMonthData.length,
-              itemBuilder: (context, index) {
-                final entry = thisMonthData[index];
-                final checkInData = CheckInDataModel.fromFirestore(entry.value);
-                return AttendanceItem(
-                  status: checkInData.checkInInfo.status,
-                  date: checkInData.date.dayDateMonthYear,
-                  time: checkInData.checkInInfo.time.hourMinute,
+          final thisMonthData = data!.filterByMonth(11);
+          return (thisMonthData.isEmpty)
+              ? const Center(
+                  child: Text('No data this month.',
+                      style: CustomTextStyle.textBigRegular),
+                )
+              : ListView.builder(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 8.0, horizontal: 8.0),
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: thisMonthData.length,
+                  itemBuilder: (context, index) {
+                    final entry = thisMonthData[index];
+                    final checkInData =
+                        CheckInDataModel.fromFirestore(entry.value);
+                    return AttendanceItem(
+                      status: checkInData.checkInInfo.status,
+                      date: checkInData.date.dayDateMonthYear,
+                      time: checkInData.checkInInfo.time.hourMinute,
+                    );
+                  },
                 );
-              },
-            );
-          } else {
-            return const Center(
-                child: Text('Data not found.',
-                    style: CustomTextStyle.textBigRegular));
-          }
         } else {
           return const Center(
               child: Text('Document not found.',
@@ -151,29 +149,29 @@ class AttendanceHistoryAll extends StatelessWidget {
           return Text('Error: ${snapshot.error}',
               style: CustomTextStyle.textBigRegular);
         } else if (snapshot.hasData) {
-          final data = snapshot.data?.data();
-          if (data != null) {
-            return ListView.builder(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: data.length,
-              itemBuilder: (context, index) {
-                final date = data.keys.elementAt(index);
-                final checkInData = CheckInDataModel.fromFirestore(data[date]);
-                return AttendanceItem(
-                  status: checkInData.checkInInfo.status,
-                  date: checkInData.date.dayDateMonthYear,
-                  time: checkInData.checkInInfo.time.hourMinute,
+          final data = snapshot.data!.data()!;
+          return (data.isEmpty)
+              ? const Center(
+                  child:
+                      Text('No data.', style: CustomTextStyle.textBigRegular),
+                )
+              : ListView.builder(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 8.0, horizontal: 8.0),
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: data.length,
+                  itemBuilder: (context, index) {
+                    final date = data.keys.elementAt(index);
+                    final checkInData =
+                        CheckInDataModel.fromFirestore(data[date]);
+                    return AttendanceItem(
+                      status: checkInData.checkInInfo.status,
+                      date: checkInData.date.dayDateMonthYear,
+                      time: checkInData.checkInInfo.time.hourMinute,
+                    );
+                  },
                 );
-              },
-            );
-          } else {
-            return const Center(
-                child: Text('Data not found.',
-                    style: CustomTextStyle.textBigRegular));
-          }
         } else {
           return const Center(
               child: Text('Document not found.',

@@ -17,7 +17,7 @@ class CompanyBloc extends Bloc<CompanyEvent, CompanyState> {
   ) async {
     try {
       final snapshot = await FirebaseFirestore.instance
-          .collection("company_profile")
+          .collection("office")
           .snapshots()
           .first;
 
@@ -25,7 +25,7 @@ class CompanyBloc extends Bloc<CompanyEvent, CompanyState> {
         final currentData = snapshot.docs.first.data();
         emit(CompanyLoadedState(companyData: currentData));
       } else {
-        emit(CompanyLoadedState(companyData: {}));
+        emit(CompanyLoadedState(companyData: const {}));
       }
     } catch (e) {
       emit(CompanyErrorState(errorMessage: 'Error loading company data'));
@@ -38,7 +38,7 @@ class CompanyBloc extends Bloc<CompanyEvent, CompanyState> {
   ) async {
     try {
       await FirebaseFirestore.instance
-          .collection("company_profile")
+          .collection("office")
           .doc("main-company")
           .set({
         "company_name": event.companyName,
@@ -64,7 +64,7 @@ class CompanyBloc extends Bloc<CompanyEvent, CompanyState> {
   ) async {
     try {
       await FirebaseFirestore.instance
-          .collection("company_profile")
+          .collection("office")
           .doc("main-company")
           .update({
         "latitude": event.latitude,

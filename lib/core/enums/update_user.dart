@@ -1,7 +1,10 @@
 enum UpdateUserAction {
-  displayName,
+  username,
   email,
   password,
+  role,
   bio,
-  profilePic,
+  profilePicture,
+  workStart,
+  workEnd,
 }

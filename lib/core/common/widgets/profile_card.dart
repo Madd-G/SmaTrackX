@@ -8,9 +8,10 @@ class ProfileCard extends StatelessWidget {
     return Consumer<UserProvider>(
       builder: (_, provider, __) {
         final user = provider.user!;
-        final image = user.profilePic == null || user.profilePic!.isEmpty
-            ? null
-            : user.profilePic;
+        final image =
+            user.profilePicture == null || user.profilePicture!.isEmpty
+                ? null
+                : user.profilePicture;
         return Container(
           height: 120.0,
           width: context.width,
@@ -39,7 +40,7 @@ class ProfileCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        user.fullName,
+                        user.username,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                         style: const TextStyle(
@@ -53,7 +54,8 @@ class ProfileCard extends StatelessWidget {
                           padding: EdgeInsets.symmetric(
                               vertical: 8.0, horizontal: 12.0),
                           child: Text(
-                            'Mobile Developer',
+                            // user.role!,
+                            "Mobile Developer",
                             style: TextStyle(
                               color: AppColors.primaryColor,
                               fontWeight: FontWeight.w700,

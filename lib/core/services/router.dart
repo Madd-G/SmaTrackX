@@ -7,10 +7,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         (context) {
           if (sl<FirebaseAuth>().currentUser != null) {
             final user = sl<FirebaseAuth>().currentUser!;
-            final localUser = LocalUserModel(
+            final localUser = UserModel(
               uid: user.uid,
               email: user.email ?? '',
-              fullName: user.displayName ?? '',
+              username: user.displayName ?? '',
             );
             context.userProvider.initUser(localUser);
             return const BottomNavigation();

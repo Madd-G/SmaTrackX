@@ -1,9 +1,7 @@
 import 'package:SmaTrackX/core.dart';
 
 class CheckInCard extends StatelessWidget {
-  const CheckInCard({
-    super.key,
-  });
+  const CheckInCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +26,9 @@ class CheckInCard extends StatelessWidget {
                   Consumer<UserProvider>(builder: (_, provider, __) {
                     final user = provider.user;
                     return Text(
-                      '${user?.workStart?.displayTime} - ${user?.workEnd?.displayTime}',
+                      (user?.workStart != '')
+                          ? '${user?.workStart?.displayTime} - ${user?.workEnd?.displayTime}'
+                          : 'Working hours not set yet',
                       style: CustomTextStyle.textMediumMedium,
                     );
                   }),
@@ -42,7 +42,7 @@ class CheckInCard extends StatelessWidget {
                   return const Text("Error",
                       style: CustomTextStyle.textBigMedium);
                 }
-                if (snapshot.data == null) return Container();
+                if (snapshot.data?.data() == null) return const CheckInButton();
                 final data = snapshot.data?.data() as Map<String, dynamic>;
                 var dateKey = DateTime.now().yearMonthDay();
                 bool isNotCheckInToday = !data.containsKey(dateKey);
@@ -68,9 +68,7 @@ class CheckInCard extends StatelessWidget {
 }
 
 class CheckOutButton extends StatelessWidget {
-  const CheckOutButton({
-    super.key,
-  });
+  const CheckOutButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -97,9 +95,7 @@ class CheckOutButton extends StatelessWidget {
 }
 
 class CompletedButton extends StatelessWidget {
-  const CompletedButton({
-    super.key,
-  });
+  const CompletedButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -131,9 +127,7 @@ class CompletedButton extends StatelessWidget {
 }
 
 class CheckInButton extends StatelessWidget {
-  const CheckInButton({
-    super.key,
-  });
+  const CheckInButton({super.key});
 
   @override
   Widget build(BuildContext context) {

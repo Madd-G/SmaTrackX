@@ -5,7 +5,7 @@ abstract class AuthRemoteDataSource {
 
   Future<void> forgotPassword(String email);
 
-  Future<LocalUserModel> signIn({
+  Future<UserModel> signIn({
     required String email,
     required String password,
   });
@@ -14,6 +14,7 @@ abstract class AuthRemoteDataSource {
     required String email,
     required String fullName,
     required String password,
+    required String companyId,
   });
 
   Future<void> updateUser({
@@ -54,7 +55,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<LocalUserModel> signIn({
+  Future<UserModel> signIn({
     required String email,
     required String password,
   }) async {
@@ -75,14 +76,14 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       var userData = await _getUserData(user.uid);
 
       if (userData.exists) {
-        return LocalUserModel.fromMap(userData.data()!);
+        return UserModel.fromMap(userData.data()!);
       }
 
       // upload the user
       await _setUserData(user, email);
 
       userData = await _getUserData(user.uid);
-      return LocalUserModel.fromMap(userData.data()!);
+      return UserModel.fromMap(userData.data()!);
     } on FirebaseAuthException catch (e) {
       throw ServerException(
         message: e.message ?? 'Error Occurred',
@@ -104,6 +105,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     required String email,
     required String fullName,
     required String password,
+    required String companyId,
   }) async {
     try {
       final userCred = await _authClient.createUserWithEmailAndPassword(
@@ -113,7 +115,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
       await userCred.user?.updateDisplayName(fullName);
       await userCred.user?.updatePhotoURL(kDefaultAvatar);
-      await _setUserData(_authClient.currentUser!, email);
+      await _setUserData(_authClient.currentUser!, email, companyId);
     } on FirebaseAuthException catch (e) {
       throw ServerException(
         message: e.message ?? 'Error Occurred',
@@ -138,10 +140,10 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         case UpdateUserAction.email:
           await _authClient.currentUser?.updateEmail(userData as String);
           await _updateUserData({'email': userData});
-        case UpdateUserAction.displayName:
+        case UpdateUserAction.username:
           await _authClient.currentUser?.updateDisplayName(userData as String);
-          await _updateUserData({'fullName': userData});
-        case UpdateUserAction.profilePic:
+          await _updateUserData({'username': userData});
+        case UpdateUserAction.profilePicture:
           final ref = _dbClient
               .ref()
               .child('profile_pics/${_authClient.currentUser?.uid}');
@@ -149,7 +151,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
           await ref.putFile(userData as File);
           final url = await ref.getDownloadURL();
           await _authClient.currentUser?.updatePhotoURL(url);
-          await _updateUserData({'profilePic': url});
+          await _updateUserData({'profile_picture': url});
         case UpdateUserAction.password:
           if (_authClient.currentUser?.email == null) {
             throw const ServerException(
@@ -161,14 +163,20 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
           await _authClient.currentUser?.reauthenticateWithCredential(
             EmailAuthProvider.credential(
               email: _authClient.currentUser!.email!,
-              password: newData['oldPassword'] as String,
+              password: newData['old_password'] as String,
             ),
           );
           await _authClient.currentUser?.updatePassword(
-            newData['newPassword'] as String,
+            newData['new_password'] as String,
           );
+        case UpdateUserAction.role:
+          await _updateUserData({'role': userData as String});
         case UpdateUserAction.bio:
           await _updateUserData({'bio': userData as String});
+        case UpdateUserAction.workStart:
+          await _updateUserData({'work_start': userData as String});
+        case UpdateUserAction.workEnd:
+          await _updateUserData({'work_end': userData as String});
       }
     } on FirebaseException catch (e) {
       throw ServerException(
@@ -185,23 +193,30 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   Future<DocumentSnapshot<DataMap>> _getUserData(String uid) async {
-    return _cloudStoreClient.collection('employees').doc(uid).get();
+    return _cloudStoreClient.collection('users').doc(uid).get();
   }
 
-  Future<void> _setUserData(User user, String fallbackEmail) async {
-    await _cloudStoreClient.collection('employees').doc(user.uid).set(
-          LocalUserModel(
+  Future<void> _setUserData(User user, String fallbackEmail,
+      [String? companyId]) async {
+    await _cloudStoreClient.collection('users').doc(user.uid).set(
+          UserModel(
             uid: user.uid,
             email: user.email ?? fallbackEmail,
-            fullName: user.displayName ?? '',
-            profilePic: user.photoURL ?? '',
+            username: user.displayName ?? '',
+            profilePicture: user.photoURL ?? '',
+            created: DateTime.now().toString(),
+            companyId: companyId,
+            role: '',
+            bio: '',
+            workStart: '',
+            workEnd: '',
           ).toMap(),
         );
   }
 
   Future<void> _updateUserData(DataMap data) async {
     await _cloudStoreClient
-        .collection('employees')
+        .collection('users')
         .doc(_authClient.currentUser?.uid)
         .update(data);
   }

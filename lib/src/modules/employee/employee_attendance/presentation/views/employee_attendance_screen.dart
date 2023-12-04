@@ -81,7 +81,7 @@ class _EmployeeAttendanceScreenState extends State<EmployeeAttendanceScreen> {
         } else if (companyState is CompanyErrorState) {
           return Text("Error: ${companyState.errorMessage}");
         } else {
-          return const CircularProgressIndicator();
+          return const Center(child: CircularProgressIndicator());
         }
       }),
     );

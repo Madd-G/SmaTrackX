@@ -52,7 +52,7 @@ class AbsenceCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(context.currentUser!.fullName,
+                        Text(context.currentUser!.username,
                             style: CustomTextStyle.textLargeBold
                                 .copyWith(fontSize: 17.5)),
                         Column(
@@ -90,7 +90,77 @@ class AbsenceCard extends StatelessWidget {
                     return const Text("Error",
                         style: CustomTextStyle.textLargeMedium);
                   }
-                  if (snapshot.data == null) return Container();
+                  if (snapshot.data?.data() == null) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            (photoUrl == '')
+                                ? () {}
+                                : context.read<AttendanceBloc>().add(
+                                      CheckInEvent(
+                                        photoUrl: photoUrl,
+                                        position: position,
+                                        deviceModel: deviceInfo.model,
+                                        currentDate: DateTime.now().dateFormat,
+                                        time: DateTime.now().clockFormat,
+                                        deviceId: deviceInfo.id,
+                                        checkInOrder: 1,
+                                        // TODO: real status
+                                        status: 'Arrived on time',
+                                        distance:
+                                            BlocProvider.of<MapCubit>(context)
+                                                .distance,
+                                      ),
+                                    );
+                          },
+                          child: RoundedContainer(
+                            width: context.width,
+                            containerColor: AppColors.greenColor,
+                            borderColor: AppColors.greenColor,
+                            borderWidth: 3,
+                            radius: 10.0,
+                            child: Center(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8.0),
+                                child: Text(
+                                  'Check In',
+                                  style: CustomTextStyle.textBigBold
+                                      .copyWith(fontSize: 20.0),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 12.0,
+                        ),
+                        GestureDetector(
+                          onTap: () {},
+                          child: RoundedContainer(
+                            width: context.width,
+                            containerColor: Colors.grey,
+                            borderColor: Colors.grey,
+                            borderWidth: 3,
+                            radius: 10.0,
+                            child: Center(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8.0),
+                                child: Text(
+                                  'Check Out',
+                                  style: CustomTextStyle.textBigBold
+                                      .copyWith(fontSize: 20.0),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  }
                   final data = snapshot.data?.data() as Map<String, dynamic>;
                   bool isCheckInToday =
                       data.containsKey(DateTime.now().yearMonthDay());

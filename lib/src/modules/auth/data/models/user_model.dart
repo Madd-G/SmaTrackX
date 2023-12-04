@@ -1,62 +1,85 @@
 import 'package:SmaTrackX/core.dart';
 
-class LocalUserModel extends UserEntity {
-  const LocalUserModel({
+class UserModel extends UserEntity {
+  const UserModel({
     required super.uid,
     required super.email,
-    required super.fullName,
+    required super.username,
+    super.profilePicture,
+    super.role,
+    super.bio,
     super.workStart,
     super.workEnd,
-    super.profilePic,
-    super.bio,
+    super.created,
+    super.companyId,
   });
 
-  const LocalUserModel.empty()
+  const UserModel.empty()
       : this(
           uid: '',
           email: '',
-          fullName: '',
+          username: '',
+          profilePicture: '',
+          role: '',
+          bio: '',
+          workStart: '',
+          workEnd: '',
+          created: '',
+          companyId: '',
         );
 
-  LocalUserModel.fromMap(DataMap map)
+  UserModel.fromMap(DataMap map)
       : super(
           uid: map['uid'] as String,
           email: map['email'] as String,
-          fullName: map['fullName'] as String,
-          workStart: map['workStart'] as String?,
-          workEnd: map['workEnd'] as String?,
-          profilePic: map['profilePic'] as String?,
+          username: map['username'] as String,
+          profilePicture: map['profile_picture'] as String?,
+          role: map['role'] as String,
           bio: map['bio'] as String?,
+          workStart: map['work_start'] as String?,
+          workEnd: map['work_end'] as String?,
+          created: map['created'] as String?,
+          companyId: map['company_id'] as String?,
         );
 
-  LocalUserModel copyWith({
+  UserModel copyWith({
     String? uid,
     String? email,
-    String? profilePic,
+    String? profilePicture,
+    String? role,
     String? bio,
-    String? fullName,
+    String? username,
     String? workStart,
     String? workEnd,
+    String? created,
+    String? companyId,
   }) {
-    return LocalUserModel(
-        uid: uid ?? this.uid,
-        email: email ?? this.email,
-        profilePic: profilePic ?? this.profilePic,
-        bio: bio ?? this.bio,
-        fullName: fullName ?? this.fullName,
-        workStart: workStart ?? this.workStart,
-        workEnd: workEnd ?? this.workEnd);
+    return UserModel(
+      uid: uid ?? this.uid,
+      email: email ?? this.email,
+      profilePicture: profilePicture ?? this.profilePicture,
+      role: role ?? this.role,
+      bio: bio ?? this.bio,
+      username: username ?? this.username,
+      workStart: workStart ?? this.workStart,
+      workEnd: workEnd ?? this.workEnd,
+      created: created ?? this.created,
+      companyId: companyId ?? this.companyId,
+    );
   }
 
   DataMap toMap() {
     return {
       'uid': uid,
       'email': email,
-      'profilePic': profilePic,
-      'workStart': workStart,
-      'workEnd': workEnd,
+      'username': username,
+      'profile_picture': profilePicture,
+      'work_start': workStart,
+      'work_end': workEnd,
+      'role': role,
       'bio': bio,
-      'fullName': fullName,
+      'created': created,
+      'company_id': companyId,
     };
   }
 }

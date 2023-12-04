@@ -6,14 +6,14 @@ class SignUpForm extends StatefulWidget {
     required this.passwordController,
     required this.confirmPasswordController,
     required this.formKey,
-    required this.fullNameController,
+    required this.usernameController,
     super.key,
   });
 
   final TextEditingController emailController;
   final TextEditingController passwordController;
   final TextEditingController confirmPasswordController;
-  final TextEditingController fullNameController;
+  final TextEditingController usernameController;
   final GlobalKey<FormState> formKey;
 
   @override
@@ -26,7 +26,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
   @override
   void dispose() {
-    widget.fullNameController.dispose();
+    widget.usernameController.dispose();
     widget.emailController.dispose();
     widget.passwordController.dispose();
     widget.confirmPasswordController.dispose();
@@ -40,7 +40,7 @@ class _SignUpFormState extends State<SignUpForm> {
       child: Column(
         children: [
           CustomTextField(
-            controller: widget.fullNameController,
+            controller: widget.usernameController,
             hintText: 'Full Name',
             keyboardType: TextInputType.name,
           ),

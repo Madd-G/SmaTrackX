@@ -11,7 +11,7 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final emailController = TextEditingController();
-  final fullNameController = TextEditingController();
+  final usernameController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
@@ -19,7 +19,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   void dispose() {
     emailController.dispose();
-    fullNameController.dispose();
+    usernameController.dispose();
     passwordController.dispose();
     confirmPasswordController.dispose();
     super.dispose();
@@ -42,9 +42,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   );
             } else if (state is SignedIn) {
-              context
-                  .read<UserProvider>()
-                  .initUser(state.user as LocalUserModel);
+              context.read<UserProvider>().initUser(state.user as UserModel);
               Navigator.pushReplacementNamed(
                   context, BottomNavigation.routeName);
             }
@@ -76,7 +74,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           const SizedBox(height: 25),
                           SignUpForm(
                             emailController: emailController,
-                            fullNameController: fullNameController,
+                            usernameController: usernameController,
                             passwordController: passwordController,
                             confirmPasswordController:
                                 confirmPasswordController,
@@ -97,7 +95,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           email: emailController.text.trim(),
                                           password:
                                               passwordController.text.trim(),
-                                          name: fullNameController.text.trim(),
+                                          username:
+                                              usernameController.text.trim(),
+                                          companyId: const Uuid().v8(),
                                         ),
                                       );
                                 }

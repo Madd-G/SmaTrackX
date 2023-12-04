@@ -115,7 +115,7 @@ class AttendanceService {
     required double currentLongitude,
   }) async {
     var companySnapshot = await FirebaseFirestore.instance
-        .collection("company_profile")
+        .collection("office")
         .doc("main-company")
         .get();
 

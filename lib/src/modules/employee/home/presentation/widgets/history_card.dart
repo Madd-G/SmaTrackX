@@ -10,7 +10,7 @@ class HistoryCard extends StatelessWidget {
       borderColor: Colors.black12,
       child: Padding(
         padding: EdgeInsets.all(8.0),
-        child: AttendanceHistoryByMonth(),
+        child: AttendanceHistoryByWeek(),
       ),
     );
   }
@@ -33,6 +33,7 @@ class AttendanceHistoryByWeek extends StatelessWidget {
         } else if (snapshot.hasData) {
           final Map<String, dynamic>? data = snapshot.data?.data();
           if (data != null) {
+            print('history data: $data');
             final sortedWeekRange = DateTime.now().getSortedWeekRange();
             final List<MapEntry<String, dynamic>> filteredData =
                 data.entries.where((entry) {

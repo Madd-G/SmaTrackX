@@ -81,7 +81,7 @@ class PresenceSummaryByWeek extends StatelessWidget {
               final List<MapEntry<String, dynamic>> filteredData =
                   data.entries.where((entry) {
                 final checkInData = CheckInDataModel.fromFirestore(entry.value);
-                final date = DateTime.parse(checkInData.date);
+                final date = DateFormat('yyyy-MM-dd').parse(checkInData.date);
                 return date.isAfter(currentWeekRange[0]) &&
                     date.isBefore(currentWeekRange[1]);
               }).toList();

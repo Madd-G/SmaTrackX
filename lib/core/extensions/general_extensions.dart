@@ -32,7 +32,7 @@ extension DateTimeExtensions on DateTime {
   List<DateTime> getWeekRange() {
     int dayOfWeek = weekday;
     DateTime startOfWeek = subtract(Duration(days: dayOfWeek));
-    DateTime endOfWeek = startOfWeek.add(const Duration(days: 6));
+    DateTime endOfWeek = startOfWeek.add(const Duration(days: 7));
     return [startOfWeek, endOfWeek];
   }
 

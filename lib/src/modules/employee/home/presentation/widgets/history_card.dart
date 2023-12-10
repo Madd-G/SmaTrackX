@@ -34,7 +34,6 @@ class AttendanceHistoryByWeek extends StatelessWidget {
           final Map<String, dynamic>? data = snapshot.data?.data();
           if (data != null) {
             final sortedWeekRange = DateTime.now().getSortedWeekRange();
-
             final List<MapEntry<String, dynamic>> filteredData =
                 data.entries.where((entry) {
               final checkInData = CheckInDataModel.fromFirestore(entry.value);
@@ -42,7 +41,6 @@ class AttendanceHistoryByWeek extends StatelessWidget {
               return date.isAfter(sortedWeekRange[0]) &&
                   date.isBefore(sortedWeekRange[1]);
             }).toList();
-
             final List thisWeekData =
                 filteredData.map((entry) => entry.value).toList();
 
@@ -103,6 +101,8 @@ class AttendanceHistoryByMonth extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final int month = DateTime.now().month;
+
     return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
       stream: GetAttendanceHistory(sl<AttendanceRepository>())
           .call(context.currentUser!.uid),
@@ -115,7 +115,7 @@ class AttendanceHistoryByMonth extends StatelessWidget {
         } else if (snapshot.hasData) {
           final Map<String, dynamic>? data = snapshot.data?.data();
           if (data != null) {
-            final thisMonthData = data.filterByMonth(11);
+            final thisMonthData = data.filterByMonth(month);
             return (thisMonthData.isEmpty)
                 ? const Center(
                     child: Text('No data this month.',

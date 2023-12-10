@@ -11,6 +11,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
               uid: user.uid,
               email: user.email ?? '',
               username: user.displayName ?? '',
+              role: '',
             );
             context.userProvider.initUser(localUser);
             return const BottomNavigation();

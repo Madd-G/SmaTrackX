@@ -46,17 +46,17 @@ class ProfileCard extends StatelessWidget {
                         style: const TextStyle(
                             fontWeight: FontWeight.w700, fontSize: 17.0),
                       ),
-                      const RoundedContainer(
+                      RoundedContainer(
                         containerColor: AppColors.secondaryColor,
                         borderColor: AppColors.secondaryColor,
                         radius: 10.0,
                         child: Padding(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               vertical: 8.0, horizontal: 12.0),
                           child: Text(
-                            // user.role!,
-                            "Mobile Developer",
-                            style: TextStyle(
+                             user.role!,
+                            // "Mobile Developer",
+                            style: const TextStyle(
                               color: AppColors.primaryColor,
                               fontWeight: FontWeight.w700,
                               fontSize: 15.0,

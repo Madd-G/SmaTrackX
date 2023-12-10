@@ -125,6 +125,7 @@ class PresenceSummaryByMonth extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final int month = DateTime.now().month;
     return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
       stream: GetAttendanceHistory(sl<AttendanceRepository>())
           .call(context.currentUser!.uid),
@@ -137,7 +138,7 @@ class PresenceSummaryByMonth extends StatelessWidget {
         } else if (snapshot.hasData) {
           final data = snapshot.data?.data();
           if (data != null) {
-            final thisMonthData = data.filterByMonth(11);
+            final thisMonthData = data.filterByMonth(month);
             final statusCounts = data.monthCountStatus();
 
             int arriveCount = statusCounts['arriveCount'] ?? 0;

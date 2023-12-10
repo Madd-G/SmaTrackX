@@ -18,6 +18,7 @@ class AttendanceService {
     final currentData = await FirebaseFirestore.instance
         .collection("attendances")
         .doc(uid)
+        // .doc('pf6UvuKcE9eEeHxZttQk4OWmFQi2')
         .get();
 
     Map<String, dynamic> newData = {
@@ -46,6 +47,7 @@ class AttendanceService {
     await FirebaseFirestore.instance
         .collection("attendances")
         .doc(uid)
+        // .doc('pf6UvuKcE9eEeHxZttQk4OWmFQi2')
         .set(newData);
   }
 
@@ -66,6 +68,7 @@ class AttendanceService {
     final currentData = await FirebaseFirestore.instance
         .collection("attendances")
         .doc(uid)
+        // .doc('pf6UvuKcE9eEeHxZttQk4OWmFQi2')
         .get();
 
     Map<String, dynamic> newDateData = {
@@ -95,6 +98,7 @@ class AttendanceService {
         await FirebaseFirestore.instance
             .collection("attendances")
             .doc(uid)
+            // .doc('pf6UvuKcE9eEeHxZttQk4OWmFQi2')
             .update(currentDataMap);
       } else {
         return;
@@ -107,6 +111,7 @@ class AttendanceService {
   Stream<DocumentSnapshot<Map<String, dynamic>>> attendanceSnapshot() {
     return FirebaseFirestore.instance
         .doc('attendances/${FirebaseAuth.instance.currentUser!.uid}')
+        // .doc('attendances/pf6UvuKcE9eEeHxZttQk4OWmFQi2}')
         .snapshots();
   }
 
@@ -115,8 +120,8 @@ class AttendanceService {
     required double currentLongitude,
   }) async {
     var companySnapshot = await FirebaseFirestore.instance
-        .collection("office")
-        .doc("main-company")
+        .collection("company")
+        .doc("J5M0OUVH6yQ7iQyoGw5z8NlBSNH2")
         .get();
 
     Map<String, dynamic> companyData =
@@ -124,7 +129,6 @@ class AttendanceService {
 
     double targetLatitude = companyData["latitude"];
     double targetLongitude = companyData["longitude"];
-
     num distance = getDistance(
       currentLatitude,
       currentLongitude,
@@ -132,7 +136,8 @@ class AttendanceService {
       targetLongitude,
     );
 
-    return distance > 100;
+    // TODO: set radius based on company radius
+    return distance > 20;
   }
 
   num getDistance(

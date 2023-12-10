@@ -17,7 +17,7 @@ class CompanyBloc extends Bloc<CompanyEvent, CompanyState> {
   ) async {
     try {
       final snapshot = await FirebaseFirestore.instance
-          .collection("office")
+          .collection("company")
           .snapshots()
           .first;
 
@@ -38,8 +38,8 @@ class CompanyBloc extends Bloc<CompanyEvent, CompanyState> {
   ) async {
     try {
       await FirebaseFirestore.instance
-          .collection("office")
-          .doc("main-company")
+          .collection("company")
+          .doc("J5M0OUVH6yQ7iQyoGw5z8NlBSNH2")
           .set({
         "company_name": event.companyName,
         "address": event.address,
@@ -64,8 +64,8 @@ class CompanyBloc extends Bloc<CompanyEvent, CompanyState> {
   ) async {
     try {
       await FirebaseFirestore.instance
-          .collection("office")
-          .doc("main-company")
+          .collection("company")
+          .doc("J5M0OUVH6yQ7iQyoGw5z8NlBSNH2")
           .update({
         "latitude": event.latitude,
         "longitude": event.longitude,

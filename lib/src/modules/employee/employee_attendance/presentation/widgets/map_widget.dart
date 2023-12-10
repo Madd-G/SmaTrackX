@@ -29,8 +29,7 @@ class _MapWidgetState extends State<MapWidget> {
         try {
           if (state is MapPolylineDrawnState) {
             return Maps(
-              position:
-                  LatLng(widget.position.latitude, widget.position.longitude),
+              position: LatLng(widget.position.latitude, widget.position.longitude),
               polylinePoints: state.polylinePoints,
               totalDistance: state.totalDistance,
               totalTime: state.totalTime,

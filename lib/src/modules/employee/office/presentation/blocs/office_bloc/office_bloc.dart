@@ -65,7 +65,7 @@
 //   ) async {
 //     try {
 //       await FirebaseFirestore.instance
-//           .collection("office")
+//           .collection("company")
 //           .doc(event.officeId)
 //           .update({
 //         "latitude": event.latitude,

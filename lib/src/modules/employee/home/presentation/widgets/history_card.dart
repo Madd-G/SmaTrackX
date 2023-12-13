@@ -33,7 +33,6 @@ class AttendanceHistoryByWeek extends StatelessWidget {
         } else if (snapshot.hasData) {
           final Map<String, dynamic>? data = snapshot.data?.data();
           if (data != null) {
-            print('history data: $data');
             final sortedWeekRange = DateTime.now().getSortedWeekRange();
             final List<MapEntry<String, dynamic>> filteredData =
                 data.entries.where((entry) {

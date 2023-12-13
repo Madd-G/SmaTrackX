@@ -11,6 +11,7 @@ class UserEntity extends Equatable {
   final String? workEnd;
   final String? created;
   final String? companyId;
+  final List<String> groupIds;
 
   bool get isAdmin => email == 'admin@gmail.com';
 
@@ -25,6 +26,7 @@ class UserEntity extends Equatable {
     this.workEnd,
     this.created,
     this.companyId,
+    this.groupIds = const [],
   });
 
   const UserEntity.empty()
@@ -39,6 +41,7 @@ class UserEntity extends Equatable {
           workEnd: '',
           created: '',
           companyId: '',
+          groupIds: const [],
         );
 
   @override
@@ -52,11 +55,12 @@ class UserEntity extends Equatable {
         workEnd,
         created,
         companyId,
+        groupIds.length,
       ];
 
   @override
   String toString() {
     return 'LocalUser{uid: $uid, email: $email, username: $username, profile_picture: $profilePicture}, role: $role bio: '
-        '$bio, work_start: $workStart, work_end: $workEnd, created: $created, company_id: $companyId}';
+        '$bio, work_start: $workStart, work_end: $workEnd, created: $created, company_id: $companyId, group_ids: $groupIds}';
   }
 }

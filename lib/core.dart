@@ -27,6 +27,8 @@ export 'package:SmaTrackX/src/modules/auth/domain/domain.dart';
 export 'package:SmaTrackX/src/modules/auth/presentation/presentation.dart';
 export 'package:SmaTrackX/src/modules/employee/attendances/presentation/presentation.dart';
 export 'package:SmaTrackX/src/modules/employee/bottom_navigation/presentation/presentation.dart';
+export 'package:SmaTrackX/src/modules/employee/chat/data/data.dart';
+export 'package:SmaTrackX/src/modules/employee/chat/domain/domain.dart';
 export 'package:SmaTrackX/src/modules/employee/chat/presentation/presentation.dart';
 export 'package:SmaTrackX/src/modules/employee/employee_attendance/data/data.dart';
 export 'package:SmaTrackX/src/modules/employee/employee_attendance/presentation/presentation.dart';

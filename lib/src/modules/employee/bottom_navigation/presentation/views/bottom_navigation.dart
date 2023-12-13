@@ -32,7 +32,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
               ),
               bottomNavigationBar: BottomNavigationBar(
                 currentIndex: controller.currentIndex,
-                showSelectedLabels: true,
+                showSelectedLabels: false,
                 backgroundColor: Colors.white,
                 elevation: 8,
                 onTap: controller.changeIndex,
@@ -64,9 +64,20 @@ class _BottomNavigationState extends State<BottomNavigation> {
                   BottomNavigationBarItem(
                     icon: Icon(
                       controller.currentIndex == 2
+                          ? IconlyBold.chat
+                          : IconlyLight.chat,
+                      color: controller.currentIndex == 2
+                          ? AppColors.primaryColor
+                          : Colors.grey,
+                    ),
+                    label: 'Chat',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(
+                      controller.currentIndex == 3
                           ? IconlyBold.profile
                           : IconlyLight.profile,
-                      color: controller.currentIndex == 2
+                      color: controller.currentIndex == 3
                           ? AppColors.primaryColor
                           : Colors.grey,
                     ),

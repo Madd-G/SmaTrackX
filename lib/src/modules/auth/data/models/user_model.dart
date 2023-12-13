@@ -12,6 +12,7 @@ class UserModel extends UserEntity {
     super.workEnd,
     super.created,
     super.companyId,
+    super.groupIds,
   });
 
   const UserModel.empty()
@@ -40,6 +41,7 @@ class UserModel extends UserEntity {
           workEnd: map['work_end'] as String?,
           created: map['created'] as String?,
           companyId: map['company_id'] as String?,
+          groupIds: (map['groups'] as List<dynamic>).cast<String>(),
         );
 
   UserModel copyWith({
@@ -53,6 +55,7 @@ class UserModel extends UserEntity {
     String? workEnd,
     String? created,
     String? companyId,
+    List<String>? groupIds,
   }) {
     return UserModel(
       uid: uid ?? this.uid,
@@ -65,6 +68,7 @@ class UserModel extends UserEntity {
       workEnd: workEnd ?? this.workEnd,
       created: created ?? this.created,
       companyId: companyId ?? this.companyId,
+      groupIds: groupIds ?? this.groupIds,
     );
   }
 
@@ -80,6 +84,7 @@ class UserModel extends UserEntity {
       'bio': bio,
       'created': created,
       'company_id': companyId,
+      'groupIds': groupIds,
     };
   }
 }

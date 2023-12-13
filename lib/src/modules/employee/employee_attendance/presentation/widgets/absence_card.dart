@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 // ignore: must_be_immutable
 class AbsenceCard extends StatelessWidget {
@@ -141,7 +141,7 @@ class AbsenceCard extends StatelessWidget {
                           onTap: () {},
                           child: RoundedContainer(
                             width: context.width,
-                            containerColor: Colors.grey,
+                            containerColor: AppColors.greyColor,
                             borderColor: Colors.grey,
                             borderWidth: 3,
                             radius: 10.0,
@@ -195,10 +195,10 @@ class AbsenceCard extends StatelessWidget {
                         child: RoundedContainer(
                           width: context.width,
                           containerColor: isCheckInToday
-                              ? Colors.grey
+                              ? AppColors.greyColor
                               : AppColors.greenColor,
                           borderColor: isCheckInToday
-                              ? Colors.grey
+                              ? AppColors.greyColor
                               : AppColors.greenColor,
                           borderWidth: 3,
                           radius: 10.0,
@@ -242,10 +242,10 @@ class AbsenceCard extends StatelessWidget {
                         child: RoundedContainer(
                           width: context.width,
                           containerColor: isNotCheckInToday
-                              ? Colors.grey
+                              ? AppColors.greyColor
                               : AppColors.redColor,
                           borderColor: isNotCheckInToday
-                              ? Colors.grey
+                              ? AppColors.greyColor
                               : AppColors.redColor,
                           borderWidth: 3,
                           radius: 10.0,

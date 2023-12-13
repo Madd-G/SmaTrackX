@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 extension StringExt on String {
   String get displayTime {

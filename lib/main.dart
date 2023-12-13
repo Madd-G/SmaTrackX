@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 extension StatusCounts on List<Map<String, dynamic>> {
   Map<String, int> weekCountStatus() {

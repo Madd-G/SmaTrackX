@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class CheckInDataEntity extends Equatable {
   final String date;

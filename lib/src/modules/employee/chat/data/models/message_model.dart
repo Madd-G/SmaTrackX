@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class MessageModel extends Message {
   const MessageModel({
@@ -23,7 +23,7 @@ class MessageModel extends Message {
           id: map['id'] as String,
           senderId: map['sender_id'] as String,
           message: map['message'] as String,
-          groupId: map['id'] as String,
+          groupId: map['group_id'] as String,
           timestamp:
               (map['timestamp'] as Timestamp?)?.toDate() ?? DateTime.now(),
         );
@@ -49,7 +49,7 @@ class MessageModel extends Message {
       'id': id,
       'sender_id': senderId,
       'message': message,
-      'id': groupId,
+      'group_id': groupId,
       'timestamp': FieldValue.serverTimestamp(),
     };
   }

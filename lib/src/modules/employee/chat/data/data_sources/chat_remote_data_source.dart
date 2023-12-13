@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 abstract class ChatRemoteDataSource {
   const ChatRemoteDataSource();
@@ -31,7 +31,6 @@ class ChatRemoteDataSourceImpl implements ChatRemoteDataSource {
   @override
   Stream<List<GroupModel>> getGroups() {
     try {
-      print('\n\n++++++TRY+++++++\n\n');
       DataSourceUtils.authorizeUser(_auth);
       final groupStream = _firestore.collection('group').snapshots().map((snapshot) {
         return snapshot.docs
@@ -41,13 +40,11 @@ class ChatRemoteDataSourceImpl implements ChatRemoteDataSource {
 
       return groupStream.handleError((dynamic error) {
         if (error is FirebaseException) {
-          print('\n\n++++++handle error: FIREBASEEXCEPTION+++++++\n\n');
           throw ServerException(
             message: error.message ?? 'Unknown error occurred',
             statusCode: error.code,
           );
         } else {
-          print('\n\n++++++handle error: SERVER EXCEPTION+++++++\n\n');
           throw ServerException(
             message: error.toString(),
             // statusCode: '500',
@@ -57,7 +54,6 @@ class ChatRemoteDataSourceImpl implements ChatRemoteDataSource {
         }
       });
     } on FirebaseException catch (e) {
-      print('\n\n++++++FIREBASEEXCEPTION+++++++\n\n');
       return Stream.error(
         ServerException(
           message: e.message ?? 'Unknown error occurred',

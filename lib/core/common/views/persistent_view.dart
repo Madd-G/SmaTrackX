@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class PersistentView extends StatefulWidget {
   const PersistentView({this.body, super.key});

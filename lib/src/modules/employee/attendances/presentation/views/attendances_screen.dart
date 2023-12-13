@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class AttendancesScreen extends StatelessWidget {
   const AttendancesScreen({super.key});

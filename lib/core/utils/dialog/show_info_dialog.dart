@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 Future showInfoDialog(String message) async {
   await showDialog<void>(
@@ -6,7 +6,7 @@ Future showInfoDialog(String message) async {
     barrierDismissible: true,
     builder: (BuildContext context) {
       return Container(
-        color: Colors.black.withOpacity(0.4),
+        color: AppColors.blackColor.withOpacity(0.4),
         child: Center(
           child: Card(
             child: SizedBox(

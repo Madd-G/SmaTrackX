@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
   const ChatAppBar({required this.group, super.key});
@@ -20,10 +20,10 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
           Text(group.name),
         ],
       ),
-      foregroundColor: Colors.white,
+      foregroundColor: AppColors.whiteColor,
       flexibleSpace: Container(
         decoration: const BoxDecoration(
-          gradient: LinearGradient(colors: [Colors.blue, Colors.green]),
+          gradient: LinearGradient(colors: [AppColors.blueColor, AppColors.greenColor]),
         ),
       ),
       actions: [

@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class CoreUtils {
   const CoreUtils._();
@@ -10,7 +10,7 @@ class CoreUtils {
         SnackBar(
           content: Text(
             message,
-            style: CustomTextStyle.textMediumBold.copyWith(color: Colors.white),
+            style: CustomTextStyle.textMediumBold.copyWith(color: AppColors.whiteColor),
           ),
           behavior: SnackBarBehavior.floating,
           backgroundColor: AppColors.primaryColor,

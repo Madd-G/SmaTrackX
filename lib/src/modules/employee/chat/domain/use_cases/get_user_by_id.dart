@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class GetUserById extends FutureUseCaseWithParams<UserEntity, String> {
   const GetUserById(this._repo);

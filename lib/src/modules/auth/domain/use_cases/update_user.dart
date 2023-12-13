@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class UpdateUser extends FutureUseCaseWithParams<void, UpdateUserParams> {
   const UpdateUser(this._repo);

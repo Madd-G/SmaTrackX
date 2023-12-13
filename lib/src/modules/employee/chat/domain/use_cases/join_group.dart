@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class JoinGroup extends FutureUseCaseWithParams<void, JoinGroupParams> {
   const JoinGroup(this._repo);

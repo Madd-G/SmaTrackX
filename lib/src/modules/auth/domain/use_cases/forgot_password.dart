@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class ForgotPassword extends FutureUseCaseWithParams<void, String> {
   const ForgotPassword(this._repo);

@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class SummaryCard extends StatelessWidget {
   const SummaryCard({super.key});
@@ -19,7 +19,7 @@ class SummaryCard extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Material(
-                    color: Colors.white,
+                    color: AppColors.whiteColor,
                     child: TabBar(
                       indicatorWeight: 0.0,
                       labelPadding: const EdgeInsets.all(0.0),

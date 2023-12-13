@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class ServerException extends Equatable implements Exception {
   const ServerException({required this.message, required this.statusCode});

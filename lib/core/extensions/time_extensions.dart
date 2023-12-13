@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 extension DateTimeExt on DateTime {
   /// 01:34:43

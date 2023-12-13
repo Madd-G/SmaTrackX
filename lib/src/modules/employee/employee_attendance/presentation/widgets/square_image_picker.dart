@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class SquareImagePicker extends StatefulWidget {
   final String label;
@@ -152,7 +152,7 @@ class _SquareImagePickerState extends State<SquareImagePicker> {
             top: 8.0,
           ),
           decoration: BoxDecoration(
-            color: loading ? Colors.blueGrey[900] : null,
+            color: loading ? AppColors.greyColor : null,
             image: loading
                 ? null
                 : imageUrl == null
@@ -180,7 +180,7 @@ class _SquareImagePickerState extends State<SquareImagePicker> {
                     width: 20.0,
                     height: 20.0,
                     child: CircularProgressIndicator(
-                      color: Colors.orange,
+                      color: AppColors.yellowColor,
                     ),
                   ),
                   SizedBox(

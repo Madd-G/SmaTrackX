@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({
@@ -64,7 +64,7 @@ class _SignUpFormState extends State<SignUpForm> {
               },
               icon: Icon(
                 obscurePassword ? IconlyLight.show : IconlyLight.hide,
-                color: Colors.grey,
+                color: AppColors.greyColor,
               ),
             ),
           ),

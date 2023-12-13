@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class AttendanceRepositoryImpl implements AttendanceRepository {
   final AttendanceRemoteDataSource _remoteDataSource;

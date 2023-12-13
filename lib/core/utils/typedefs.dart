@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 typedef ResultFuture<T> = Future<Either<Failure, T>>;
 typedef ResultStream<T> = Stream<Either<Failure, T>>;

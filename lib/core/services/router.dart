@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {

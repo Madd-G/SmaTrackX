@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class ChatView extends StatefulWidget {
   const ChatView({required this.group, super.key});
@@ -26,7 +26,7 @@ class _ChatViewState extends State<ChatView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.whiteColor,
       appBar: ChatAppBar(group: widget.group),
       body: BlocConsumer<ChatCubit, ChatState>(
         listener: (_, state) {

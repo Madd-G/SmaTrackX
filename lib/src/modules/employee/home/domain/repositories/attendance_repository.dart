@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 abstract class AttendanceRepository {
   Stream<DocumentSnapshot<Map<String, dynamic>>> getAttendanceHistorySnapshot(

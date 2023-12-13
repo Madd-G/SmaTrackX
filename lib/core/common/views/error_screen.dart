@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class ErrorScreen extends StatefulWidget {
   const ErrorScreen({super.key});

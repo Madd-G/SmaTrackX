@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class HistoryCard extends StatelessWidget {
   const HistoryCard({super.key});
@@ -6,7 +6,7 @@ class HistoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const RoundedContainer(
-      containerColor: Colors.white,
+      containerColor: AppColors.whiteColor,
       borderColor: Colors.black12,
       child: Padding(
         padding: EdgeInsets.all(8.0),

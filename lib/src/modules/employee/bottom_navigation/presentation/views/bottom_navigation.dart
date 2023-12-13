@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({super.key});
@@ -33,7 +33,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
               bottomNavigationBar: BottomNavigationBar(
                 currentIndex: controller.currentIndex,
                 showSelectedLabels: false,
-                backgroundColor: Colors.white,
+                backgroundColor: AppColors.whiteColor,
                 elevation: 8,
                 onTap: controller.changeIndex,
                 items: [
@@ -47,7 +47,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                           : Colors.grey,
                     ),
                     label: 'Home',
-                    backgroundColor: Colors.white,
+                    backgroundColor: AppColors.whiteColor,
                   ),
                   BottomNavigationBarItem(
                     icon: Icon(
@@ -59,7 +59,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                           : Colors.grey,
                     ),
                     label: 'Attendances',
-                    backgroundColor: Colors.white,
+                    backgroundColor: AppColors.whiteColor,
                   ),
                   BottomNavigationBarItem(
                     icon: Icon(
@@ -71,6 +71,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                           : Colors.grey,
                     ),
                     label: 'Chat',
+                    backgroundColor: AppColors.whiteColor,
                   ),
                   BottomNavigationBarItem(
                     icon: Icon(
@@ -79,7 +80,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                           : IconlyLight.profile,
                       color: controller.currentIndex == 3
                           ? AppColors.primaryColor
-                          : Colors.grey,
+                          : AppColors.greyColor,
                     ),
                     label: 'Profile',
                     backgroundColor: Colors.white,

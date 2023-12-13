@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({super.key});
@@ -24,13 +24,13 @@ class HomeHeader extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Icon(IconlyBold.user_2, color: Colors.white),
+                  const Icon(IconlyBold.user_2, color: AppColors.whiteColor),
                   Text(
                     'Friday, 10 February 2023',
                     style: CustomTextStyle.textLargeMedium
                         .copyWith(color: AppColors.whiteColor),
                   ),
-                  const Icon(IconlyBold.notification, color: Colors.white),
+                  const Icon(IconlyBold.notification, color: AppColors.whiteColor),
                 ],
               ),
               const SizedBox(height: 30.0),

@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class BottomNavController extends ChangeNotifier {
   final List<int> _indexHistory = [0];

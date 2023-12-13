@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class RoundedContainer extends StatelessWidget {
   const RoundedContainer({
@@ -26,7 +26,7 @@ class RoundedContainer extends StatelessWidget {
       height: height,
       width: width,
       decoration: BoxDecoration(
-        color: containerColor ?? Colors.white,
+        color: containerColor ?? AppColors.whiteColor,
         borderRadius: BorderRadius.all(
           Radius.circular(radius ?? 20.0),
         ),

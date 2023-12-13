@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class MessageBubble extends StatefulWidget {
   const MessageBubble(this.message, {required this.showSenderInfo, super.key});
@@ -72,7 +72,7 @@ class _MessageBubbleState extends State<MessageBubble> {
               child: Text(
                 widget.message.message,
                 style: TextStyle(
-                  color: isCurrentUser ? Colors.white : Colors.black,
+                  color: isCurrentUser ? AppColors.whiteColor : Colors.black,
                 ),
               ),
             ),

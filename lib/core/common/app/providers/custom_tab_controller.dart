@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class CustomTabController extends ChangeNotifier {
   int _currentIndex = 0;

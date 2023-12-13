@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class AuthRepoImpl implements AuthRepo {
   const AuthRepoImpl(this._remoteDataSource);

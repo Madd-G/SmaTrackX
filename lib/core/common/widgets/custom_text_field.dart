@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
@@ -52,7 +52,7 @@ class CustomTextField extends StatelessWidget {
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(5),
-          borderSide: const BorderSide(color: Colors.grey),
+          borderSide: const BorderSide(color: AppColors.greyColor),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(5),

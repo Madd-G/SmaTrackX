@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class GetMessages extends StreamUseCaseWithParams<List<Message>, String> {
   const GetMessages(this._repo);

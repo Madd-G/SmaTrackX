@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class ChatRepoImpl implements ChatRepo {
   const ChatRepoImpl(this._remoteDataSource);
@@ -12,7 +12,6 @@ class ChatRepoImpl implements ChatRepo {
               Either<Failure, List<GroupEntity>>>.fromHandlers(
             handleError: (error, stackTrace, sink) {
               if (error is ServerException) {
-                print('\n\n++++++ServerException+++++++\n\n');
                 sink.add(
                   Left(
                     ServerFailure(
@@ -22,7 +21,6 @@ class ChatRepoImpl implements ChatRepo {
                   ),
                 );
               } else {
-                print('\n\n++++++else+++++++\n\n');
                 // Handle other types of exceptions as needed
                 sink.add(
                   Left(
@@ -35,7 +33,6 @@ class ChatRepoImpl implements ChatRepo {
               }
             },
             handleData: (groups, sink) {
-              print('RIGHT: $groups');
               sink.add(Right(groups));
             },
           ),

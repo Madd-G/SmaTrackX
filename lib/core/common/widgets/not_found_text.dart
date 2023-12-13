@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class NotFoundText extends StatelessWidget {
   const NotFoundText(this.text, {super.key});
@@ -15,7 +15,7 @@ class NotFoundText extends StatelessWidget {
           textAlign: TextAlign.center,
           style: context.theme.textTheme.headlineMedium?.copyWith(
             fontWeight: FontWeight.w600,
-            color: Colors.grey.withOpacity(.5),
+            color: AppColors.greyColor.withOpacity(.5),
           ),
         ),
       ),

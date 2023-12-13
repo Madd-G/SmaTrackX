@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class YourGroupTile extends StatelessWidget {
   const YourGroupTile(this.group, {super.key});
@@ -22,8 +22,8 @@ class YourGroupTile extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               text: TextSpan(
                 text: '~ ${group.lastMessageSenderName}: ',
-                style: TextStyle(
-                  color: Colors.grey.shade600,
+                style: const TextStyle(
+                  color: AppColors.greyColor,
                   fontSize: 12,
                 ),
                 children: [

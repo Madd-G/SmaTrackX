@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class CustomTextStyle {
   static const TextStyle textExtraSmallRegular = TextStyle(

@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class SignIn extends FutureUseCaseWithParams<UserEntity, SignInParams> {
   const SignIn(this._repo);

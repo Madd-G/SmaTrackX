@@ -1,10 +1,11 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class NestedBackButton extends StatelessWidget {
   const NestedBackButton({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // ignore: deprecated_member_use
     return WillPopScope(
       onWillPop: () async {
         try {

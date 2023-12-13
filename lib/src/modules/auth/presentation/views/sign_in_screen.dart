@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -36,7 +36,7 @@ class _SignInScreenState extends State<SignInScreen> {
               child: Stack(
                 children: [
                   Container(
-                    color: Colors.blue,
+                    color: AppColors.blueColor,
                     width: context.width,
                     height: 50.0,
                     child: CustomPaint(

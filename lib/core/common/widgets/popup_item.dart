@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class PopupItem extends StatelessWidget {
   const PopupItem({required this.title, required this.icon, super.key});
@@ -16,7 +16,7 @@ class PopupItem extends StatelessWidget {
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w500,
-            color: Colors.black,
+            color: AppColors.blackColor,
           ),
         ),
         icon,

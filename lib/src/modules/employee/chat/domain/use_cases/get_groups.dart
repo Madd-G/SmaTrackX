@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class GetGroups extends StreamUseCaseWithoutParams<List<GroupEntity>> {
   const GetGroups(this._repo);

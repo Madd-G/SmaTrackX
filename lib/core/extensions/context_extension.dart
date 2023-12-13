@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 extension ContextExt on BuildContext {
   ThemeData get theme => Theme.of(this);

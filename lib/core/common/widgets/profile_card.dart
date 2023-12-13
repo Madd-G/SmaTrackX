@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class ProfileCard extends StatelessWidget {
   const ProfileCard({super.key});
@@ -16,7 +16,7 @@ class ProfileCard extends StatelessWidget {
           height: 120.0,
           width: context.width,
           decoration: const BoxDecoration(
-            color: Colors.white,
+            color: AppColors.whiteColor,
             borderRadius: BorderRadius.all(
               Radius.circular(20.0),
             ),

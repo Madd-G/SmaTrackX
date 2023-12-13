@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 part 'map_state.dart';
 
@@ -62,7 +62,7 @@ class MapCubit extends Cubit<MapState> {
                       .routes![0].legs![0].steps![i].endLocation!.lng!),
             ],
             width: 5,
-            color: Colors.green));
+            color: AppColors.greenColor));
       }
 
       emit(MapPolylineDrawnState(

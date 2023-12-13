@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class ChatHomeView extends StatefulWidget {
   const ChatHomeView({super.key});
@@ -24,7 +24,7 @@ class _ChatHomeViewState extends State<ChatHomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.whiteColor,
       appBar: AppBar(
         title: const Text(
           'Chat',
@@ -61,8 +61,6 @@ class _ChatHomeViewState extends State<ChatHomeView> {
           }
         },
         builder: (context, state) {
-          print('state: $state');
-          print('data: $yourDepartments');
           if (state is LoadingGroups) {
             return const LoadingView();
           } else if (state is GroupLoaded && state.groups.isEmpty) {
@@ -93,7 +91,7 @@ class _ChatHomeViewState extends State<ChatHomeView> {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  Divider(color: Colors.grey.shade300),
+                  const Divider(color: AppColors.greyColor),
                   ...otherDepartments.map(OtherGroupTile.new),
                 ],
               ],

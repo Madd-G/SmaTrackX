@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class OtherGroupTile extends StatelessWidget {
   const OtherGroupTile(this.group, {super.key});
@@ -19,7 +19,7 @@ class OtherGroupTile extends StatelessWidget {
       trailing: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primaryColor,
-          foregroundColor: Colors.white,
+          foregroundColor: AppColors.whiteColor,
         ),
         onPressed: () {
           context.read<ChatCubit>().joinGroup(

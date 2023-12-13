@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class ChatInputField extends StatefulWidget {
   const ChatInputField({required this.groupId, super.key});
@@ -48,7 +48,7 @@ class _ChatInputFieldState extends State<ChatInputField> {
             scale: .75,
             child: IconButton.filled(
               padding: EdgeInsets.zero,
-              icon: const Icon(IconlyLight.send, color: Colors.white),
+              icon: const Icon(IconlyLight.send, color: AppColors.whiteColor),
               onPressed: () {
                 final message = controller.text.trim();
                 if (message.isEmpty) return;

@@ -1,4 +1,4 @@
-import 'package:SmaTrackX/core.dart';
+import 'package:smatrackx/core.dart';
 
 class MapWidget extends StatefulWidget {
   const MapWidget({
@@ -107,7 +107,7 @@ class Maps extends StatelessWidget {
             child: Container(
               margin: const EdgeInsets.all(20),
               padding: const EdgeInsets.all(20),
-              color: Colors.white,
+              color: AppColors.whiteColor,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,

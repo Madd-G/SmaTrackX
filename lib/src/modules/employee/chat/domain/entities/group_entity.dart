@@ -4,7 +4,7 @@ class GroupEntity extends Equatable {
   const GroupEntity({
     required this.id,
     required this.name,
-    required this.groupId,
+    required this.companyId,
     required this.members,
     this.lastMessage,
     this.groupImageUrl,
@@ -16,7 +16,7 @@ class GroupEntity extends Equatable {
       : this(
           id: '',
           name: '',
-          groupId: '',
+          companyId: '',
           members: const [],
           lastMessage: null,
           groupImageUrl: null,
@@ -26,14 +26,13 @@ class GroupEntity extends Equatable {
 
   final String id;
   final String name;
-  final String groupId;
+  final String companyId;
   final List<String> members;
   final String? lastMessage;
   final String? groupImageUrl;
-  // final DateTime? lastMessageTimestamp;
-  final String? lastMessageTimestamp;
+  final DateTime? lastMessageTimestamp;
   final String? lastMessageSenderName;
 
   @override
-  List<Object?> get props => [id, name, groupId];
+  List<Object?> get props => [id, name, companyId];
 }

@@ -32,7 +32,8 @@ class ChatRemoteDataSourceImpl implements ChatRemoteDataSource {
   Stream<List<GroupModel>> getGroups() {
     try {
       DataSourceUtils.authorizeUser(_auth);
-      final groupStream = _firestore.collection('group').snapshots().map((snapshot) {
+      final groupStream =
+          _firestore.collection('group').snapshots().map((snapshot) {
         return snapshot.docs
             .map((doc) => GroupModel.fromMap(doc.data()))
             .toList();
@@ -47,9 +48,7 @@ class ChatRemoteDataSourceImpl implements ChatRemoteDataSource {
         } else {
           throw ServerException(
             message: error.toString(),
-            // statusCode: '500',
             statusCode: '500',
-
           );
         }
       });

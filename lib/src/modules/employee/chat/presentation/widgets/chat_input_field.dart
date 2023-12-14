@@ -57,7 +57,7 @@ class _ChatInputFieldState extends State<ChatInputField> {
                 context.read<ChatCubit>().sendMessage(
                       MessageModel.empty().copyWith(
                         message: message,
-                        senderId: context.currentUser!.companyId,
+                        senderId: context.currentUser!.uid,
                         groupId: widget.groupId,
                       ),
                     );

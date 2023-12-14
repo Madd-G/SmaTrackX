@@ -38,13 +38,13 @@ class YourGroupTile extends StatelessWidget {
               ),
             )
           : null,
-      // trailing: group.lastMessage != null
-      //     ? TimeText(
-      //         group.lastMessageTimestamp!,
-      //         maxLines: 1,
-      //         overflow: TextOverflow.ellipsis,
-      //       )
-      //     : null,
+      trailing: group.lastMessage != null
+          ? TimeText(
+              group.lastMessageTimestamp!,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            )
+          : null,
       onTap: () {
         context.push(
           BlocProvider(

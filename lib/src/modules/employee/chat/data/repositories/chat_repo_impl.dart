@@ -11,6 +11,7 @@ class ChatRepoImpl implements ChatRepo {
           StreamTransformer<List<GroupModel>,
               Either<Failure, List<GroupEntity>>>.fromHandlers(
             handleError: (error, stackTrace, sink) {
+              print('error: $error');
               if (error is ServerException) {
                 sink.add(
                   Left(
@@ -51,9 +52,7 @@ class ChatRepoImpl implements ChatRepo {
 
   @override
   ResultStream<List<Message>> getMessages(String groupId) {
-    return _remoteDataSource
-        .getMessages(groupId)
-        .transform(_handleStream());
+    return _remoteDataSource.getMessages(groupId).transform(_handleStream());
   }
 
   StreamTransformer<List<MessageModel>, Either<Failure, List<Message>>>
@@ -94,8 +93,7 @@ class ChatRepoImpl implements ChatRepo {
     required String userId,
   }) async {
     try {
-      await _remoteDataSource.joinGroup(
-          groupId: groupId, userId: userId);
+      await _remoteDataSource.joinGroup(groupId: groupId, userId: userId);
       return const Right(null);
     } on ServerException catch (e) {
       return Left(ServerFailure.fromException(e));
@@ -108,8 +106,7 @@ class ChatRepoImpl implements ChatRepo {
     required String userId,
   }) async {
     try {
-      await _remoteDataSource.leaveGroup(
-          groupId: groupId, userId: userId);
+      await _remoteDataSource.leaveGroup(groupId: groupId, userId: userId);
       return const Right(null);
     } on ServerException catch (e) {
       return Left(ServerFailure.fromException(e));

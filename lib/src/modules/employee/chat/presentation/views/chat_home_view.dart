@@ -10,8 +10,8 @@ class ChatHomeView extends StatefulWidget {
 }
 
 class _ChatHomeViewState extends State<ChatHomeView> {
-  List<GroupEntity> yourDepartments = [];
-  List<GroupEntity> otherDepartments = [];
+  List<GroupEntity> yourGroups = [];
+  List<GroupEntity> otherGroups = [];
 
   bool showingDialog = false;
 
@@ -45,17 +45,11 @@ class _ChatHomeViewState extends State<ChatHomeView> {
           } else if (state is JoinedGroup) {
             CoreUtils.showSnackBar(context, 'Joined group successfully');
           } else if (state is GroupLoaded) {
-            yourDepartments = state.groups
+            yourGroups = state.groups
                 .where(
                   (group) =>
                       // group.members.contains(context.currentUser!.companyId),
                       group.members.contains(context.userProvider.user?.uid),
-                )
-                .toList();
-            otherDepartments = state.groups
-                .where(
-                  (group) =>
-                      !group.members.contains(context.userProvider.user?.uid),
                 )
                 .toList();
           }
@@ -69,12 +63,12 @@ class _ChatHomeViewState extends State<ChatHomeView> {
               'add group',
             );
           } else if ((state is GroupLoaded) ||
-              (yourDepartments.isNotEmpty) ||
-              (otherDepartments.isNotEmpty)) {
+              (yourGroups.isNotEmpty) ||
+              (otherGroups.isNotEmpty)) {
             return ListView(
               padding: const EdgeInsets.all(20),
               children: [
-                if (yourDepartments.isNotEmpty) ...[
+                if (yourGroups.isNotEmpty) ...[
                   Text(
                     'Your Group',
                     style: context.theme.textTheme.titleMedium?.copyWith(
@@ -82,17 +76,7 @@ class _ChatHomeViewState extends State<ChatHomeView> {
                     ),
                   ),
                   Divider(color: Colors.grey.shade300),
-                  ...yourDepartments.map(YourGroupTile.new),
-                ],
-                if (otherDepartments.isNotEmpty) ...[
-                  Text(
-                    'Department',
-                    style: context.theme.textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  const Divider(color: AppColors.greyColor),
-                  ...otherDepartments.map(OtherGroupTile.new),
+                  ...yourGroups.map(YourGroupTile.new),
                 ],
               ],
             );

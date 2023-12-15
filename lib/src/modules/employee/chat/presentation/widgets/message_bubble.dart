@@ -4,6 +4,7 @@ class MessageBubble extends StatefulWidget {
   const MessageBubble(this.message, {required this.showSenderInfo, super.key});
 
   final Message message;
+
   final bool showSenderInfo;
 
   @override
@@ -17,8 +18,6 @@ class _MessageBubbleState extends State<MessageBubble> {
 
   @override
   void initState() {
-    print('widget.message.senderId: ${widget.message.senderId}');
-    print('context.currentUser!.companyId: ${context.currentUser!.companyId}');
     if (widget.message.senderId == context.currentUser!.uid) {
       user = context.currentUser;
       isCurrentUser = true;
@@ -68,8 +67,9 @@ class _MessageBubbleState extends State<MessageBubble> {
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
-                color:
-                    isCurrentUser ? AppColors.blueColor : AppColors.whiteColor,
+                color: isCurrentUser
+                    ? AppColors.primaryColor
+                    : AppColors.secondaryColor,
               ),
               child: Text(
                 widget.message.message,

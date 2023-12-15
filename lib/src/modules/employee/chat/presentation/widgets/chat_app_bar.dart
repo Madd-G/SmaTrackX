@@ -22,9 +22,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       foregroundColor: AppColors.whiteColor,
       flexibleSpace: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(colors: [AppColors.blueColor, AppColors.greenColor]),
-        ),
+        color: AppColors.primaryColor,
       ),
       actions: [
         PopupMenuButton(

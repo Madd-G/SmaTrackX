@@ -22,49 +22,67 @@ class _ChatInputFieldState extends State<ChatInputField> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: TextField(
-        controller: controller,
-        focusNode: focusNode,
-        minLines: 1,
-        maxLines: 5,
-        decoration: InputDecoration(
-          hintText: 'Message',
-          hintStyle: const TextStyle(
-            color: Color(0xFF9FA5BB),
-          ),
-          filled: true,
-          fillColor: AppColors.whiteColor,
-          contentPadding: const EdgeInsets.symmetric(
-            horizontal: 22,
-            vertical: 8,
-          ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(50),
-            borderSide: BorderSide.none,
-          ),
-          suffixIcon: Transform.scale(
-            scale: .75,
-            child: IconButton.filled(
-              padding: EdgeInsets.zero,
-              icon: const Icon(IconlyLight.send, color: AppColors.whiteColor),
-              onPressed: () {
-                final message = controller.text.trim();
-                if (message.isEmpty) return;
-                controller.clear();
-                focusNode.unfocus();
-                context.read<ChatCubit>().sendMessage(
-                      MessageModel.empty().copyWith(
-                        message: message,
-                        senderId: context.currentUser!.uid,
-                        groupId: widget.groupId,
-                      ),
-                    );
-              },
+    return Padding(
+      padding: const EdgeInsets.only(
+        left: 15.0,
+        top: 10.0,
+        right: 10.0,
+        bottom: 10.0,
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: <Widget>[
+          Expanded(
+            child: TextField(
+              controller: controller,
+              focusNode: focusNode,
+              keyboardType: TextInputType.multiline,
+              showCursor: true,
+              minLines: 1,
+              maxLines: 7,
+              style: const TextStyle(
+                fontSize: 14.0,
+              ),
+              decoration: InputDecoration(
+                hintText: 'message',
+                hintStyle: const TextStyle(
+                  color: Color(0xFF9FA5BB),
+                ),
+                contentPadding: const EdgeInsets.only(
+                    left: 15.0, right: 15.0, top: 10.0, bottom: 10.0),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                filled: true,
+              ),
+              onChanged: (value) {},
             ),
           ),
-        ),
+          IconButton(
+            onPressed: () {
+              final message = controller.text.trim();
+              if (message.isEmpty) return;
+              controller.clear();
+              focusNode.unfocus();
+              context.read<ChatCubit>().sendMessage(
+                    MessageModel.empty().copyWith(
+                      message: message,
+                      senderId: context.currentUser!.uid,
+                      groupId: widget.groupId,
+                    ),
+                  );
+            },
+            icon: const Icon(
+              IconlyLight.send,
+              color: AppColors.primaryColor,
+              size: 30.0,
+            ),
+          ),
+        ],
       ),
     );
   }

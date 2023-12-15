@@ -51,7 +51,8 @@ class _ChatViewState extends State<ChatView> {
         builder: (context, state) {
           if (state is LoadingMessages) {
             return const LoadingView();
-          } else if (state is MessagesLoaded ||
+          }
+          else if (state is MessagesLoaded ||
               showInputField ||
               messages.isNotEmpty) {
             return Column(

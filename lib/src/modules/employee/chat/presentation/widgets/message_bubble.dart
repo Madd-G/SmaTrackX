@@ -17,7 +17,9 @@ class _MessageBubbleState extends State<MessageBubble> {
 
   @override
   void initState() {
-    if (widget.message.senderId == context.currentUser!.companyId) {
+    print('widget.message.senderId: ${widget.message.senderId}');
+    print('context.currentUser!.companyId: ${context.currentUser!.companyId}');
+    if (widget.message.senderId == context.currentUser!.uid) {
       user = context.currentUser;
       isCurrentUser = true;
     } else {
@@ -57,7 +59,7 @@ class _MessageBubbleState extends State<MessageBubble> {
                   ),
                   const SizedBox(width: 8),
                   Text(
-                    user == null ? 'Unknown User' : user!.uid,
+                    user == null ? 'Unknown User' : user!.username,
                   ),
                 ],
               ),

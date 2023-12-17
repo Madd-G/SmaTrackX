@@ -51,8 +51,7 @@ class _ChatViewState extends State<ChatView> {
         builder: (context, state) {
           if (state is LoadingMessages) {
             return const LoadingView();
-          }
-          else if (state is MessagesLoaded ||
+          } else if (state is MessagesLoaded ||
               showInputField ||
               messages.isNotEmpty) {
             return Column(
@@ -63,16 +62,11 @@ class _ChatViewState extends State<ChatView> {
                     reverse: true,
                     itemBuilder: (_, index) {
                       final message = messages[index];
-                      final previousMessage =
-                          index > 0 ? messages[index - 1] : null;
 
-                      final showSenderInfo = previousMessage == null ||
-                          previousMessage.senderId != message.senderId;
                       return BlocProvider(
                         create: (_) => sl<ChatCubit>(),
                         child: MessageBubble(
                           message,
-                          showSenderInfo: showSenderInfo,
                         ),
                       );
                     },

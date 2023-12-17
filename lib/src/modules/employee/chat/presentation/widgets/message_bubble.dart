@@ -1,11 +1,9 @@
 import 'package:smatrackx/core.dart';
 
 class MessageBubble extends StatefulWidget {
-  const MessageBubble(this.message, {required this.showSenderInfo, super.key});
+  const MessageBubble(this.message, {super.key});
 
   final Message message;
-
-  final bool showSenderInfo;
 
   @override
   State<MessageBubble> createState() => _MessageBubbleState();
@@ -14,22 +12,10 @@ class MessageBubble extends StatefulWidget {
 class _MessageBubbleState extends State<MessageBubble> {
   UserEntity? user;
 
-  late bool isCurrentUser;
-
-  @override
-  void initState() {
-    if (widget.message.senderId == context.currentUser!.uid) {
-      user = context.currentUser;
-      isCurrentUser = true;
-    } else {
-      isCurrentUser = false;
-      context.read<ChatCubit>().getUser(widget.message.senderId);
-    }
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
+    var user = context.currentUser;
+    bool isCurrentUser = widget.message.senderId == context.currentUser!.uid;
     return BlocListener<ChatCubit, ChatState>(
       listener: (_, state) {
         if (state is UserFound && user == null) {
@@ -45,28 +31,28 @@ class _MessageBubbleState extends State<MessageBubble> {
           crossAxisAlignment:
               isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
           children: [
-            if (widget.showSenderInfo && !isCurrentUser)
+            if (!isCurrentUser)
               Row(
                 children: [
                   CircleAvatar(
                     radius: 16,
                     backgroundImage: NetworkImage(
-                      user == null || (user!.profilePicture == null)
+                      user == null || (user.profilePicture == null)
                           ? kDefaultAvatar
-                          : user!.profilePicture!,
+                          : user.profilePicture!,
                     ),
                   ),
                   const SizedBox(width: 8),
                   Text(
-                    user == null ? 'Unknown User' : user!.username,
+                    user == null ? 'Unknown User' : user.username,
                   ),
                 ],
               ),
             Container(
               margin: EdgeInsets.only(top: 4, left: isCurrentUser ? 0 : 20),
-              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(10),
                 color: isCurrentUser
                     ? AppColors.primaryColor
                     : AppColors.secondaryColor,

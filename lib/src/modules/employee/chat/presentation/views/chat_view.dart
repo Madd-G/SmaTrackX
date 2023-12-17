@@ -26,7 +26,7 @@ class _ChatViewState extends State<ChatView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.whiteColor,
+      backgroundColor: AppColors.backgroundColor,
       appBar: ChatAppBar(group: widget.group),
       body: BlocConsumer<ChatCubit, ChatState>(
         listener: (_, state) {
@@ -72,7 +72,6 @@ class _ChatViewState extends State<ChatView> {
                     },
                   ),
                 ),
-                const Divider(height: 1),
                 BlocProvider(
                   create: (_) => sl<ChatCubit>(),
                   child: ChatInputField(groupId: widget.group.id),

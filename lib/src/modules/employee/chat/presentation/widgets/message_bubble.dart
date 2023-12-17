@@ -14,6 +14,7 @@ class _MessageBubbleState extends State<MessageBubble> {
 
   @override
   Widget build(BuildContext context) {
+    int randomColor = (Random().nextDouble() * 0xFFFFFF).toInt();
     var user = context.currentUser;
     bool isCurrentUser = widget.message.senderId == context.currentUser!.uid;
     return BlocListener<ChatCubit, ChatState>(
@@ -25,43 +26,70 @@ class _MessageBubbleState extends State<MessageBubble> {
         }
       },
       child: Container(
-        constraints: BoxConstraints(maxWidth: context.width - 45),
         margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-        child: Column(
-          crossAxisAlignment:
-              isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        child: Row(
+          mainAxisAlignment:
+              isCurrentUser ? MainAxisAlignment.end : MainAxisAlignment.start,
           children: [
             if (!isCurrentUser)
-              Row(
-                children: [
-                  CircleAvatar(
-                    radius: 16,
-                    backgroundImage: NetworkImage(
-                      user == null || (user.profilePicture == null)
-                          ? kDefaultAvatar
-                          : user.profilePicture!,
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    user == null ? 'Unknown User' : user.username,
-                  ),
-                ],
+              CircleAvatar(
+                radius: 16,
+                backgroundImage: NetworkImage(
+                  user == null || (user.profilePicture == null)
+                      ? kDefaultAvatar
+                      : user.profilePicture!,
+                ),
               ),
             Container(
-              margin: EdgeInsets.only(top: 4, left: isCurrentUser ? 0 : 20),
-              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+              margin: EdgeInsets.only(top: 4, left: isCurrentUser ? 0 : 10),
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: isCurrentUser
-                    ? AppColors.primaryColor
-                    : AppColors.secondaryColor,
-              ),
-              child: Text(
-                widget.message.message,
-                style: TextStyle(
-                  color: isCurrentUser ? AppColors.whiteColor : Colors.black,
+                borderRadius: BorderRadius.only(
+                  topLeft: isCurrentUser
+                      ? const Radius.circular(10.0)
+                      : const Radius.circular(0.0),
+                  bottomLeft: const Radius.circular(10.0),
+                  bottomRight: const Radius.circular(10.0),
+                  topRight: isCurrentUser
+                      ? const Radius.circular(0.0)
+                      : const Radius.circular(10.0),
                 ),
+                color: isCurrentUser
+                    ? AppColors.secondaryColor
+                    : AppColors.whiteColor,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (!isCurrentUser)
+                    Text(
+                      user == null ? '' : user.username,
+                      style: CustomTextStyle.textSemiBold.copyWith(
+                          color: Color(
+                        randomColor,
+                      ).withOpacity(1.0)),
+                    ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: isCurrentUser
+                        ? MainAxisAlignment.end
+                        : MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.message.message,
+                        style: CustomTextStyle.textMediumRegular.copyWith(
+                          color: Colors.black,
+                        ),
+                      ),
+                      const SizedBox(width: 10.0),
+                      Text(
+                        widget.message.timestamp.clockFormatSimple,
+                        style: CustomTextStyle.textSmallRegular
+                            .copyWith(color: Colors.black, fontSize: 10.0),
+                      )
+                    ],
+                  ),
+                ],
               ),
             ),
           ],

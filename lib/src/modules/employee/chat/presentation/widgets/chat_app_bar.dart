@@ -17,10 +17,22 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
             backgroundColor: Colors.transparent,
           ),
           const SizedBox(width: 7),
-          Text(group.name),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                group.name,
+                style: CustomTextStyle.headingSemiBold,
+              ),
+              Text(
+                '${group.members.length} members',
+                style: CustomTextStyle.textMedium,
+              )
+            ],
+          ),
         ],
       ),
-      foregroundColor: AppColors.whiteColor,
+      foregroundColor: AppColors.backgroundColor,
       flexibleSpace: Container(
         color: AppColors.primaryColor,
       ),

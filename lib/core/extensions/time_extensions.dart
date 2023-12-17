@@ -7,6 +7,12 @@ extension DateTimeExt on DateTime {
     return DateFormat("H:mm:ss").format(now);
   }
 
+  /// 01:34
+  String get clockFormatSimple {
+    final now = DateTime.now();
+    return DateFormat("H:mm").format(now);
+  }
+
   /// 09 November 2023
   String get dateFormat {
     final now = DateTime.now();
@@ -16,6 +22,11 @@ extension DateTimeExt on DateTime {
   /// 2023-11-09
   String yearMonthDay() {
     return DateFormat('yyyy-MM-dd').format(this);
+  }
+
+  /// 12 Dec 2023
+  String get shortMonthYearFormat {
+    return DateFormat('dd MMM yyyy').format(this);
   }
 
   String get timeAgo {

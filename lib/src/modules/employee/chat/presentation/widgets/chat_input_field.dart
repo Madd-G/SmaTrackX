@@ -51,35 +51,42 @@ class _ChatInputFieldState extends State<ChatInputField> {
                 contentPadding: const EdgeInsets.only(
                     left: 15.0, right: 15.0, top: 10.0, bottom: 10.0),
                 border: OutlineInputBorder(
+                  borderSide: const BorderSide(color: AppColors.greyColor),
                   borderRadius: BorderRadius.circular(15.0),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.grey),
+                  borderSide: const BorderSide(color: AppColors.greyColor),
                   borderRadius: BorderRadius.circular(15.0),
                 ),
                 filled: true,
               ),
-              onChanged: (value) {},
             ),
           ),
-          IconButton(
-            onPressed: () {
-              final message = controller.text.trim();
-              if (message.isEmpty) return;
-              controller.clear();
-              focusNode.unfocus();
-              context.read<ChatCubit>().sendMessage(
-                    MessageModel.empty().copyWith(
-                      message: message,
-                      senderId: context.currentUser!.uid,
-                      groupId: widget.groupId,
-                    ),
-                  );
-            },
-            icon: const Icon(
-              IconlyLight.send,
+          const SizedBox(width: 10.0),
+          Ink(
+            decoration: const ShapeDecoration(
+              shape: CircleBorder(),
               color: AppColors.primaryColor,
-              size: 30.0,
+            ),
+            child: IconButton(
+              onPressed: () {
+                final message = controller.text.trim();
+                if (message.isEmpty) return;
+                controller.clear();
+                focusNode.unfocus();
+                context.read<ChatCubit>().sendMessage(
+                      MessageModel.empty().copyWith(
+                        message: message,
+                        senderId: context.currentUser!.uid,
+                        groupId: widget.groupId,
+                      ),
+                    );
+              },
+              icon: const Icon(
+                IconlyLight.send,
+                color: AppColors.whiteColor,
+                size: 30.0,
+              ),
             ),
           ),
         ],

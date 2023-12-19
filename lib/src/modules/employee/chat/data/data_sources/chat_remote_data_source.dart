@@ -3,7 +3,7 @@ import 'package:smatrackx/core.dart';
 abstract class ChatRemoteDataSource {
   const ChatRemoteDataSource();
 
-  Future<void> sendMessage(Message message);
+  Future<void> sendMessage(MessageEntity message);
 
   // Should go to 'group >> groupDoc >> messages >> orderBy('timestamp')
   Stream<List<MessageModel>> getMessages(String groupId);
@@ -192,7 +192,10 @@ class ChatRemoteDataSourceImpl implements ChatRemoteDataSource {
   }
 
   @override
-  Future<void> sendMessage(Message message) async {
+  Future<void> sendMessage(MessageEntity message) async {
+    print('_auth.currentUser!.displayName: ${_auth.currentUser!.displayName}');
+    print('_auth.currentUser!.displayName: ${_auth.currentUser!.email}');
+    print('_auth.currentUser!.displayName: ${message.senderName}');
     try {
       await DataSourceUtils.authorizeUser(_auth);
       final messageRef = _firestore
@@ -206,7 +209,7 @@ class ChatRemoteDataSourceImpl implements ChatRemoteDataSource {
 
       await _firestore.collection('group').doc(message.groupId).update({
         'last_message': message.message,
-        'last_message_sender_name': _auth.currentUser!.displayName,
+        'last_message_sender_name': _auth.currentUser!.displayName!,
         'last_message_timestamp': message.timestamp,
       });
     } on FirebaseException catch (e) {

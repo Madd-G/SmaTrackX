@@ -78,6 +78,7 @@ class _ChatInputFieldState extends State<ChatInputField> {
                       MessageModel.empty().copyWith(
                         message: message,
                         senderId: context.currentUser!.uid,
+                        senderName: context.currentUser!.username,
                         groupId: widget.groupId,
                       ),
                     );

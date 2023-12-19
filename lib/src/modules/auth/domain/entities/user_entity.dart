@@ -60,7 +60,18 @@ class UserEntity extends Equatable {
 
   @override
   String toString() {
-    return 'LocalUser{uid: $uid, email: $email, username: $username, profile_picture: $profilePicture}, role: $role bio: '
-        '$bio, work_start: $workStart, work_end: $workEnd, created: $created, company_id: $companyId, group_ids: $groupIds}';
+    return '\n UserEntity{'
+        '\n uid: $uid, '
+        '\n email: $email, '
+        '\n username: $username, '
+        '\n profile_picture: $profilePicture, '
+        '\n role: $role '
+        '\n bio: $bio'
+        '\n work_start: $workStart, '
+        '\n work_end: $workEnd, '
+        '\n created: $created, '
+        '\n company_id: $companyId, '
+        '\n group_ids: $groupIds'
+        '\n }';
   }
 }

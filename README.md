@@ -9,17 +9,20 @@ implemented.
 ### For Employees (SmaTrackX):
 
 - **Check In/Out:** Easily mark your attendance with a single click.
-- **View Attendance Data:** Access attendance records for today, this week, this month, and
-  this year.
-- **Timely Notifications:** Receive notifications for the latest announcements, leave requests, and
-  more.
+- **View Attendance Data:** Access attendance records for today, this week, this month, and this year.
+- **Timely Notifications:** Receive notifications for the latest announcements, leave requests, and more.
 - **Permission Requests:** Submit leave requests directly to HRD for approval.
+- **Group Chat and Communication:**
+  - **Division/Group Chats:** Engage in real-time discussions with colleagues within your division or specific groups.
+  - **HRD Communication:** Communicate directly with HRD for inquiries, feedback, or important matters through dedicated chat channels.
 
 ### For HRD (SmaTrackZ):
 
 - **Real-time Monitoring:** Monitor attendance data for all employees in real-time.
 - **Notification Center:** Receive alerts for employee attendance statuses.
-- **Communication Hub:** Chat directly with employees for seamless communication.
+- **Group Chat and Communication:**
+  - **Division/Group Chats:** Engage in real-time discussions with colleagues within your division or specific groups.
+  - **Employee Communication:** Chat directly with employees for seamless communication.
 - **Employee Management:**
   - **Add New Employees:** Easily add new employees to the system, providing essential details such as name, position, and contact information.
   - **Modify Employee Data:** Update and edit existing employee information as needed, ensuring accurate records.
@@ -40,6 +43,7 @@ including:
   prevent misuse.
 - **Facial Recognition:** Requires employees to capture their face during
   attendance.
+- **Fingerprint Recognition:** Enhance security by incorporating fingerprint recognition for secure access and attendance verification.
 
 ## Getting Started
 

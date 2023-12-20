@@ -41,6 +41,8 @@ class _MessageBubbleState extends State<MessageBubble> {
                 ),
               ),
             Container(
+              constraints:
+                  BoxConstraints(maxWidth: context.width * 0.8, minWidth: 0),
               margin: EdgeInsets.only(top: 4, left: isCurrentUser ? 0 : 10),
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
               decoration: BoxDecoration(
@@ -70,22 +72,27 @@ class _MessageBubbleState extends State<MessageBubble> {
                     ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: isCurrentUser
-                        ? MainAxisAlignment.end
-                        : MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        widget.message.message,
-                        style: CustomTextStyle.textMediumRegular.copyWith(
-                          color: Colors.black,
+                      Expanded(
+                        child: Text(
+                          widget.message.message,
+                          maxLines: 20,
+                          textAlign: TextAlign.start,
+                          style: CustomTextStyle.textMediumRegular.copyWith(
+                            color: Colors.black,
+                          ),
                         ),
                       ),
                       const SizedBox(width: 10.0),
                       Text(
-                        widget.message.timestamp.clockFormatSimple,
-                        style: CustomTextStyle.textSmallRegular
-                            .copyWith(color: Colors.black, fontSize: 10.0),
-                      )
+                        widget.message.timestamp.extractHourMinute(),
+                        textAlign: TextAlign.end,
+                        style: CustomTextStyle.textSmallRegular.copyWith(
+                          color: Colors.black,
+                          fontSize: 10.0,
+                        ),
+                      ),
                     ],
                   ),
                 ],

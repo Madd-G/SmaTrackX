@@ -11,7 +11,6 @@ class ChatRepoImpl implements ChatRepo {
           StreamTransformer<List<GroupModel>,
               Either<Failure, List<GroupEntity>>>.fromHandlers(
             handleError: (error, stackTrace, sink) {
-              print('error: $error');
               if (error is ServerException) {
                 sink.add(
                   Left(

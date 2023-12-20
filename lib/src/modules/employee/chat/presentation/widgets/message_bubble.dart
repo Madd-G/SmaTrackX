@@ -14,7 +14,6 @@ class _MessageBubbleState extends State<MessageBubble> {
 
   @override
   Widget build(BuildContext context) {
-    int randomColor = (Random().nextDouble() * 0xFFFFFF).toInt();
     var user = context.currentUser;
     bool isCurrentUser = widget.message.senderId == context.currentUser!.uid;
     return BlocListener<ChatCubit, ChatState>(

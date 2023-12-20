@@ -193,9 +193,6 @@ class ChatRemoteDataSourceImpl implements ChatRemoteDataSource {
 
   @override
   Future<void> sendMessage(MessageEntity message) async {
-    print('_auth.currentUser!.displayName: ${_auth.currentUser!.displayName}');
-    print('_auth.currentUser!.displayName: ${_auth.currentUser!.email}');
-    print('_auth.currentUser!.displayName: ${message.senderName}');
     try {
       await DataSourceUtils.authorizeUser(_auth);
       final messageRef = _firestore

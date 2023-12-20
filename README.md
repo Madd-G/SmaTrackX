@@ -1,12 +1,12 @@
-# SmaTrackX - Smart Attendance Management System
+# SmaTrackX and SmaTrackZ - Smart Attendance Management System
 
-Welcome to SmaTrackX, your go-to solution for seamless and efficient online attendance management.
+Welcome to SmaTrackX and SmaTrackZ, your go-to solution for seamless and efficient online attendance management.
 Currently, SmaTrackX is in the developing phase, and not all features have been fully
 implemented.
 
 ## Key Features (Partial Implementation)
 
-### For Employees:
+### For Employees (SmaTrackX):
 
 - **Check In/Out:** Easily mark your attendance with a single click.
 - **View Attendance Data:** Access attendance records for today, this week, this month, and
@@ -15,11 +15,19 @@ implemented.
   more.
 - **Permission Requests:** Submit leave requests directly to HRD for approval.
 
-### For HRD:
+### For HRD (SmaTrackZ):
 
 - **Real-time Monitoring:** Monitor attendance data for all employees in real-time.
 - **Notification Center:** Receive alerts for employee attendance statuses.
 - **Communication Hub:** Chat directly with employees for seamless communication.
+- **Employee Management:**
+  - **Add New Employees:** Easily add new employees to the system, providing essential details such as name, position, and contact information.
+  - **Modify Employee Data:** Update and edit existing employee information as needed, ensuring accurate records.
+  - **Group Management:** Create and manage employee groups for efficient organization and communication.
+  - **Access Control:** Set and modify access levels for HRD and other relevant personnel.
+  - **Attendance Reports:** Generate detailed reports on employee attendance, making it convenient for performance reviews and payroll processing.
+  - **Leave Management:** Review and approve/deny leave requests submitted by employees through SmaTrackX.
+
 
 ### Enhanced Security Measures (Partial Implementation):
 

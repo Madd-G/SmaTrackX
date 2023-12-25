@@ -182,7 +182,9 @@ class AbsenceCard extends StatelessWidget {
                                       deviceModel: deviceInfo.model,
                                       currentDate: DateTime.now().dateFormat,
                                       time: DateTime.now().clockFormat,
-                                      deviceId: deviceInfo.id,
+                                      deviceId: (Platform.isAndroid)
+                                          ? deviceInfo.id
+                                          : '',
                                       checkInOrder: 1,
                                       // TODO: real status
                                       status: 'Arrived on time',
@@ -229,7 +231,9 @@ class AbsenceCard extends StatelessWidget {
                                       deviceModel: deviceInfo.model,
                                       currentDate: DateTime.now().dateFormat,
                                       time: DateTime.now().clockFormat,
-                                      deviceId: deviceInfo.id,
+                                      deviceId: (Platform.isAndroid)
+                                          ? deviceInfo.id
+                                          : '',
                                       // TODO: real distance
                                       checkOutOrder: 10,
                                       status: 'Arrived on time',

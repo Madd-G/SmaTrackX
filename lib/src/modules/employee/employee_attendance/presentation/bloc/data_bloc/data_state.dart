@@ -12,10 +12,14 @@ class DataLoading extends DataState {}
 @immutable
 class DataLoaded extends DataState {
   final Position position;
-  final AndroidDeviceInfo deviceInfo;
+  final dynamic deviceInfo;
 
   DataLoaded({required this.position, required this.deviceInfo});
 }
 
 @immutable
-class DataFailed extends DataState {}
+class DataFailed extends DataState {
+  final String errorMessage;
+
+  DataFailed(this.errorMessage);
+}

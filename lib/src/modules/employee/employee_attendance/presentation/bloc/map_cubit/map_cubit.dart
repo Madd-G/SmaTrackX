@@ -46,7 +46,8 @@ class MapCubit extends Cubit<MapState> {
       for (int i = 0;
           i < polylineResponse.routes![0].legs![0].steps!.length;
           i++) {
-        polyline.add(Polyline(
+        polyline.add(
+          Polyline(
             polylineId: PolylineId(polylineResponse
                 .routes![0].legs![0].steps![i].polyline!.points!),
             points: [
@@ -62,7 +63,9 @@ class MapCubit extends Cubit<MapState> {
                       .routes![0].legs![0].steps![i].endLocation!.lng!),
             ],
             width: 5,
-            color: AppColors.greenColor));
+            color: AppColors.greenColor,
+          ),
+        );
       }
 
       emit(MapPolylineDrawnState(
@@ -72,7 +75,6 @@ class MapCubit extends Cubit<MapState> {
       ));
     } catch (e) {
       debugPrint('Error drawing polyline: $e');
-      // Handle error as needed
     }
   }
 }

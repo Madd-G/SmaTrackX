@@ -1,10 +1,15 @@
-import 'package:device_info_plus/device_info_plus.dart';
+import 'package:smatrackx/core.dart';
 
 class DeviceService {
-  Future<AndroidDeviceInfo> getDeviceInfo() async {
+  Future<dynamic> getDeviceInfo() async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
 
-    return androidInfo;
+    if (Platform.isAndroid) {
+      return await deviceInfo.androidInfo;
+    } else if (Platform.isIOS) {
+      return await deviceInfo.iosInfo;
+    } else {
+      throw UnsupportedError('Unsupported platform');
+    }
   }
 }

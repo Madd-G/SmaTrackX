@@ -11,7 +11,7 @@ class AbsenceCard extends StatelessWidget {
 
   String photoUrl;
   final Position position;
-  final AndroidDeviceInfo deviceInfo;
+  final dynamic deviceInfo;
 
   @override
   Widget build(BuildContext context) {

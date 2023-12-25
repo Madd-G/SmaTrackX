@@ -11,16 +11,16 @@ class DataBloc extends Bloc<DataEvent, DataState> {
         try {
           emit(DataLoading());
           Position position = await getLocation();
-          AndroidDeviceInfo deviceInfo = await getDeviceInfo();
+          dynamic deviceInfo = await getDeviceInfo();
           emit(DataLoaded(position: position, deviceInfo: deviceInfo));
         } catch (e) {
-          emit(DataFailed());
+          emit(DataFailed(e.toString()));
         }
       },
     );
   }
 
-  Future<AndroidDeviceInfo> getDeviceInfo() async {
+  Future<dynamic> getDeviceInfo() async {
     var deviceInfo = await DeviceService().getDeviceInfo();
     return deviceInfo;
   }

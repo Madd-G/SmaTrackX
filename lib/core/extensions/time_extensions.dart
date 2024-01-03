@@ -50,4 +50,18 @@ extension DateTimeExt on DateTime {
       return 'now';
     }
   }
+
+  /// Friday, 04 January 2024
+  String toDayDateMonthYear() {
+    final days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',];
+
+    final months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',];
+
+    final dayOfWeek = days[weekday - 1];
+    final dayOfMonth = day.toString().padLeft(2, '0');
+    final month = months[this.month - 1];
+    final year = this.year;
+
+    return '$dayOfWeek, $dayOfMonth $month $year';
+  }
 }

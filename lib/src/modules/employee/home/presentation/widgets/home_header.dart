@@ -26,11 +26,12 @@ class HomeHeader extends StatelessWidget {
                 children: [
                   const Icon(IconlyBold.user_2, color: AppColors.whiteColor),
                   Text(
-                    'Friday, 10 February 2023',
+                    DateTime.now().toDayDateMonthYear(),
                     style: CustomTextStyle.textLargeMedium
                         .copyWith(color: AppColors.whiteColor),
                   ),
-                  const Icon(IconlyBold.notification, color: AppColors.whiteColor),
+                  const Icon(IconlyBold.notification,
+                      color: AppColors.whiteColor),
                 ],
               ),
               const SizedBox(height: 30.0),

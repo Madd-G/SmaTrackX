@@ -1,9 +1,7 @@
 import 'package:smatrackx/core.dart';
 
 class AttendancesHeader extends StatelessWidget {
-  const AttendancesHeader({
-    super.key,
-  });
+  const AttendancesHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +13,7 @@ class AttendancesHeader extends StatelessWidget {
         children: [
           const Icon(IconlyBold.user_2, color: AppColors.primaryColor),
           Text(
-            'Friday, 10 February 2023',
+            DateTime.now().toDayDateMonthYear(),
             style: CustomTextStyle.textLargeBold
                 .copyWith(color: AppColors.blackColor),
           ),

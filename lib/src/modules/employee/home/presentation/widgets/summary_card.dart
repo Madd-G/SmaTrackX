@@ -136,10 +136,11 @@ class PresenceSummaryByMonth extends StatelessWidget {
           return Text('Error: ${snapshot.error}',
               style: CustomTextStyle.textBigRegular);
         } else if (snapshot.hasData) {
-          final data = snapshot.data?.data();
+          final Map<String, dynamic>? data = snapshot.data?.data();
           if (data != null) {
-            final thisMonthData = data.filterByMonth(month);
-            final statusCounts = data.monthCountStatus();
+            List<MapEntry<String, dynamic>> thisMonthData =
+                data.filterByMonth(month);
+            final statusCounts = data.monthCountStatus(thisMonthData);
 
             int arriveCount = statusCounts['arriveCount'] ?? 0;
             int leaveCount = statusCounts['leaveCount'] ?? 0;

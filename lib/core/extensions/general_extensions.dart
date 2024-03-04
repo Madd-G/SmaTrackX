@@ -69,7 +69,7 @@ extension MapExtensions on Map<String, dynamic> {
     return dataList;
   }
 
-  Map<String, int> monthCountStatus() {
+  Map<String, int> monthCountStatus(List<MapEntry<String, dynamic>> entries) {
     int arriveCount = 0;
     int leaveCount = 0;
     int absenceCount = 0;

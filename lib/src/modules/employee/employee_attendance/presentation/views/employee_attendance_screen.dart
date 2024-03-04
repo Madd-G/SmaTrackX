@@ -48,7 +48,6 @@ class _EmployeeAttendanceScreenState extends State<EmployeeAttendanceScreen> {
                           LatLng(position.latitude, position.longitude),
                       destinationPosition:
                           LatLng(destinationLatitude, destinationLongitude),
-                      // const LatLng(-7.608043, 109.4675457),
                     );
                   },
                   child: Stack(
@@ -57,7 +56,6 @@ class _EmployeeAttendanceScreenState extends State<EmployeeAttendanceScreen> {
                         position: position,
                         officePosition:
                             LatLng(destinationLatitude, destinationLongitude),
-                            // const LatLng(-7.415839782910156, 109.23236131668091),
                       ),
                       AbsenceCard(
                         photoUrl: photoUrl!,

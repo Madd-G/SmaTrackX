@@ -36,17 +36,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
 
     case EmployeeAttendanceScreen.routeName:
       return _pageBuilder(
-        (_) => MultiBlocProvider(
-          providers: [
-            BlocProvider(
-              create: (_) => CompanyBloc()..add(LoadCompanyEvent()),
-            ),
-            BlocProvider(create: (_) => AttendanceBloc()),
-            BlocProvider(create: (_) => DataBloc()),
-            BlocProvider(create: (_) => ClockBloc()),
-          ],
-          child: const EmployeeAttendanceScreen(),
-        ),
+        (_) => const EmployeeAttendanceScreen(),
         settings: settings,
       );
     case BottomNavigation.routeName:

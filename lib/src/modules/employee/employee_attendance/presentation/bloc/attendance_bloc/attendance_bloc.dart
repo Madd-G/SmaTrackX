@@ -106,7 +106,7 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
     }
     if (await SecurityService().isNotSafeDevice()) {
       hideLoading();
-      showInfoDialog("Doesn't work in root android!");
+      showInfoDialog("Doesn't work on emulator or rooted devices!");
       return false;
     }
     if (await SecurityService().isNoFaceDetected(photoUrl)) {

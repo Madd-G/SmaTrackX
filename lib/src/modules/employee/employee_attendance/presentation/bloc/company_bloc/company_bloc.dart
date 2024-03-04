@@ -16,9 +16,10 @@ class CompanyBloc extends Bloc<CompanyEvent, CompanyState> {
       Emitter<CompanyState> emit,
       ) async {
     try {
+      print('event.companyId: ${event.companyId}');
       final snapshot = await FirebaseFirestore.instance
           .collection("company")
-          .doc("J5M0OUVH6yQ7iQyoGw5z8NlBSNH2")
+          .doc(event.companyId)
           .get();
 
       if (snapshot.exists) {

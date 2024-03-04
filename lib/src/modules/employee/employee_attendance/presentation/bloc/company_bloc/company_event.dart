@@ -3,7 +3,10 @@ part of 'company_bloc.dart';
 @immutable
 abstract class CompanyEvent {}
 
-class LoadCompanyEvent extends CompanyEvent {}
+class LoadCompanyEvent extends CompanyEvent {
+  final String companyId;
+  LoadCompanyEvent({required this.companyId});
+}
 
 class UpdateCompanyEvent extends CompanyEvent {
   final String companyName;

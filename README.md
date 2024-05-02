@@ -4,6 +4,14 @@ Welcome to SmaTrackX and SmaTrackZ, your go-to solution for seamless and efficie
 Currently, SmaTrackX is in the developing phase, and not all features have been fully
 implemented.
 
+
+
+https://github.com/Madd-G/SmaTrackX/assets/61916375/f8ae4b52-a6cb-466b-9ec4-7452154157e8
+
+
+
+
+
 ## Key Features (Partial Implementation)
 
 ### For Employees (SmaTrackX):

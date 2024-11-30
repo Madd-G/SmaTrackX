@@ -1,4 +1,6 @@
+import 'package:flutter/physics.dart';
 import 'package:smatrackx/core.dart';
+import 'package:smatrackx/core/constants/constants.dart';
 
 part 'map_state.dart';
 
@@ -27,7 +29,7 @@ class MapCubit extends Cubit<MapState> {
       Response response = await dio.post(
         "https://maps.googleapis.com/maps/api/directions/json",
         queryParameters: {
-          'key': 'AIzaSyCdrEFiuZccbqDqVcHndteT_RkypJLZCDs',
+          'key': apiKey,
           'units': 'metric',
           'origin': '${currentPosition.latitude},${currentPosition.longitude}',
           'destination':
@@ -35,7 +37,6 @@ class MapCubit extends Cubit<MapState> {
           'mode': 'driving',
         },
       );
-
       polylineResponse = PolylineResponse.fromJson(response.data);
 
       totalDistance = polylineResponse.routes![0].legs![0].distance!.text!;

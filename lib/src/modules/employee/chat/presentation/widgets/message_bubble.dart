@@ -41,7 +41,7 @@ class _MessageBubbleState extends State<MessageBubble> {
               ),
             Container(
               constraints:
-                  BoxConstraints(maxWidth: context.width * 0.8, minWidth: 0),
+                  BoxConstraints(maxWidth: context.width * 0.78, minWidth: 0),
               margin: EdgeInsets.only(top: 4, left: isCurrentUser ? 0 : 10),
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
               decoration: BoxDecoration(

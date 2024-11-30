@@ -99,6 +99,11 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
     required String photoUrl,
     required Position position,
   }) async {
+    if (await SecurityService().isNoFaceDetected(photoUrl)) {
+      hideLoading();
+      showInfoDialog("No face detected!");
+      return false;
+    }
     if (await isNotInValidDistance(position)) {
       hideLoading();
       showInfoDialog("Too far from company :(");
@@ -107,11 +112,6 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
     if (await SecurityService().isNotSafeDevice()) {
       hideLoading();
       showInfoDialog("Doesn't work on emulator or rooted devices!");
-      return false;
-    }
-    if (await SecurityService().isNoFaceDetected(photoUrl)) {
-      hideLoading();
-      showInfoDialog("No face detected!");
       return false;
     }
     return true;

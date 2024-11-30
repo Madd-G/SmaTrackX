@@ -18,7 +18,7 @@
 //   GlobalKey googleMapContainerKey = GlobalKey();
 //   MapType _mapType = MapType.normal;
 //   GoogleMapController? googleMapController;
-//   String googleApikey = "AIzaSyCdrEFiuZccbqDqVcHndteT_RkypJLZCDs";
+//   String googleApikey = apiKey;
 //   String location = "Search Location";
 //   double _radiusValue = 20;
 //   bool visible = false;

@@ -55,7 +55,7 @@ class _TimeTextState extends State<TimeText> {
       style: widget.style ??
           const TextStyle(
             fontSize: 12,
-            color: AppColors.whiteColor,
+            color: AppColors.greyColor,
           ),
     );
   }

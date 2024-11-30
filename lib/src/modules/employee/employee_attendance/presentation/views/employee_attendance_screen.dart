@@ -36,25 +36,28 @@ class EmployeeAttendanceScreen extends StatelessWidget {
                 } else if (state is DataLoaded) {
                   var position = state.position;
                   var deviceInfo = state.deviceInfo;
-                  var destinationLatitude =
-                      companyState.companyData["latitude"];
-                  var destinationLongitude =
-                      companyState.companyData["longitude"];
+                  double destinationLatitude =
+                      double.parse(companyState.companyData["latitude"].toString());
+                  double destinationLongitude =
+                      double.parse(companyState.companyData["longitude"].toString());
                   return BlocProvider(
                     create: (context) {
                       return MapCubit(
-                        currentPosition:
-                            LatLng(position.latitude, position.longitude),
-                        destinationPosition:
-                            LatLng(destinationLatitude, destinationLongitude),
+                        currentPosition: LatLng(
+                            double.parse(position.latitude.toString()),
+                            double.parse(position.longitude.toString())),
+                        destinationPosition: LatLng(
+                            double.parse(destinationLatitude.toString()),
+                            double.parse(destinationLongitude.toString())),
                       );
                     },
                     child: Stack(
                       children: [
                         MapWidget(
                           position: position,
-                          officePosition:
-                              LatLng(destinationLatitude, destinationLongitude),
+                          officePosition: LatLng(
+                              double.parse(destinationLatitude.toString()),
+                              double.parse(destinationLongitude.toString())),
                         ),
                         AbsenceCard(
                           photoUrl: photoUrl!,

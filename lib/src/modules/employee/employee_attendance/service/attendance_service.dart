@@ -1,6 +1,8 @@
 import 'package:smatrackx/core.dart';
 
 class AttendanceService {
+  final uid = FirebaseAuth.instance.currentUser!.uid;
+
   Future<void> checkIn({
     required String deviceModel,
     required String deviceId,
@@ -12,13 +14,11 @@ class AttendanceService {
     required String status,
     required double distance,
   }) async {
-    final uid = FirebaseAuth.instance.currentUser!.uid;
     String currentDate = DateTime.now().yearMonthDay();
 
     final currentData = await FirebaseFirestore.instance
         .collection("attendances")
         .doc(uid)
-        // .doc('pf6UvuKcE9eEeHxZttQk4OWmFQi2')
         .get();
 
     Map<String, dynamic> newData = {
@@ -36,6 +36,7 @@ class AttendanceService {
         },
         "uid": uid,
         "date": DateTime.now().yearMonthDay(),
+        // "date": DateTime(2024, 3, 1).yearMonthDay(),
         "isCheckedOut": false,
       }
     };
@@ -47,7 +48,6 @@ class AttendanceService {
     await FirebaseFirestore.instance
         .collection("attendances")
         .doc(uid)
-        // .doc('pf6UvuKcE9eEeHxZttQk4OWmFQi2')
         .set(newData);
   }
 
@@ -62,13 +62,11 @@ class AttendanceService {
     required String status,
     required double distance,
   }) async {
-    final uid = FirebaseAuth.instance.currentUser!.uid;
     String currentDate = DateTime.now().yearMonthDay();
 
     final currentData = await FirebaseFirestore.instance
         .collection("attendances")
         .doc(uid)
-        // .doc('pf6UvuKcE9eEeHxZttQk4OWmFQi2')
         .get();
 
     Map<String, dynamic> newDateData = {
@@ -98,7 +96,6 @@ class AttendanceService {
         await FirebaseFirestore.instance
             .collection("attendances")
             .doc(uid)
-            // .doc('pf6UvuKcE9eEeHxZttQk4OWmFQi2')
             .update(currentDataMap);
       } else {
         return;
@@ -109,10 +106,7 @@ class AttendanceService {
   }
 
   Stream<DocumentSnapshot<Map<String, dynamic>>> attendanceSnapshot() {
-    return FirebaseFirestore.instance
-        .doc('attendances/${FirebaseAuth.instance.currentUser!.uid}')
-        // .doc('attendances/pf6UvuKcE9eEeHxZttQk4OWmFQi2}')
-        .snapshots();
+    return FirebaseFirestore.instance.doc('attendances/$uid').snapshots();
   }
 
   Future<bool> isNotInValidDistanceWithCompany({
@@ -137,7 +131,7 @@ class AttendanceService {
     );
 
     // TODO: set radius based on company radius
-    return distance > 20;
+    return distance > 200;
   }
 
   num getDistance(
